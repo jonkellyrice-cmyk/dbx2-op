@@ -1,0 +1,29 @@
+{
+  "name": "game-optimization-template",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test \"tests/**/*.test.ts\"",
+    "arch:check": "node scripts/check-boundaries.mjs",
+    "test:ui": "node --test tests/ui/template-ui.test.mjs"
+  },
+  "dependencies": {
+    "@sparticuz/chromium": "^153.0.0",
+    "next": "latest",
+    "puppeteer-core": "^25.16.0",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "playwright": "^1.62.1",
+    "tsx": "latest",
+    "typescript": "latest"
+  }
+}

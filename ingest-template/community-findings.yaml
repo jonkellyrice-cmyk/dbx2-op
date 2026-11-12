@@ -1,0 +1,28 @@
+# Community findings (BUILDING_A_GAME_OPTIMIZER.md step 8; spec §19).
+# Each claim from the player community, recorded so the audit can resolve it. Schema:
+# schema/community-finding.schema.json. FILL with your game's claims; these are TOY examples.
+# Weigh claims: older than the latest relevant patch = weaker; popular != strong; context gets
+# dropped ("broken" often means one mode); ten posts repeating one video = one source.
+findings:
+  - id: C-001
+    claim: Heavy Blow and Whirlwind together are a trap; you can only use one of them per turn.
+    options: [technique.heavy-blow, signature.whirlwind]
+    context: {mode: null, patch: "1.0"}
+    sources: [{ref: "toy forum thread (illustrative)", date: "2026-11-11"}]
+    agreement: broad
+    tested_by_us: true
+    optimizer_says: G-002 anti-synergy on damage (moderate)
+    status: confirmed
+    resolution: Matches generator G-002; no change. Pinned as acceptance case A-008.
+    acceptance_case: A-008
+  - id: C-002
+    claim: Shield Wall plus Iron Skin is still worth it on a bodyguard; the redundancy penalty is too harsh.
+    options: [technique.shield-wall, talent.iron-skin]
+    context: {mode: null, patch: "1.0"}
+    sources: [{ref: "toy community guide (illustrative)", date: "2026-11-11"}]
+    agreement: several
+    tested_by_us: false
+    optimizer_says: G-003 redundancy on defense (moderate)
+    status: open
+    resolution: null
+    acceptance_case: null

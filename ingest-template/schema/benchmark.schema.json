@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "benchmark.schema.json",
+  "title": "Benchmark peer",
+  "description": "A reference build measured on the profile's benchmark metrics (spec §16). Unmeasured = null, never 0.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "measured", "metrics", "evidence"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "name": {"type": "string"},
+    "measured": {"type": "boolean", "description": "false while any figure is still null"},
+    "metrics": {"type": "object", "additionalProperties": {"type": ["number", "null"]}},
+    "build": {"oneOf": [{"$ref": "build.schema.json"}, {"type": "null"}]},
+    "evidence": {"$ref": "vocabulary.schema.json#/$defs/Evidence"}
+  }
+}

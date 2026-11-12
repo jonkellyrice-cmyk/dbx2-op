@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "community-finding.schema.json",
+  "title": "Community finding",
+  "description": "One claim from the player community (BUILDING_A_GAME_OPTIMIZER.md step 8).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "claim", "context", "sources", "agreement", "tested_by_us", "optimizer_says", "status", "resolution"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^C-[0-9]{3}$"},
+    "claim": {"type": "string", "minLength": 1},
+    "options": {"type": "array", "items": {"$ref": "vocabulary.schema.json#/$defs/EntityId"}},
+    "context": {"type": "object", "properties": {"mode": {"type": ["string", "null"]}, "patch": {"type": ["string", "null"]}}},
+    "sources": {"type": "array", "items": {"type": "object", "required": ["ref", "date"], "properties": {"ref": {"type": "string"}, "date": {"type": "string"}}}},
+    "agreement": {"enum": ["single", "several", "broad"]},
+    "tested_by_us": {"type": "boolean"},
+    "optimizer_says": {"type": "string"},
+    "status": {"enum": ["open", "confirmed", "rejected", "outdated"]},
+    "resolution": {"type": ["string", "null"], "description": "Filled by the audit: generator fix, authored rating/relation, spec change, or no change with reason"},
+    "acceptance_case": {"type": ["string", "null"], "pattern": "^A-[0-9]{3}$"}
+  },
+  "allOf": [{"if": {"properties": {"status": {"enum": ["confirmed", "rejected", "outdated"]}}}, "then": {"properties": {"resolution": {"type": "string", "minLength": 1}}}}]
+}

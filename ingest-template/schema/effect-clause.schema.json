@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "effect-clause.schema.json",
+  "title": "EffectClause",
+  "description": "One independently triggered effect of an option (spec §6). An option has zero or more.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "trigger", "predicates", "target", "operation", "property", "magnitude", "stacking", "evidence"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "trigger": {"$ref": "vocabulary.schema.json#/$defs/Trigger"},
+    "predicates": {
+      "type": "array",
+      "description": "Conditions, all of which must hold. A value naming another option uses its EntityId, so generators can read it.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "operator", "value"],
+        "properties": {
+          "path": {"type": "string"},
+          "operator": {"enum": ["eq", "ne", "lt", "lte", "gt", "gte", "in", "has_tag"]},
+          "value": {}
+        }
+      }
+    },
+    "target": {"enum": ["self", "ally", "allies", "enemy", "enemies", "area"]},
+    "operation": {"$ref": "vocabulary.schema.json#/$defs/Operation"},
+    "property": {"type": "string", "description": "What changes: damage, damage_taken, speed, actions, healing..."},
+    "magnitude": {"$ref": "vocabulary.schema.json#/$defs/KnownNumber"},
+    "duration": {"type": ["string", "null"], "description": "instant, until_next_turn, while_condition, once_per_fight..."},
+    "stacking": {"$ref": "vocabulary.schema.json#/$defs/Stacking"},
+    "evidence": {"$ref": "vocabulary.schema.json#/$defs/Evidence"},
+    "text": {"type": ["string", "null"], "description": "Exact in-game wording (documentation only)"}
+  }
+}

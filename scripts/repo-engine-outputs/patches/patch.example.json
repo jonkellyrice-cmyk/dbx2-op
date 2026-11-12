@@ -1,0 +1,14 @@
+{
+  "schema": "PatchDocumentV1",
+  "id": "PATCH.EXAMPLE.001",
+  "createdAt": "2026-01-26T00:00:00.000Z",
+  "notes": "Example: create a file. Replace with real ops.",
+  "ops": [
+    {
+      "op": "create_file",
+      "path": "docs/patches/hello-from-patch.txt",
+      "content": "hello from PatchDocumentV1\\n",
+      "allowOverwrite": true
+    }
+  ]
+}

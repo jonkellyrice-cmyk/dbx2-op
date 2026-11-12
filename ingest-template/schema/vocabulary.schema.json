@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vocabulary.schema.json",
+  "title": "Shared vocabulary",
+  "description": "FILL: the controlled values every other file uses. The game-specific enums (Family, GoalId, Tag, Trigger...) are the parts you replace; the wrappers (Evidence, Known*, TacticalGrade) are the same for every game. TOY values shown.",
+  "$defs": {
+    "EntityId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*\\.[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "<family>.<slug>, lowercase kebab-case. FILL the family list in Family. Example: technique.mark-target"
+    },
+    "SpecRef": {"type": "string", "pattern": "^§[0-9]+(?:\\.[0-9]+)?$", "description": "A section of spec.md, e.g. §13"},
+    "Family": {"enum": ["origin", "technique", "talent", "signature"], "description": "FILL: option families (spec §5). TOY values."},
+    "GoalId": {"enum": ["damage", "defense", "support", "mobility"], "description": "FILL: must equal the goal ids in optimizer-profile.yaml. TOY values."},
+    "Tag": {
+      "enum": ["origin", "attack", "guard", "buff", "heal", "movement", "setup", "mark", "payoff", "area", "stance", "scales"],
+      "description": "FILL: role tags (spec §5). TOY values."
+    },
+    "Trigger": {"enum": ["always", "on_use", "on_hit", "on_event", "while_condition", "threshold_entry", "periodic"]},
+    "Operation": {"enum": ["add", "multiply", "set", "restore", "drain", "apply_status", "clear_status", "grant_action", "modify_rule"]},
+    "Stacking": {"enum": ["additive", "multiplicative", "refresh", "replace", "capped", "exclusive_group", "unknown"]},
+    "Evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "source_keys", "version"],
+      "properties": {
+        "status": {"enum": ["game", "model", "verify"], "description": "GAME = established; MODEL = our convention; VERIFY = unconfirmed (treated as unknown)"},
+        "source_keys": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "version": {"type": "string", "minLength": 1},
+        "notes": {"type": ["string", "null"]}
+      },
+      "allOf": [{"if": {"properties": {"status": {"const": "game"}}}, "then": {"properties": {"source_keys": {"minItems": 1}}}}]
+    },
+    "KnownNumber": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "value", "evidence"],
+      "properties": {
+        "status": {"enum": ["known", "unknown", "not_applicable"]},
+        "value": {"type": ["number", "null"]},
+        "unit": {"type": ["string", "null"]},
+        "evidence": {"$ref": "vocabulary.schema.json#/$defs/Evidence"}
+      },
+      "allOf": [
+        {"if": {"properties": {"status": {"const": "known"}}}, "then": {"properties": {"value": {"type": "number"}}}},
+        {"if": {"properties": {"status": {"enum": ["unknown", "not_applicable"]}}}, "then": {"properties": {"value": {"type": "null"}}}}
+      ]
+    },
+    "KnownBoolean": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "value", "evidence"],
+      "properties": {
+        "status": {"enum": ["known", "unknown", "not_applicable"]},
+        "value": {"type": ["boolean", "null"]},
+        "evidence": {"$ref": "vocabulary.schema.json#/$defs/Evidence"}
+      },
+      "allOf": [
+        {"if": {"properties": {"status": {"const": "known"}}}, "then": {"properties": {"value": {"type": "boolean"}}}},
+        {"if": {"properties": {"status": {"enum": ["unknown", "not_applicable"]}}}, "then": {"properties": {"value": {"type": "null"}}}}
+      ]
+    },
+    "TacticalGrade": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "value", "reason", "evidence"],
+      "description": "Authored judgment, 0-5 (spec §13). A grade nobody has judged yet is unknown, never 0.",
+      "properties": {
+        "status": {"enum": ["known", "unknown"]},
+        "value": {"type": ["integer", "null"], "minimum": 0, "maximum": 5},
+        "reason": {"type": "string", "minLength": 1},
+        "evidence": {"$ref": "vocabulary.schema.json#/$defs/Evidence"}
+      },
+      "allOf": [
+        {"if": {"properties": {"status": {"const": "known"}}}, "then": {"properties": {"value": {"type": "integer"}}}},
+        {"if": {"properties": {"status": {"const": "unknown"}}}, "then": {"properties": {"value": {"type": "null"}}}}
+      ]
+    },
+    "RelationKind": {"enum": ["synergy", "anti_synergy", "redundancy"]},
+    "WeightBand": {"enum": ["minor", "moderate", "major"]}
+  }
+}

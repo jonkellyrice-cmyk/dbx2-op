@@ -1,0 +1,13 @@
+{
+  "schema": "VerifyReportV1",
+  "verifiedAt": "2026-01-26T21:17:22.615Z",
+  "success": true,
+  "results": [
+    {
+      "step": "Fingerprint index (structural integrity)",
+      "status": "ok",
+      "exitCode": 0,
+      "output": "\n> fantasy-name-mdv@0.1.0 gen:fingerprint-index\n> tsx scripts/gen_fingerprint_index.ts\n\nWrote: C:\\Users\\ricej\\Desktop\\MDV_work\\elvennamegen\\elven-name-mdv\\docs\\fingerprint-index.md\nWrote: C:\\Users\\ricej\\Desktop\\MDV_work\\elvennamegen\\elven-name-mdv\\docs\\fingerprint-index.json\nIssues found: 7 (see markdown)\n"
+    }
+  ]
+}

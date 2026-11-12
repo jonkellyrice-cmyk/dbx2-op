@@ -1,0 +1,22 @@
+{
+  "schema": "PatchApplyLogV1",
+  "patchId": "PATCH.UI.KEYDOWN.ALIAS.001",
+  "appliedAt": "2026-02-04T00:17:51.991Z",
+  "policy": {
+    "mode": "lego-additive",
+    "allowRefactor": false,
+    "requireSectionAppend": true,
+    "requireFingerprintedBlocks": true,
+    "requireExpectedContentHash": true
+  },
+  "opsApplied": 0,
+  "filesTouched": [],
+  "details": [
+    {
+      "op": "append_block",
+      "target": "(unknown)",
+      "status": "failed",
+      "message": "Unknown op: append_block"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "relation.schema.json",
+  "title": "Relation",
+  "description": "A pairwise interaction (spec §14). Generated relations carry generator_id; hand-authored ones carry null and tactical evidence with a reason.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["a", "b", "kind", "goal", "weight_band", "reason", "generator_id", "state", "evidence"],
+  "properties": {
+    "a": {"$ref": "vocabulary.schema.json#/$defs/EntityId"},
+    "b": {"$ref": "vocabulary.schema.json#/$defs/EntityId"},
+    "kind": {"$ref": "vocabulary.schema.json#/$defs/RelationKind"},
+    "goal": {"$ref": "vocabulary.schema.json#/$defs/GoalId"},
+    "weight_band": {"$ref": "vocabulary.schema.json#/$defs/WeightBand"},
+    "reason": {"type": "string", "minLength": 1},
+    "generator_id": {"type": ["string", "null"], "pattern": "^G-[0-9]{3}$"},
+    "state": {"enum": ["confirmed", "candidate"], "description": "confirmed adds its band's points; candidate is explained only"},
+    "evidence": {"$ref": "vocabulary.schema.json#/$defs/Evidence"}
+  }
+}

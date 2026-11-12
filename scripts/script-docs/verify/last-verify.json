@@ -1,0 +1,13 @@
+{
+  "schema": "VerifyReportV1",
+  "verifiedAt": "2026-02-03T21:20:21.773Z",
+  "success": true,
+  "results": [
+    {
+      "step": "Fingerprint index (structural integrity)",
+      "status": "ok",
+      "exitCode": 0,
+      "output": "\n> jon-orchestrator@0.1.0 gen:fingerprint-index\n> npm run repo:fingerprint\n\n\n> jon-orchestrator@0.1.0 repo:fingerprint\n> tsx scripts/repo-engine-scripts/gen_fingerprint_index.ts\n\nWrote: C:\\Users\\ricej\\Desktop\\MDV_work\\jon-orchestrator\\scripts\\repo-engine-outputs\\fingerprint-index.md\nWrote: C:\\Users\\ricej\\Desktop\\MDV_work\\jon-orchestrator\\scripts\\repo-engine-outputs\\fingerprint-index.json\n"
+    }
+  ]
+}

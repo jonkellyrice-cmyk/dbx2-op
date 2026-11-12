@@ -1,0 +1,62 @@
+# Golden acceptance cases (spec §18). FILL with your game's cases; these are the TOY examples.
+# status: confirmed = follows from the rules; provisional = rests on a gameplay premise still being verified.
+# covered_by: the test that checks the case, or null if it still has to be written (say so; don't hide it).
+# Every option id must resolve in catalog/ (tests/validate_bundle.py checks this).
+version: "1.0"
+cases:
+  - id: A-001
+    status: confirmed
+    spec_ref: "§12"
+    description: The same option can't be taken twice.
+    given: {level: 2, slots: {technique1: technique.quick-strike, technique2: technique.quick-strike}}
+    expect: {legal: false, failed_rule: R-004, reported_slot: technique2}
+    covered_by: null   # to write at process step 4
+  - id: A-002
+    status: confirmed
+    spec_ref: "§12"
+    description: A payoff without its prerequisite is illegal.
+    given: {level: 3, slots: {talent3: talent.hunters-focus}}
+    expect: {legal: false, failed_rule: R-005, reported_slot: talent3}
+    covered_by: "tests/optimization-template.test.ts: a prerequisite counts only if taken by the dependent pick's level"
+  - id: A-003
+    status: confirmed
+    spec_ref: "§12"
+    description: A prerequisite taken at a later level can't legalize an earlier pick.
+    given: {level: 4, slots: {talent3: talent.hunters-focus, technique4: technique.mark-target}}
+    expect: {legal: false, failed_rule: R-005, reported_slot: talent3}
+    covered_by: "tests/optimization-template.test.ts: a prerequisite counts only if taken by the dependent pick's level"
+  - id: A-004
+    status: confirmed
+    spec_ref: "§12"
+    description: Exclusions apply in both directions, in validate() and legalOptions().
+    given: {level: 5, slots: {talent3: talent.fleet-foot, signature5: signature.bulwark-stance}}
+    expect: {legal: false, failed_rule: R-006, legal_options_signature5_excludes: signature.bulwark-stance}
+    covered_by: "tests/optimization-template.test.ts: exclusions work in both directions"
+  - id: A-005
+    status: confirmed
+    spec_ref: "§13"
+    description: A goal whose only criterion is an unknown grade is reported unknown, not zero.
+    given: {option: talent.iron-skin, goal: support}
+    expect: {coverage: 0, goal_status: unknown, goal_value: null}
+    covered_by: "tests/optimization-template.test.ts: an unjudged goal is reported as unknown, not as a weakness"
+  - id: A-006
+    status: confirmed
+    spec_ref: "§14"
+    description: A clause naming another option generates a scored synergy, and the recommendation names its setup.
+    given: {a: talent.hunters-focus, b: technique.mark-target}
+    expect: {generator: G-001, kind: synergy, goal: damage, weight_band: major, state: confirmed}
+    covered_by: "tests/optimization-template.test.ts: recommendations evaluate every legal option and explain synergy with existing picks"
+  - id: A-007
+    status: confirmed
+    spec_ref: "§14"
+    description: Lookahead finds the setup-then-payoff pair that greedy filling misses.
+    given: {level: 5, slots: {}, ranks: {damage: 1}}
+    expect: {technique2: technique.mark-target, talent3: talent.hunters-focus, legal: true}
+    covered_by: "tests/optimization-template.test.ts: lookahead finds a setup that only pays off with a later pick"
+  - id: A-008
+    status: confirmed
+    spec_ref: "§19"
+    description: "From community finding C-001: two 2-action attacks compete for the same turn."
+    given: {a: technique.heavy-blow, b: signature.whirlwind}
+    expect: {generator: G-002, kind: anti_synergy, goal: damage, state: confirmed}
+    covered_by: null   # to write; the toy authors this relation by hand today

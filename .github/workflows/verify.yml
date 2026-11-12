@@ -1,0 +1,51 @@
+name: Template verification
+on:
+  # Documentation-only changes skip CI: nothing in the build, tests or app reads these files.
+  push:
+    branches: [main]
+    paths-ignore: ['**/*.md', 'docs/**', 'LICENSE']
+  pull_request:
+    paths-ignore: ['**/*.md', 'docs/**', 'LICENSE']
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Run domain and application regression tests
+        run: npm test
+      - name: TypeScript validation
+        if: always()
+        run: npm run typecheck
+      - name: Dependency boundary validation
+        if: always()
+        run: npm run arch:check
+      - name: Production build
+        if: always()
+        run: npm run build
+
+  ui-stability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Production build
+        run: npm run build
+      - name: Check hydration, report and PDF
+        run: |
+          browser_path="$(command -v google-chrome)"
+          REPORT_CHROMIUM_PATH="$browser_path" npm run test:ui

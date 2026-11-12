@@ -1,0 +1,489 @@
+{
+  "schema": "deps-graph-v1",
+  "repoName": "scripts",
+  "generatedAt": "2026-02-16T19:54:49.007Z",
+  "totals": {
+    "filesScanned": 14,
+    "edges": 54
+  },
+  "files": [
+    {
+      "path": "repo-engine-scripts/apply_patch.ts",
+      "fileHash": "8051220fd570f6de8019c2f0548478e7e8e0e4eb9eb651964e9b45390f558c19",
+      "deps": [
+        "pkg:node:crypto",
+        "pkg:node:fs",
+        "pkg:node:path",
+        "pkg:node:url"
+      ],
+      "revDeps": []
+    },
+    {
+      "path": "repo-engine-scripts/extract_block.ts",
+      "fileHash": "7f61cce7e0cafcd5a88e37f864f557babaf4ab85d66c130827524789405a0168",
+      "deps": [
+        "pkg:node:crypto",
+        "pkg:node:fs",
+        "pkg:node:path",
+        "pkg:node:url"
+      ],
+      "revDeps": []
+    },
+    {
+      "path": "repo-engine-scripts/gen_block_function_index.ts",
+      "fileHash": "1874b8bdb667c937b6db882c40753159209895bc0209ae14add07de249718756",
+      "deps": [
+        "pkg:node:fs",
+        "pkg:node:path",
+        "pkg:node:url"
+      ],
+      "revDeps": []
+    },
+    {
+      "path": "repo-engine-scripts/gen_deps_graph.ts",
+      "fileHash": "746270752be3581f3845bb00954d524589b37f06f33958705341b5b62c4616f4",
+      "deps": [
+        "pkg:node:crypto",
+        "pkg:node:fs",
+        "pkg:node:path",
+        "pkg:node:url",
+        "pkg:typescript"
+      ],
+      "revDeps": []
+    },
+    {
+      "path": "repo-engine-scripts/gen_fingerprint_index.ts",
+      "fileHash": "3995800f29a2dcd0b4cfce91a0e94232beab2e4b6721777aeec1387884ee4b72",
+      "deps": [
+        "pkg:node:crypto",
+        "pkg:node:fs",
+        "pkg:node:path",
+        "pkg:node:url"
+      ],
+      "revDeps": []
+    },
+    {
+      "path": "repo-engine-scripts/gen_patch_plan.ts",
+      "fileHash": "83ba78073ed7a715f5a3f1090748dd57cb35dda4bd2d03d336d0162cde09cbad",
+      "deps": [
+        "pkg:node:crypto",
+        "pkg:node:fs",
+        "pkg:node:path",
+        "pkg:node:url"
+      ],
+      "revDeps": []
+    },
+    {
+      "path": "repo-engine-scripts/gen_symbol_index.ts",
+      "fileHash": "448a9da9a07c3949c351bd59dfbdc0b5747a549b42a71dd2d04ec997c56c25cf",
+      "deps": [
+        "pkg:node:crypto",
+        "pkg:node:fs",
+        "pkg:node:path",
+        "pkg:node:url",
+        "pkg:typescript"
+      ],
+      "revDeps": []
+    },
+    {
+      "path": "repo-engine-scripts/gen-repo-map.ts",
+      "fileHash": "b84949c0eb78ac0b7865b71fab5a1179cc3a643fe688a4bcb840e0d9b6c3ce9b",
+      "deps": [
+        "pkg:node:fs",
+        "pkg:node:path",
+        "pkg:node:url"
+      ],
+      "revDeps": []
+    },
+    {
+      "path": "repo-engine-scripts/hide-root-contracts.ts",
+      "fileHash": "c59d388e65133dfda675ecbce6b0491b4a45fe9a5c60612bf2e22c4552ab829e",
+      "deps": [
+        "pkg:node:fs",
+        "pkg:node:path"
+      ],
+      "revDeps": []
+    },
+    {
+      "path": "repo-engine-scripts/mdv_blockify_repo.mjs",
+      "fileHash": "532d1807c31ff991704fd5111d673a3cd1031f57974576076803044bb91f6205",
+      "deps": [
+        "pkg:node:fs",
+        "pkg:node:path",
+        "pkg:node:process",
+        "pkg:typescript"
+      ],
+      "revDeps": []
+    },
+    {
+      "path": "repo-engine-scripts/promote_patch_plan.ts",
+      "fileHash": "3e7bfec503e19dd6c9f519c0e9e9b0afc62571b87d53dd0f3a97649cf857df2e",
+      "deps": [
+        "pkg:node:crypto",
+        "pkg:node:fs",
+        "pkg:node:path",
+        "pkg:node:url"
+      ],
+      "revDeps": []
+    },
+    {
+      "path": "repo-engine-scripts/snapshot_patch.ts",
+      "fileHash": "2f6eaa4af0b3a5c3554775e9f76430a3b6216a9fe2557fa031a4b55b9d2fdc17",
+      "deps": [
+        "pkg:node:crypto",
+        "pkg:node:fs",
+        "pkg:node:path",
+        "pkg:node:url"
+      ],
+      "revDeps": []
+    },
+    {
+      "path": "repo-engine-scripts/verify_repo.ts",
+      "fileHash": "ae8a6f6ab0bed33b647a7a0cfe38a3ada63870ab04a5176886cb2bacdda434ff",
+      "deps": [
+        "pkg:node:child_process",
+        "pkg:node:fs",
+        "pkg:node:path",
+        "pkg:node:url"
+      ],
+      "revDeps": []
+    },
+    {
+      "path": "repo-engine-scripts/workflow_run.ts",
+      "fileHash": "d8b05e714c9aee94efa14bf9892c43252ca3fc934f032a989204cfaae96b5c17",
+      "deps": [
+        "pkg:node:child_process",
+        "pkg:node:fs",
+        "pkg:node:path",
+        "pkg:node:url"
+      ],
+      "revDeps": []
+    }
+  ],
+  "edges": [
+    {
+      "from": "repo-engine-scripts/apply_patch.ts",
+      "to": "pkg:node:crypto",
+      "spec": "node:crypto",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/apply_patch.ts",
+      "to": "pkg:node:fs",
+      "spec": "node:fs",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/apply_patch.ts",
+      "to": "pkg:node:path",
+      "spec": "node:path",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/apply_patch.ts",
+      "to": "pkg:node:url",
+      "spec": "node:url",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/extract_block.ts",
+      "to": "pkg:node:crypto",
+      "spec": "node:crypto",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/extract_block.ts",
+      "to": "pkg:node:fs",
+      "spec": "node:fs",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/extract_block.ts",
+      "to": "pkg:node:path",
+      "spec": "node:path",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/extract_block.ts",
+      "to": "pkg:node:url",
+      "spec": "node:url",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_block_function_index.ts",
+      "to": "pkg:node:fs",
+      "spec": "node:fs",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_block_function_index.ts",
+      "to": "pkg:node:path",
+      "spec": "node:path",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_block_function_index.ts",
+      "to": "pkg:node:url",
+      "spec": "node:url",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_deps_graph.ts",
+      "to": "pkg:node:crypto",
+      "spec": "node:crypto",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_deps_graph.ts",
+      "to": "pkg:node:fs",
+      "spec": "node:fs",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_deps_graph.ts",
+      "to": "pkg:node:path",
+      "spec": "node:path",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_deps_graph.ts",
+      "to": "pkg:node:url",
+      "spec": "node:url",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_deps_graph.ts",
+      "to": "pkg:typescript",
+      "spec": "typescript",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_fingerprint_index.ts",
+      "to": "pkg:node:crypto",
+      "spec": "node:crypto",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_fingerprint_index.ts",
+      "to": "pkg:node:fs",
+      "spec": "node:fs",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_fingerprint_index.ts",
+      "to": "pkg:node:path",
+      "spec": "node:path",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_fingerprint_index.ts",
+      "to": "pkg:node:url",
+      "spec": "node:url",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_patch_plan.ts",
+      "to": "pkg:node:crypto",
+      "spec": "node:crypto",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_patch_plan.ts",
+      "to": "pkg:node:fs",
+      "spec": "node:fs",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_patch_plan.ts",
+      "to": "pkg:node:path",
+      "spec": "node:path",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_patch_plan.ts",
+      "to": "pkg:node:url",
+      "spec": "node:url",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_symbol_index.ts",
+      "to": "pkg:node:crypto",
+      "spec": "node:crypto",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_symbol_index.ts",
+      "to": "pkg:node:fs",
+      "spec": "node:fs",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_symbol_index.ts",
+      "to": "pkg:node:path",
+      "spec": "node:path",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_symbol_index.ts",
+      "to": "pkg:node:url",
+      "spec": "node:url",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen_symbol_index.ts",
+      "to": "pkg:typescript",
+      "spec": "typescript",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen-repo-map.ts",
+      "to": "pkg:node:fs",
+      "spec": "node:fs",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen-repo-map.ts",
+      "to": "pkg:node:path",
+      "spec": "node:path",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/gen-repo-map.ts",
+      "to": "pkg:node:url",
+      "spec": "node:url",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/hide-root-contracts.ts",
+      "to": "pkg:node:fs",
+      "spec": "node:fs",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/hide-root-contracts.ts",
+      "to": "pkg:node:path",
+      "spec": "node:path",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/mdv_blockify_repo.mjs",
+      "to": "pkg:node:fs",
+      "spec": "node:fs",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/mdv_blockify_repo.mjs",
+      "to": "pkg:node:path",
+      "spec": "node:path",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/mdv_blockify_repo.mjs",
+      "to": "pkg:node:process",
+      "spec": "node:process",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/mdv_blockify_repo.mjs",
+      "to": "pkg:typescript",
+      "spec": "typescript",
+      "kind": "dynamic_import"
+    },
+    {
+      "from": "repo-engine-scripts/promote_patch_plan.ts",
+      "to": "pkg:node:crypto",
+      "spec": "node:crypto",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/promote_patch_plan.ts",
+      "to": "pkg:node:fs",
+      "spec": "node:fs",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/promote_patch_plan.ts",
+      "to": "pkg:node:path",
+      "spec": "node:path",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/promote_patch_plan.ts",
+      "to": "pkg:node:url",
+      "spec": "node:url",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/snapshot_patch.ts",
+      "to": "pkg:node:crypto",
+      "spec": "node:crypto",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/snapshot_patch.ts",
+      "to": "pkg:node:fs",
+      "spec": "node:fs",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/snapshot_patch.ts",
+      "to": "pkg:node:path",
+      "spec": "node:path",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/snapshot_patch.ts",
+      "to": "pkg:node:url",
+      "spec": "node:url",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/verify_repo.ts",
+      "to": "pkg:node:child_process",
+      "spec": "node:child_process",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/verify_repo.ts",
+      "to": "pkg:node:fs",
+      "spec": "node:fs",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/verify_repo.ts",
+      "to": "pkg:node:path",
+      "spec": "node:path",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/verify_repo.ts",
+      "to": "pkg:node:url",
+      "spec": "node:url",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/workflow_run.ts",
+      "to": "pkg:node:child_process",
+      "spec": "node:child_process",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/workflow_run.ts",
+      "to": "pkg:node:fs",
+      "spec": "node:fs",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/workflow_run.ts",
+      "to": "pkg:node:path",
+      "spec": "node:path",
+      "kind": "import"
+    },
+    {
+      "from": "repo-engine-scripts/workflow_run.ts",
+      "to": "pkg:node:url",
+      "spec": "node:url",
+      "kind": "import"
+    }
+  ]
+}

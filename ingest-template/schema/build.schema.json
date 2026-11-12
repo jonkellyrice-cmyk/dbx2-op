@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "build.schema.json",
+  "title": "Build",
+  "description": "A build: player context plus one option per filled decision slot.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["context", "slots"],
+  "properties": {
+    "context": {
+      "type": "object",
+      "description": "FILL: the context fields listed in optimizer-profile.yaml. TOY: level.",
+      "required": ["level"],
+      "properties": {"level": {"type": "integer", "minimum": 1}}
+    },
+    "slots": {
+      "type": "object",
+      "description": "Decision slot id -> option id, or null for an intentionally empty slot",
+      "additionalProperties": {"oneOf": [{"$ref": "vocabulary.schema.json#/$defs/EntityId"}, {"type": "null"}]}
+    }
+  }
+}

@@ -1,0 +1,260 @@
+# Optimization profile: the exact optimization problem (spec.md Part B).
+# FILL every value for your game. The values below are the TOY example (Toy Skirmish, the made-up
+# game in src/domain/toy-game/). Every entry cites the spec section that explains it.
+# Checked by tests/validate_bundle.py against schema/optimizer-profile.schema.json.
+
+game: toy-skirmish                       # FILL: a stable id, lowercase kebab-case
+version:
+  content: "Toy Skirmish rulebook 1.0"   # FILL: patch, edition or DLC set
+  spec: "1.0"
+  date: "2026-11-11"
+source_of_truth:
+  enums: schema/vocabulary.schema.json
+  machine_rules: optimizer-profile.yaml
+  prose: spec.md
+target: >-
+  Choose a Wanderer's six picks (levels 1-5) for a requested playstyle.
+  Out of scope: party composition, enemies, maps.
+
+# ---------------------------------------------------------------------------------------------
+# Goals (spec §11). A closed list of 4-8. Ids must equal GoalId in schema/vocabulary.schema.json.
+# Criteria rate ONE OPTION from catalog data only (spec §13); weights sum to 1.
+# Methods: tactical_grade | rule_derived | count_saturation | boolean_coverage.
+# Build-level measurements belong in benchmarks, never here.
+# ---------------------------------------------------------------------------------------------
+goals:
+  - id: damage
+    label: Damage
+    definition: How much harm the option adds to the Wanderer's turns.
+    zero: Adds no damage.
+    hundred: The strongest damage option for its action cost.
+    plays: ends fights quickly                    # the report's voice: "This build ends fights quickly"
+    gap_advice: Damage is not its job; set up the party's strikers instead of racing them.
+    spec_ref: "§11"
+    criteria:
+      - id: damage_judgment
+        method: tactical_grade
+        weight: 0.7
+        inputs: [tactical_grades.damage]
+      - id: damage_per_action
+        method: rule_derived
+        weight: 0.3
+        inputs: [figures.average_damage, cost.actions]
+        formula: "100 * (average_damage / max(actions, 1)) / best_in_catalog; not_applicable for options with no average_damage"
+  - id: defense
+    label: Defense
+    definition: How well the option keeps the Wanderer (or an ally) standing.
+    zero: No protection.
+    hundred: The strongest protection for its cost.
+    plays: stays standing where the fighting is
+    gap_advice: Its defenses are thin; stay behind someone sturdier and pick fights carefully.
+    spec_ref: "§11"
+    criteria:
+      - id: defense_judgment
+        method: tactical_grade
+        weight: 1.0
+        inputs: [tactical_grades.defense]
+  - id: support
+    label: Support
+    definition: How much the option makes allies better.
+    zero: Does nothing for allies.
+    hundred: Reliably improves allies every turn.
+    plays: makes everyone around it better
+    gap_advice: It does little for allies; bring healing items or a support-minded partner.
+    spec_ref: "§11"
+    criteria:
+      - id: support_judgment
+        method: tactical_grade
+        weight: 1.0
+        inputs: [tactical_grades.support]
+  - id: mobility
+    label: Mobility
+    definition: How well the option gets the Wanderer where the fight needs it.
+    zero: No movement benefit.
+    hundred: Reliable repositioning every turn.
+    plays: is always where the fight needs it
+    gap_advice: It moves slowly; choose your position before the fight starts.
+    spec_ref: "§11"
+    criteria:
+      - id: mobility_judgment
+        method: tactical_grade
+        weight: 1.0
+        inputs: [tactical_grades.mobility]
+
+# ---------------------------------------------------------------------------------------------
+# Decision slots, context, out of scope (spec §12).
+# ---------------------------------------------------------------------------------------------
+decision_slots:
+  - {id: origin,     label: Origin,    family: origin,    unlock_level: 1, nullable: true}
+  - {id: technique1, label: Technique, family: technique, unlock_level: 1, nullable: true}
+  - {id: technique2, label: Technique, family: technique, unlock_level: 2, nullable: true}
+  - {id: talent3,    label: Talent,    family: talent,    unlock_level: 3, nullable: true}
+  - {id: technique4, label: Technique, family: technique, unlock_level: 4, nullable: true}
+  - {id: signature5, label: Signature, family: signature, unlock_level: 5, nullable: true}
+max_level: 5
+context: [level]                          # FILL: everything the player supplies (class, mode, owned items...)
+out_of_scope: [party_composition, enemies, maps]
+discretization: null                      # FILL if the game has continuous choices (stat points): named_spreads | step_10 | exact_integer
+
+# ---------------------------------------------------------------------------------------------
+# Legality rules (spec §12). validate() and legalOptions() apply the same rules.
+# on_unknown: what happens when the data needed is unknown. Use "unverified", never "pass".
+# ---------------------------------------------------------------------------------------------
+rules:
+  - id: R-001
+    applies_to: all_slots
+    test: option.family == slot.family
+    report_slot: offending_slot
+    message: "<option> is a <family>, not a <slot family>."
+    on_unknown: unverified
+    spec_ref: "§12"
+  - id: R-002
+    applies_to: all_slots
+    test: option.level <= slot.unlock_level
+    report_slot: offending_slot
+    message: "<option> needs level <level>; this slot is level <slot level>."
+    on_unknown: unverified
+    spec_ref: "§12"
+  - id: R-003
+    applies_to: all_slots
+    test: slot.unlock_level <= context.level
+    report_slot: offending_slot
+    message: "This slot opens at level <slot level>."
+    on_unknown: unverified
+    spec_ref: "§12"
+  - id: R-004
+    applies_to: all_slots
+    test: no option id appears in two slots
+    report_slot: later_slot
+    message: "<option> is already taken."
+    on_unknown: unverified
+    spec_ref: "§12"
+  - id: R-005
+    applies_to: all_slots
+    test: every option.requires is taken in a slot with unlock_level <= this slot's unlock_level
+    report_slot: dependent_slot
+    message: "Requires <prerequisite> by level <slot level>."
+    on_unknown: unverified
+    spec_ref: "§12"
+  - id: R-006
+    applies_to: all_slots
+    test: no pair where either option.excludes contains the other
+    report_slot: later_slot
+    message: "<option> can't be taken with <other>."
+    on_unknown: unverified
+    spec_ref: "§12"
+
+# ---------------------------------------------------------------------------------------------
+# Scoring (spec §13).
+# ---------------------------------------------------------------------------------------------
+scoring:
+  unknown_policy: unknown criteria contribute nothing and lower coverage; never zero-filled
+  minimum_goal_coverage: 0.6               # below this the goal is reported unknown
+  tactical_scale:
+    min: 0
+    max: 5
+    anchors:
+      "0": Verified to do nothing for this goal
+      "1": Narrow, unreliable or easily countered
+      "3": Works, with ordinary limits
+      "5": Reliable and repeatable, low opportunity cost
+  normalization:
+    tactical_grade: score = 20 * grade
+    rule_derived: score = the criterion's formula, clamped to 0-100
+    count_saturation: score = 100 * min(count, saturation_count) / saturation_count
+    boolean_coverage: known true = 100; known false = 0; unknown = unknown
+  rank_weights: linear                     # rank r of R levels weighs R + 1 - r, normalized (the engine's weightsFromRanks)
+  relation_bands:                          # points a CONFIRMED relation adds to (or takes from) its goal
+    minor: 5
+    moderate: 10
+    major: 30
+
+# ---------------------------------------------------------------------------------------------
+# Relation generators (spec §14). Rules over structured catalog fields, never names or prose.
+# confirmed relations are scored with relation_bands; candidates (VERIFY evidence) are explained only.
+# ---------------------------------------------------------------------------------------------
+relation_generators:
+  - id: G-001
+    when: a clause of option A has a predicate whose value is option B's id (B sets up, A pays off)
+    kind: synergy
+    goal: from_clause_property            # damage clause -> damage goal
+    weight_band: major
+    evidence: rule-derived
+    spec_ref: "§14"
+  - id: G-002
+    when: both options cost 2 of the 3 actions per turn
+    kind: anti_synergy
+    goal: from_shared_tag                  # both tagged attack -> damage
+    weight_band: moderate
+    evidence: rule-derived
+    spec_ref: "§14"
+  - id: G-003
+    when: both options have an always-on clause that reduces the same property (damage_taken)
+    kind: redundancy
+    goal: defense
+    weight_band: moderate
+    evidence: rule-derived
+    spec_ref: "§14"
+  - id: G-004
+    when: an always-on clause of option A has a has_tag predicate matching a tag of option B
+    kind: synergy
+    goal: from_clause_property
+    weight_band: minor
+    evidence: rule-derived
+    spec_ref: "§14"
+authored_relations:                        # judgment the data can't express; reason required
+  - {a: technique.dash, b: technique.quick-strike, kind: synergy, goal: damage, weight_band: moderate,
+     evidence: tactical, reason: "Dash into reach and still have actions left to strike in the same turn.", spec_ref: "§14"}
+
+# ---------------------------------------------------------------------------------------------
+# Presets and blockers (spec §15). ranks: 1 matters most; equal ranks tie; omitted goals are ignored.
+# ---------------------------------------------------------------------------------------------
+presets:
+  - {id: glass-cannon,  name: Glass cannon,  note: Hit as hard as possible and get out of the way, ranks: {damage: 1, mobility: 2}, blockers: [], spec_ref: "§15"}
+  - {id: bodyguard,     name: Bodyguard,     note: Stand in front and keep one ally alive,      ranks: {defense: 1, support: 2}, blockers: [B-001], spec_ref: "§15"}
+  - {id: party-support, name: Party support, note: Make the rest of the party better,           ranks: {support: 1, defense: 2}, blockers: [], spec_ref: "§15"}
+  - {id: balanced,      name: Balanced,      note: A bit of everything,                         ranks: {damage: 1, defense: 1, support: 1, mobility: 1}, blockers: [], spec_ref: "§15"}
+blockers:
+  - id: B-001
+    test: the build has at least one option tagged guard
+    message: A bodyguard with no guard option can't protect anyone.
+    severity: flag
+    spec_ref: "§15"
+acquisition_policy:
+  owned_only: not_applicable               # FILL: input filter when the game has ownership
+  unlock_burden: not_applicable            # FILL: separate "what to farm next" mode, never a hidden goal
+
+# ---------------------------------------------------------------------------------------------
+# Benchmarks (spec §16). Build-level figures; unmeasured = null, never 0.
+# ---------------------------------------------------------------------------------------------
+benchmarks:
+  title: How it compares to the reference archetypes
+  metrics:
+    - {id: attack,    label: Best attack,               unit: average damage, computable: true, calculation: "best average_damage among attack options, +1 with Sellsword, +2 with Hunter's Focus and Mark Target", spec_ref: "§16"}
+    - {id: reduction, label: Damage taken off each hit, unit: points,         computable: true, calculation: "sum of always-on damage_taken reductions", spec_ref: "§16"}
+    - {id: speed,     label: Speed,                     unit: squares,        computable: true, calculation: "5 + speed bonuses", spec_ref: "§16"}
+  peers:
+    - {id: knight, name: Knight, measured: true,  metrics: {attack: 7,   reduction: 3, speed: 4},    evidence: {status: model, source_keys: [], version: "1.0", notes: made-up reference archetype}}
+    - {id: ranger, name: Ranger, measured: true,  metrics: {attack: 8.5, reduction: 1, speed: 6},    evidence: {status: model, source_keys: [], version: "1.0", notes: made-up reference archetype}}
+    - {id: cleric, name: Cleric, measured: true,  metrics: {attack: 4.5, reduction: 2, speed: 5},    evidence: {status: model, source_keys: [], version: "1.0", notes: made-up reference archetype}}
+    - {id: rogue,  name: Rogue,  measured: true,  metrics: {attack: 9,   reduction: 0, speed: 7},    evidence: {status: model, source_keys: [], version: "1.0", notes: made-up reference archetype}}
+    - {id: mage,   name: Mage,   measured: false, metrics: {attack: 11,  reduction: 0, speed: null}, evidence: {status: model, source_keys: [], version: "1.0", notes: "speed never measured: left out of that chart, not ranked last"}}
+
+# ---------------------------------------------------------------------------------------------
+# Acceptance registry (spec §18). Details in tests/acceptance-cases.yaml; ids and statuses must match.
+# ---------------------------------------------------------------------------------------------
+acceptance:
+  - {id: A-001, status: confirmed, spec_ref: "§12"}
+  - {id: A-002, status: confirmed, spec_ref: "§12"}
+  - {id: A-003, status: confirmed, spec_ref: "§12"}
+  - {id: A-004, status: confirmed, spec_ref: "§12"}
+  - {id: A-005, status: confirmed, spec_ref: "§13"}
+  - {id: A-006, status: confirmed, spec_ref: "§14"}
+  - {id: A-007, status: confirmed, spec_ref: "§14"}
+  - {id: A-008, status: confirmed, spec_ref: "§19"}
+
+paths:
+  schemas: schema/
+  catalog: catalog/
+  tests: tests/
+  community_findings: community-findings.yaml

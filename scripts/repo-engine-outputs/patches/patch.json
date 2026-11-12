@@ -1,0 +1,17 @@
+{
+  "schema": "PatchDocumentV1",
+  "id": "PATCH.UI.KEYDOWN.ALIAS.001",
+  "createdAt": "2026-02-03T23:32:00.000Z",
+  "notes": "Fix runtime ReferenceError by aliasing onComposerKeyDown to the defined handler (strict lego-additive).",
+  "policy": {
+    "mode": "lego-additive",
+    "requireFingerprintedBlocks": true
+  },
+  "ops": [
+    {
+      "op": "append_block",
+      "blockKey": "src/ui/ui.tsx:UI.SECTION.COMPOSITION.MESSAGE_ACTIONS.001",
+      "text": "\n// Alias for JSX binding (typo-safe)\nconst onComposerKeyDown = onComposerKeyDown;\n"
+    }
+  ]
+}

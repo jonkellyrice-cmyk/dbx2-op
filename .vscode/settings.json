@@ -1,0 +1,8 @@
+{
+  "files.exclude": {
+    "src/app/ui/index.ts": false,
+    "src/app/api/chat/route.ts": false
+  },
+  "explorer.excludeGitIgnore": false,
+  "explorer.compactFolders": false
+}

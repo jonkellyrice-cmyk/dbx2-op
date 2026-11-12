@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "option.schema.json",
+  "title": "Option",
+  "description": "One choosable option (spec §5, §17). FILL: add family-specific fields your game needs; keep the required core.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "family", "level", "cost", "tags", "requires", "excludes", "effect_clauses", "tactical_grades", "spec_ref", "version", "evidence"],
+  "properties": {
+    "id": {"$ref": "vocabulary.schema.json#/$defs/EntityId"},
+    "name": {"type": "string", "minLength": 1},
+    "family": {"$ref": "vocabulary.schema.json#/$defs/Family"},
+    "level": {"type": "integer", "minimum": 1, "description": "Earliest level the option can be taken"},
+    "cost": {"type": "object", "additionalProperties": {"$ref": "vocabulary.schema.json#/$defs/KnownNumber"}, "description": "Resource -> cost per use (spec §3). TOY: actions."},
+    "tags": {"type": "array", "items": {"$ref": "vocabulary.schema.json#/$defs/Tag"}, "uniqueItems": true},
+    "requires": {"type": "array", "items": {"$ref": "vocabulary.schema.json#/$defs/EntityId"}, "description": "Prerequisite options (rule R-005)"},
+    "excludes": {"type": "array", "items": {"$ref": "vocabulary.schema.json#/$defs/EntityId"}, "description": "Options it can't be taken with (rule R-006)"},
+    "effect_clauses": {"type": "array", "items": {"$ref": "effect-clause.schema.json"}},
+    "tactical_grades": {
+      "type": "object",
+      "propertyNames": {"$ref": "vocabulary.schema.json#/$defs/GoalId"},
+      "additionalProperties": {"$ref": "vocabulary.schema.json#/$defs/TacticalGrade"},
+      "description": "Authored 0-5 judgment for EVERY goal (spec §13): known (0 = verified to do nothing for it) or unknown. tests/validate_bundle.py checks every goal is present."
+    },
+    "figures": {"type": "object", "additionalProperties": {"$ref": "vocabulary.schema.json#/$defs/KnownNumber"}, "description": "Printed numbers used by rule_derived criteria and benchmarks (e.g. average_damage)."},
+    "summary": {"type": "string"},
+    "text": {"type": ["string", "null"], "description": "Exact in-game wording (documentation only)"},
+    "spec_ref": {"$ref": "vocabulary.schema.json#/$defs/SpecRef"},
+    "version": {"type": "string", "minLength": 1},
+    "evidence": {"$ref": "vocabulary.schema.json#/$defs/Evidence"}
+  }
+}

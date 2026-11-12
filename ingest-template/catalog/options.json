@@ -1,0 +1,170 @@
+[
+  {
+    "id": "origin.sellsword", "name": "Sellsword", "family": "origin", "level": 1,
+    "cost": {"actions": {"status": "known", "value": 0, "unit": "actions", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}},
+    "tags": ["origin"], "requires": [], "excludes": [],
+    "effect_clauses": [
+      {"id": "attack-bonus", "trigger": "always", "predicates": [{"path": "option.tags", "operator": "has_tag", "value": "attack"}], "target": "self", "operation": "add", "property": "damage", "magnitude": {"status": "known", "value": 1, "unit": "damage", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}, "duration": "while_condition", "stacking": "additive", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}
+    ],
+    "tactical_grades": {
+      "damage": {"status": "known", "value": 1, "reason": "A small, always-on bonus to every attack.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "defense": {"status": "known", "value": 0, "reason": "Does nothing for defense.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "support": {"status": "known", "value": 0, "reason": "Does nothing for support.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "mobility": {"status": "known", "value": 0, "reason": "Does nothing for mobility.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}}
+    },
+    "summary": "+1 damage on every attack.", "spec_ref": "§5", "version": "1.0", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}
+  },
+  {
+    "id": "technique.quick-strike", "name": "Quick Strike", "family": "technique", "level": 1,
+    "cost": {"actions": {"status": "known", "value": 1, "unit": "actions", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}},
+    "tags": ["attack", "scales"], "requires": [], "excludes": [],
+    "effect_clauses": [
+      {"id": "strike", "trigger": "on_use", "predicates": [], "target": "enemy", "operation": "add", "property": "damage", "magnitude": {"status": "known", "value": 3.5, "unit": "average damage", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}, "duration": "instant", "stacking": "additive", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}
+    ],
+    "tactical_grades": {
+      "damage": {"status": "known", "value": 2, "reason": "Cheap and reliable, but small.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "defense": {"status": "known", "value": 0, "reason": "Does nothing for defense.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "support": {"status": "known", "value": 0, "reason": "Does nothing for support.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "mobility": {"status": "known", "value": 0, "reason": "Does nothing for mobility.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}}
+    },
+    "figures": {"average_damage": {"status": "known", "value": 3.5, "unit": "average damage", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}},
+    "summary": "Attack for 1d6.", "spec_ref": "§5", "version": "1.0", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}
+  },
+  {
+    "id": "technique.dash", "name": "Dash", "family": "technique", "level": 1,
+    "cost": {"actions": {"status": "known", "value": 1, "unit": "actions", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}},
+    "tags": ["movement"], "requires": [], "excludes": [],
+    "effect_clauses": [
+      {"id": "double-move", "trigger": "on_use", "predicates": [], "target": "self", "operation": "multiply", "property": "movement", "magnitude": {"status": "known", "value": 2, "unit": "times speed", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}, "duration": "instant", "stacking": "additive", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}
+    ],
+    "tactical_grades": {
+      "damage": {"status": "known", "value": 0, "reason": "Does nothing for damage.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "defense": {"status": "known", "value": 0, "reason": "Does nothing for defense.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "support": {"status": "known", "value": 0, "reason": "Does nothing for support.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "mobility": {"status": "known", "value": 3, "reason": "Reliable repositioning every turn for one action.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}}
+    },
+    "summary": "Move double your speed, ignoring reactions.", "spec_ref": "§5", "version": "1.0", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}
+  },
+  {
+    "id": "technique.shield-wall", "name": "Shield Wall", "family": "technique", "level": 1,
+    "cost": {"actions": {"status": "known", "value": 1, "unit": "actions", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}},
+    "tags": ["guard", "scales"], "requires": [], "excludes": [],
+    "effect_clauses": [
+      {"id": "reduce", "trigger": "always", "predicates": [], "target": "allies", "operation": "add", "property": "damage_taken", "magnitude": {"status": "known", "value": -2, "unit": "damage per hit", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}, "duration": "until_next_turn", "stacking": "additive", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}
+    ],
+    "tactical_grades": {
+      "damage": {"status": "known", "value": 0, "reason": "Does nothing for damage.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "defense": {"status": "known", "value": 3, "reason": "Strong reduction, but costs an action each turn.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "support": {"status": "known", "value": 1, "reason": "Also covers one adjacent ally.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "mobility": {"status": "known", "value": 0, "reason": "Does nothing for mobility.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}}
+    },
+    "summary": "Until your next turn, you and one adjacent ally take 2 less damage per hit.", "spec_ref": "§5", "version": "1.0", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}
+  },
+  {
+    "id": "technique.mark-target", "name": "Mark Target", "family": "technique", "level": 2,
+    "cost": {"actions": {"status": "known", "value": 1, "unit": "actions", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}},
+    "tags": ["setup", "mark"], "requires": [], "excludes": [],
+    "effect_clauses": [
+      {"id": "mark", "trigger": "on_use", "predicates": [], "target": "allies", "operation": "add", "property": "damage", "magnitude": {"status": "known", "value": 1, "unit": "damage", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}, "duration": "while_condition", "stacking": "additive", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}
+    ],
+    "tactical_grades": {
+      "damage": {"status": "known", "value": 1, "reason": "Mostly a setup for payoffs.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "defense": {"status": "known", "value": 0, "reason": "Does nothing for defense.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "support": {"status": "known", "value": 1, "reason": "A small bonus for allies.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "mobility": {"status": "known", "value": 0, "reason": "Does nothing for mobility.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}}
+    },
+    "summary": "Mark an enemy; allies' attacks against it get +1.", "spec_ref": "§5", "version": "1.0", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}
+  },
+  {
+    "id": "technique.heavy-blow", "name": "Heavy Blow", "family": "technique", "level": 2,
+    "cost": {"actions": {"status": "known", "value": 2, "unit": "actions", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}},
+    "tags": ["attack", "scales"], "requires": [], "excludes": [],
+    "effect_clauses": [
+      {"id": "blow", "trigger": "on_use", "predicates": [], "target": "enemy", "operation": "add", "property": "damage", "magnitude": {"status": "known", "value": 10.5, "unit": "average damage", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}, "duration": "instant", "stacking": "additive", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}
+    ],
+    "tactical_grades": {
+      "damage": {"status": "known", "value": 3, "reason": "Big hit, but uses 2 of 3 actions.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "defense": {"status": "known", "value": 0, "reason": "Does nothing for defense.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "support": {"status": "known", "value": 0, "reason": "Does nothing for support.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "mobility": {"status": "known", "value": 0, "reason": "Does nothing for mobility.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}}
+    },
+    "figures": {"average_damage": {"status": "known", "value": 10.5, "unit": "average damage", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}},
+    "summary": "Attack for 3d6 and knock the target 1 square back.", "spec_ref": "§5", "version": "1.0", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}
+  },
+  {
+    "id": "talent.hunters-focus", "name": "Hunter's Focus", "family": "talent", "level": 3,
+    "cost": {"actions": {"status": "known", "value": 0, "unit": "actions", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}},
+    "tags": ["payoff"], "requires": ["technique.mark-target"], "excludes": [],
+    "effect_clauses": [
+      {"id": "marked-bonus", "trigger": "on_hit", "predicates": [{"path": "target.marked_by", "operator": "eq", "value": "technique.mark-target"}], "target": "enemy", "operation": "add", "property": "damage", "magnitude": {"status": "known", "value": 2, "unit": "damage", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}, "duration": "instant", "stacking": "additive", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}
+    ],
+    "tactical_grades": {
+      "damage": {"status": "known", "value": 2, "reason": "Strong only with Mark Target; the synergy carries the rest.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "defense": {"status": "known", "value": 0, "reason": "Does nothing for defense.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "support": {"status": "known", "value": 0, "reason": "Does nothing for support.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "mobility": {"status": "known", "value": 0, "reason": "Does nothing for mobility.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}}
+    },
+    "summary": "Your attacks deal +2 against a target you marked.", "spec_ref": "§5", "version": "1.0", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}
+  },
+  {
+    "id": "talent.iron-skin", "name": "Iron Skin", "family": "talent", "level": 3,
+    "cost": {"actions": {"status": "known", "value": 0, "unit": "actions", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}},
+    "tags": ["guard"], "requires": [], "excludes": [],
+    "effect_clauses": [
+      {"id": "reduce", "trigger": "always", "predicates": [], "target": "self", "operation": "add", "property": "damage_taken", "magnitude": {"status": "known", "value": -1, "unit": "damage per hit", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}, "duration": "while_condition", "stacking": "additive", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}
+    ],
+    "tactical_grades": {
+      "damage": {"status": "known", "value": 0, "reason": "Does nothing for damage.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "defense": {"status": "known", "value": 2, "reason": "Always on, but small.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "support": {"status": "unknown", "value": null, "reason": "Not graded yet: does taking less damage free up allies' healing? Open question for the audit.", "evidence": {"status": "verify", "source_keys": [], "version": "1.0"}},
+      "mobility": {"status": "known", "value": 0, "reason": "Does nothing for mobility.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}}
+    },
+    "summary": "Take 1 less damage from every hit.", "spec_ref": "§5", "version": "1.0", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}
+  },
+  {
+    "id": "talent.fleet-foot", "name": "Fleet Foot", "family": "talent", "level": 3,
+    "cost": {"actions": {"status": "known", "value": 0, "unit": "actions", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}},
+    "tags": ["movement"], "requires": [], "excludes": [],
+    "effect_clauses": [
+      {"id": "speed", "trigger": "always", "predicates": [], "target": "self", "operation": "add", "property": "speed", "magnitude": {"status": "known", "value": 2, "unit": "squares", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}, "duration": "while_condition", "stacking": "additive", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}
+    ],
+    "tactical_grades": {
+      "damage": {"status": "known", "value": 0, "reason": "Does nothing for damage.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "defense": {"status": "known", "value": 0, "reason": "Does nothing for defense.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "support": {"status": "known", "value": 0, "reason": "Does nothing for support.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "mobility": {"status": "known", "value": 2, "reason": "Always on.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}}
+    },
+    "summary": "+2 speed.", "spec_ref": "§5", "version": "1.0", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}
+  },
+  {
+    "id": "signature.whirlwind", "name": "Whirlwind", "family": "signature", "level": 5,
+    "cost": {"actions": {"status": "known", "value": 2, "unit": "actions", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}},
+    "tags": ["attack", "area"], "requires": [], "excludes": [],
+    "effect_clauses": [
+      {"id": "spin", "trigger": "on_use", "predicates": [], "target": "enemies", "operation": "add", "property": "damage", "magnitude": {"status": "known", "value": 7, "unit": "average damage per target", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}, "duration": "instant", "stacking": "additive", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}
+    ],
+    "tactical_grades": {
+      "damage": {"status": "known", "value": 3, "reason": "Excellent when surrounded, ordinary otherwise.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "defense": {"status": "known", "value": 0, "reason": "Does nothing for defense.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "support": {"status": "known", "value": 0, "reason": "Does nothing for support.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "mobility": {"status": "known", "value": 0, "reason": "Does nothing for mobility.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}}
+    },
+    "figures": {"average_damage": {"status": "known", "value": 7, "unit": "average damage", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}},
+    "summary": "Attack every adjacent enemy for 2d6.", "spec_ref": "§5", "version": "1.0", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}
+  },
+  {
+    "id": "signature.bulwark-stance", "name": "Bulwark Stance", "family": "signature", "level": 5,
+    "cost": {"actions": {"status": "known", "value": 1, "unit": "actions", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}},
+    "tags": ["guard", "stance"], "requires": [], "excludes": ["talent.fleet-foot"],
+    "effect_clauses": [
+      {"id": "cover", "trigger": "while_condition", "predicates": [], "target": "allies", "operation": "set", "property": "targetable_by_ranged", "magnitude": {"status": "known", "value": 0, "unit": "boolean", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}, "duration": "while_condition", "stacking": "additive", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}}
+    ],
+    "tactical_grades": {
+      "damage": {"status": "known", "value": 0, "reason": "Does nothing for damage.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "defense": {"status": "known", "value": 4, "reason": "Shuts down ranged attacks on the people you protect.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "support": {"status": "known", "value": 1, "reason": "Protects adjacent allies.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}},
+      "mobility": {"status": "known", "value": 0, "reason": "Does nothing for mobility.", "evidence": {"status": "model", "source_keys": [], "version": "1.0"}}
+    },
+    "summary": "Enter a stance: allies adjacent to you can't be targeted by ranged attacks; you can't move more than 1 square per turn.", "spec_ref": "§5", "version": "1.0", "evidence": {"status": "game", "source_keys": ["R1"], "version": "1.0"}
+  }
+]

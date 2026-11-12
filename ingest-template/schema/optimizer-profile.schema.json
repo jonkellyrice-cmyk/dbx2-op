@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "optimizer-profile.schema.json",
+  "title": "Optimizer profile",
+  "description": "Shape of optimizer-profile.yaml after YAML parsing. The same for every game.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["game", "version", "source_of_truth", "target", "goals", "decision_slots", "max_level", "context", "out_of_scope", "rules", "scoring", "relation_generators", "authored_relations", "presets", "blockers", "acquisition_policy", "benchmarks", "acceptance", "paths"],
+  "$defs": {
+    "SpecRef": {"$ref": "vocabulary.schema.json#/$defs/SpecRef"},
+    "Evidence": {"enum": ["rule-derived", "explicit", "tactical", "heuristic"], "description": "The engine's evidence labels (src/kernel/optimization/contract.ts)"},
+    "Criterion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "method", "weight", "inputs"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+        "method": {"enum": ["tactical_grade", "rule_derived", "count_saturation", "boolean_coverage"]},
+        "weight": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+        "inputs": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "formula": {"type": "string"},
+        "saturation_count": {"type": "integer", "minimum": 1}
+      }
+    },
+    "Goal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "definition", "zero", "hundred", "plays", "gap_advice", "spec_ref", "criteria"],
+      "properties": {
+        "id": {"$ref": "vocabulary.schema.json#/$defs/GoalId"},
+        "label": {"type": "string"},
+        "definition": {"type": "string"},
+        "zero": {"type": "string"},
+        "hundred": {"type": "string"},
+        "plays": {"type": "string"},
+        "gap_advice": {"type": "string"},
+        "color": {"type": "string"},
+        "spec_ref": {"$ref": "#/$defs/SpecRef"},
+        "criteria": {"type": "array", "items": {"$ref": "#/$defs/Criterion"}, "minItems": 1}
+      }
+    },
+    "Slot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "family", "unlock_level", "nullable"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+        "label": {"type": "string"},
+        "family": {"$ref": "vocabulary.schema.json#/$defs/Family"},
+        "unlock_level": {"type": "integer", "minimum": 1},
+        "nullable": {"type": "boolean"},
+        "group": {"type": "string"}
+      }
+    },
+    "Rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "applies_to", "test", "report_slot", "message", "on_unknown", "spec_ref"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^R-[0-9]{3}$"},
+        "applies_to": {"type": ["string", "array"]},
+        "test": {"type": "string"},
+        "report_slot": {"type": "string"},
+        "message": {"type": "string"},
+        "on_unknown": {"enum": ["unverified"]},
+        "spec_ref": {"$ref": "#/$defs/SpecRef"}
+      }
+    },
+    "Generator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "when", "kind", "goal", "weight_band", "evidence", "spec_ref"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^G-[0-9]{3}$"},
+        "when": {"type": "string"},
+        "kind": {"$ref": "vocabulary.schema.json#/$defs/RelationKind"},
+        "goal": {"type": "string", "description": "a GoalId, or a rule such as from_clause_property"},
+        "weight_band": {"$ref": "vocabulary.schema.json#/$defs/WeightBand"},
+        "evidence": {"$ref": "#/$defs/Evidence"},
+        "spec_ref": {"$ref": "#/$defs/SpecRef"}
+      }
+    },
+    "AuthoredRelation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["a", "b", "kind", "goal", "weight_band", "evidence", "reason", "spec_ref"],
+      "properties": {
+        "a": {"$ref": "vocabulary.schema.json#/$defs/EntityId"},
+        "b": {"$ref": "vocabulary.schema.json#/$defs/EntityId"},
+        "kind": {"$ref": "vocabulary.schema.json#/$defs/RelationKind"},
+        "goal": {"$ref": "vocabulary.schema.json#/$defs/GoalId"},
+        "weight_band": {"$ref": "vocabulary.schema.json#/$defs/WeightBand"},
+        "evidence": {"$ref": "#/$defs/Evidence"},
+        "reason": {"type": "string", "minLength": 1},
+        "spec_ref": {"$ref": "#/$defs/SpecRef"}
+      }
+    },
+    "Preset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "note", "ranks", "blockers", "spec_ref"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "name": {"type": "string"},
+        "note": {"type": "string"},
+        "mode": {"type": "string"},
+        "ranks": {"type": "object", "propertyNames": {"$ref": "vocabulary.schema.json#/$defs/GoalId"}, "additionalProperties": {"type": "integer", "minimum": 1}, "minProperties": 1},
+        "blockers": {"type": "array", "items": {"type": "string", "pattern": "^B-[0-9]{3}$"}},
+        "spec_ref": {"$ref": "#/$defs/SpecRef"}
+      }
+    },
+    "Blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "test", "message", "severity", "spec_ref"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^B-[0-9]{3}$"},
+        "modes": {"type": "array", "items": {"type": "string"}},
+        "test": {"type": "string"},
+        "message": {"type": "string"},
+        "severity": {"enum": ["flag"]},
+        "spec_ref": {"$ref": "#/$defs/SpecRef"}
+      }
+    },
+    "Metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "unit", "computable", "calculation", "spec_ref"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+        "label": {"type": "string"},
+        "unit": {"type": "string"},
+        "computable": {"type": "boolean"},
+        "calculation": {"type": "string"},
+        "lower_is_better": {"type": "boolean"},
+        "spec_ref": {"$ref": "#/$defs/SpecRef"}
+      }
+    }
+  },
+  "properties": {
+    "game": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "version": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["content", "spec", "date"],
+      "properties": {"content": {"type": "string"}, "spec": {"type": "string"}, "date": {"type": "string"}}
+    },
+    "source_of_truth": {"type": "object"},
+    "target": {"type": "string", "minLength": 1},
+    "goals": {"type": "array", "items": {"$ref": "#/$defs/Goal"}, "minItems": 2, "maxItems": 8},
+    "decision_slots": {"type": "array", "items": {"$ref": "#/$defs/Slot"}, "minItems": 1},
+    "max_level": {"type": "integer", "minimum": 1},
+    "context": {"type": "array", "items": {"type": "string"}},
+    "out_of_scope": {"type": "array", "items": {"type": "string"}},
+    "discretization": {"enum": [null, "named_spreads", "step_10", "exact_integer"]},
+    "rules": {"type": "array", "items": {"$ref": "#/$defs/Rule"}, "minItems": 1},
+    "scoring": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["unknown_policy", "minimum_goal_coverage", "tactical_scale", "normalization", "rank_weights", "relation_bands"],
+      "properties": {
+        "unknown_policy": {"type": "string"},
+        "minimum_goal_coverage": {"type": "number", "minimum": 0, "maximum": 1},
+        "tactical_scale": {"type": "object"},
+        "normalization": {"type": "object"},
+        "rank_weights": {"type": ["string", "object"]},
+        "relation_bands": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["minor", "moderate", "major"],
+          "properties": {"minor": {"type": "number", "exclusiveMinimum": 0}, "moderate": {"type": "number", "exclusiveMinimum": 0}, "major": {"type": "number", "exclusiveMinimum": 0}}
+        }
+      }
+    },
+    "relation_generators": {"type": "array", "items": {"$ref": "#/$defs/Generator"}},
+    "authored_relations": {"type": "array", "items": {"$ref": "#/$defs/AuthoredRelation"}},
+    "presets": {"type": "array", "items": {"$ref": "#/$defs/Preset"}, "minItems": 1},
+    "blockers": {"type": "array", "items": {"$ref": "#/$defs/Blocker"}},
+    "acquisition_policy": {"type": "object"},
+    "benchmarks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "metrics", "peers"],
+      "properties": {
+        "title": {"type": "string"},
+        "metrics": {"type": "array", "items": {"$ref": "#/$defs/Metric"}},
+        "peers": {"type": "array", "items": {"$ref": "benchmark.schema.json"}}
+      }
+    },
+    "acceptance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "status", "spec_ref"],
+        "properties": {"id": {"type": "string", "pattern": "^A-[0-9]{3}$"}, "status": {"enum": ["confirmed", "provisional"]}, "spec_ref": {"$ref": "#/$defs/SpecRef"}}
+      }
+    },
+    "paths": {"type": "object"}
+  }
+}

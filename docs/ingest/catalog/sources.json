@@ -3,6 +3,13 @@
  "sources": [
   {"key": "WIKI-FRIEZA-RACE", "title": "Xenoverse 2 Wiki: Frieza Race", "url": "https://dbxv2.fandom.com/wiki/Frieza_Race", "revision": 8133, "checked": "2026-11-12", "kind": "community"},
   {"key": "R10", "title": "Xenoverse 2 Wiki: CaC (also spec [R10])", "url": "https://dbxv2.fandom.com/wiki/CaC", "revision": 12053, "checked": "2026-11-12", "kind": "community"},
-  {"key": "R3", "title": "Xenoverse 2 Wiki: Attributes (also spec [R3])", "url": "https://dbxv2.fandom.com/wiki/Attributes", "revision": 12369, "checked": "2026-11-12", "kind": "community"}
+  {"key": "R3", "title": "Xenoverse 2 Wiki: Attributes (also spec [R3])", "url": "https://dbxv2.fandom.com/wiki/Attributes", "revision": 12369, "checked": "2026-11-12", "kind": "community"},
+  {"key": "WIKI-NAMEKIAN", "title": "Xenoverse 2 Wiki: Namekian", "url": "https://dbxv2.fandom.com/wiki/Namekian", "revision": 8459, "checked": "2026-11-12", "kind": "community"},
+  {"key": "WIKI-HUMAN-MALE", "title": "Xenoverse 2 Wiki: Human Male", "url": "https://dbxv2.fandom.com/wiki/Human_Male", "revision": 9615, "checked": "2026-11-12", "kind": "community"},
+  {"key": "WIKI-HUMAN-FEMALE", "title": "Xenoverse 2 Wiki: Human Female", "url": "https://dbxv2.fandom.com/wiki/Human_Female", "revision": 8113, "checked": "2026-11-12", "kind": "community"},
+  {"key": "WIKI-SAIYAN-MALE", "title": "Xenoverse 2 Wiki: Saiyan Male", "url": "https://dbxv2.fandom.com/wiki/Saiyan_Male", "revision": 4252, "checked": "2026-11-12", "kind": "community"},
+  {"key": "WIKI-SAIYAN-FEMALE", "title": "Xenoverse 2 Wiki: Saiyan Female", "url": "https://dbxv2.fandom.com/wiki/Saiyan_Female", "revision": 6580, "checked": "2026-11-12", "kind": "community"},
+  {"key": "WIKI-MAJIN-MALE", "title": "Xenoverse 2 Wiki: Majin Male", "url": "https://dbxv2.fandom.com/wiki/Majin_Male", "revision": 8127, "checked": "2026-11-12", "kind": "community"},
+  {"key": "WIKI-MAJIN-FEMALE", "title": "Xenoverse 2 Wiki: Majin Female", "url": "https://dbxv2.fandom.com/wiki/Majin_Female", "revision": 10392, "checked": "2026-11-12", "kind": "community"}
  ]
 }

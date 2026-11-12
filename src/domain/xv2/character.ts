@@ -10,7 +10,7 @@
 import data from "../../../docs/ingest/catalog/character.json";
 import type {Evidence,Known} from "./records";
 // MDV_BLOCK:BEGIN id="DBX.XV2.CHARACTER.010" intent="Name the shapes of race traits, heights and body types as recorded" kind="types" tags="xv2,character,context"
-export type Trait={id:string;kind:"bonus"|"penalty";text:string;property:string;operation:"multiply"|"add"|"chance"|"qualitative";magnitude:Known<number>;condition:string|null;evidence:Evidence};
+export type Trait={id:string;kind:"bonus"|"penalty"|"neutral";text:string;property:string;operation:"multiply"|"add"|"chance"|"qualitative";magnitude:Known<number>;condition:string|null;evidence:Evidence};
 export type Race={id:string;archetypes:readonly string[];name:string;summary:string;traits:readonly Trait[];spec_ref:string;evidence:Evidence;notes?:string|null};
 export type Height={id:string;step:number;label:string;health_multiplier:Known<number>;speed_multiplier:Known<number>;evidence:Evidence;notes?:string|null};
 export type BodyType={id:string;name:string;strike_and_basic_damage_bonus:Known<number>;ki_super_damage_bonus:Known<number>;evidence:Evidence;notes?:string|null};

@@ -1,10 +1,20 @@
-# Game Optimization Template
+# DBX2-op: Dragon Ball Xenoverse 2 Optimizer
 
-Find the best build for a goal in any TTRPG or video game, explain every number, and hand the
-player a clean printed report.
+Finds the best custom-character loadout for a chosen kind of play in Dragon Ball Xenoverse 2:
+4 Supers, 2 Ultimates, an Evasive, an Awoken skill, a Super Soul, a QQ Bang and an attribute
+spread. It explains every number and hands the player a clean printed report.
 
-You describe a game once, as an **adapter**: its choices, rules, scores and interactions. The
-template then gives you:
+**Status:** built from the Game Optimization Template. Steps 1-3 of
+[`BUILDING_A_GAME_OPTIMIZER.md`](BUILDING_A_GAME_OPTIMIZER.md) are done, and the ingest bundle
+(the v3.1 mechanics spec, optimizer profile, schemas and acceptance cases) is in
+[`docs/ingest/`](docs/ingest/README.md). Next is step 4: wiring the Xenoverse 2 adapter. Until
+then the app still runs the template's toy game.
+
+**Source of truth:** `docs/ingest/`. Its schemas define the records, `optimizer-profile.yaml` the
+goals, slots, rules and scoring, and `spec.md` explains why. If code and bundle disagree, the
+bundle wins until it is deliberately revised.
+
+What the template engine provides (unchanged from the template):
 
 - a **search** (PNC-Lite: attention plus a full fallback, so the best legal option is never hidden);
 - **Auto Build**: fill the open slots for a request, keep the player's own picks, improve them with

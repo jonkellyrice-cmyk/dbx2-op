@@ -41,6 +41,8 @@ test("template: clean hydration, auto build, persistence, report, export/import 
     assert.ok((await page.getByLabel("attribute_spread pick",{exact:true}).locator("option").count())>=5,"the spreads are offered");
     await page.getByLabel("Race / gender",{exact:true}).selectOption("frieza_race");
     assert.equal(await page.getByLabel("Race / gender",{exact:true}).inputValue(),"frieza_race");
+    await page.getByLabel("Height",{exact:true}).selectOption("height.4");
+    await page.getByLabel("Body type",{exact:true}).selectOption("body.thin");
     // The template's toy game stays at /toy as the engine's worked example; the rest of this test runs there.
     await page.goto(base+"/toy");
     const icon=await page.locator('link[rel="icon"]').first().getAttribute("href");

@@ -1,10 +1,12 @@
 /**
  * Player-supplied context (profile `context`), as choices the player sets rather than slots the
- * optimizer fills: race/gender for eligibility (R-002), and the scenario flags the blockers read.
+ * optimizer fills: race/gender for eligibility (R-002), height and body type (character.ts), and the
+ * scenario flags the blockers read.
  * Only what the adapter checks today is here; the rest of the profile's context list (owned
  * inventory, entitlements, earned points...) arrives with the rules that need it.
  */
 import type {Build,ContextField} from "../../kernel/optimization/contract";
+import {XV2_CHARACTER,bodyLabel,heightLabel} from "./character";
 // MDV_BLOCK:BEGIN id="DBX.XV2.CONTEXT.010" intent="Let the player state race/gender and the scenario's requirements without the optimizer choosing them" kind="config" tags="xv2,context"
 export const XV2_ARCHETYPES=[
  {id:"male_saiyan",label:"Saiyan (male)"},{id:"female_saiyan",label:"Saiyan (female)"},
@@ -14,6 +16,8 @@ export const XV2_ARCHETYPES=[
 ] as const;
 export const XV2_CONTEXT:readonly ContextField[]=[
  {id:"archetype",label:"Race / gender",note:"Unset means race-locked options can't be checked yet.",options:[{id:"",label:"Not set"},...XV2_ARCHETYPES]},
+ {id:"height",label:"Height",note:"Set at character creation; changes health and speed.",options:[{id:"",label:"Not set"},...XV2_CHARACTER.heights.map(h=>({id:h.id,label:heightLabel(h)}))]},
+ {id:"body_type",label:"Body type",note:"Set at character creation; shifts damage between strike and Ki Blast Supers.",options:[{id:"",label:"Not set"},...XV2_CHARACTER.body_types.map(b=>({id:b.id,label:bodyLabel(b)}))]},
  {id:"armor_answer",label:"Expert Mission: answer to boss Super Armor",options:[{id:"",label:"Not required"},{id:"required_known",label:"Required (boss armor documented)"},{id:"required_unknown",label:"Required (boss armor not documented)"}]},
  {id:"escort_heal",label:"Parallel Quest: escort needs healing",options:[{id:"",label:"Not required"},{id:"required",label:"Required"}]},
  {id:"raid_damage_floor",label:"Raid: damage floor",options:[{id:"",label:"Not required"},{id:"required",label:"Required"}]},

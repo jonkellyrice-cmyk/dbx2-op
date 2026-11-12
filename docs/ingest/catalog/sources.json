@@ -1,0 +1,8 @@
+{
+ "note": "Sources added by DBX2-op beyond the spec's [R1]-[R16] list (spec §17.3). Each entry records the page revision read.",
+ "sources": [
+  {"key": "WIKI-FRIEZA-RACE", "title": "Xenoverse 2 Wiki: Frieza Race", "url": "https://dbxv2.fandom.com/wiki/Frieza_Race", "revision": 8133, "checked": "2026-11-12", "kind": "community"},
+  {"key": "R10", "title": "Xenoverse 2 Wiki: CaC (also spec [R10])", "url": "https://dbxv2.fandom.com/wiki/CaC", "revision": 12053, "checked": "2026-11-12", "kind": "community"},
+  {"key": "R3", "title": "Xenoverse 2 Wiki: Attributes (also spec [R3])", "url": "https://dbxv2.fandom.com/wiki/Attributes", "revision": 12369, "checked": "2026-11-12", "kind": "community"}
+ ]
+}

@@ -18,6 +18,10 @@
   {"key": "WIKI-REVERSE-LAUNCHER", "title": "Xenoverse 2 Wiki: Reverse Launcher", "url": "https://dbxv2.fandom.com/wiki/Reverse_Launcher", "revision": 3289, "checked": "2026-11-12", "kind": "community"},
   {"key": "WIKI-CONSECUTIVE-ENERGY-BLAST", "title": "Xenoverse 2 Wiki: Consecutive Energy Blast", "url": "https://dbxv2.fandom.com/wiki/Consecutive_Energy_Blast", "revision": 11934, "checked": "2026-11-12", "kind": "community"},
   {"key": "WIKI-EMPERORS-DEATH-BEAM", "title": "Xenoverse 2 Wiki: Emperor's Death Beam", "url": "https://dbxv2.fandom.com/wiki/Emperor%27s_Death_Beam", "revision": 7283, "checked": "2026-11-12", "kind": "community"},
-  {"key": "WIKI-TURN-GOLDEN", "title": "Xenoverse 2 Wiki: Turn Golden", "url": "https://dbxv2.fandom.com/wiki/Turn_Golden", "revision": 12876, "checked": "2026-11-12", "kind": "community"}
+  {"key": "WIKI-TURN-GOLDEN", "title": "Xenoverse 2 Wiki: Turn Golden", "url": "https://dbxv2.fandom.com/wiki/Turn_Golden", "revision": 12876, "checked": "2026-11-12", "kind": "community"},
+  {"key": "WIKI-DEATH-PSYCHO-BOMB", "title": "Xenoverse 2 Wiki: Death Psycho Bomb", "url": "https://dbxv2.fandom.com/wiki/Death_Psycho_Bomb", "revision": 3666, "checked": "2026-11-12", "kind": "community"},
+  {"key": "WIKI-PUNISHER-SHIELD", "title": "Xenoverse 2 Wiki: Punisher Shield", "url": "https://dbxv2.fandom.com/wiki/Punisher_Shield", "revision": 3377, "checked": "2026-11-12", "kind": "community"},
+  {"key": "WIKI-BLASTER-BALL", "title": "Xenoverse 2 Wiki: Blaster Ball", "url": "https://dbxv2.fandom.com/wiki/Blaster_Ball", "revision": 3368, "checked": "2026-11-12", "kind": "community"},
+  {"key": "OWNER-OBSERVATION", "title": "The owner's own in-game observation", "url": null, "revision": null, "checked": "2026-11-12", "kind": "player", "note": "100 Ki is one Ki bar."}
  ]
 }

@@ -38,7 +38,40 @@
    ],
    "spec_ref": "§11.2",
    "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-FRIEZA-RACE", "R10"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null},
-   "notes": "Race-exclusive Awoken: Turn Golden (recorded with the Awoken skills when they are entered). Combo strings are reported as harder to learn than other races'."
+   "notes": "Race-exclusive Awoken: Turn Golden (recorded with the Awoken skills when they are entered). Combo strings are reported as harder to learn than other races'.",
+   "moveset": {
+    "based_on": [{"character": "Perfect Cell", "note": "The wiki says Frieza Race combos appear to combine Perfect Cell with Frieza (Final Form) or Cooler (Fourth Form)."}, {"character": "Frieza (Final Form) or Cooler (Fourth Form)", "note": "See above; the wiki is not sure which."}],
+    "strings": [
+     {"id": "9L", "name": "Light String (9L)", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-FRIEZA-RACE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "5H", "name": "Heavy String (5H)", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-FRIEZA-RACE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "LHH", "name": "LHH", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-FRIEZA-RACE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "HLHLH", "name": "Alternating String (HLHLH)", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-FRIEZA-RACE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "5L3H", "name": "5L3H", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-FRIEZA-RACE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "grab", "name": "Grab", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-FRIEZA-RACE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "light_break", "name": "Light Break", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-FRIEZA-RACE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "heavy_break", "name": "Heavy Break", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-FRIEZA-RACE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}}
+    ],
+    "traits": [
+     {"id": "hard-to-learn-strings", "kind": "penalty", "text": "It has also been noted by some that their combo strings can be difficult to learn/use compared to other races.", "property": "combo_ease", "operation": "qualitative",
+      "magnitude": {"status": "unknown", "value": null, "unit": "fraction", "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-FRIEZA-RACE"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "The source describes it, but gives no number."}},
+      "condition": null,
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-FRIEZA-RACE"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "The source describes it, but gives no number."}},
+     {"id": "stamina-during-combos", "kind": "bonus", "text": "Regens stamina during combos.", "property": "stamina_recovery", "operation": "qualitative",
+      "magnitude": {"status": "unknown", "value": null, "unit": "fraction", "evidence": {"status": "game", "verification": "documented", "source_keys": ["STEAM-HIDDEN-MECHANICS", "R10"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "Already recorded as a race trait; repeated here because it comes from the strings. Rate not documented."}},
+      "condition": null,
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["STEAM-HIDDEN-MECHANICS", "R10"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "Already recorded as a race trait; repeated here because it comes from the strings. Rate not documented."}}
+    ],
+    "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-FRIEZA-RACE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null},
+    "notes": "One gender only. The wiki names the strings but does not describe any of them; descriptions are still needed (the in-game Combo List in the pause menu shows them)."
+   }
   },
   {
    "id": "race.namekian",
@@ -77,7 +110,40 @@
    ],
    "spec_ref": "§11.2",
    "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-NAMEKIAN", "R10"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null},
-   "notes": "Race-exclusive skills: Namek Finger, Darkness Rush (Ranged), Become Giant (Awoken). The CaC page summarizes them as 'Low attack, but high health'; the race page says their basic attacks are strong but their Supers weak, which fits."
+   "notes": "Race-exclusive skills: Namek Finger, Darkness Rush (Ranged), Become Giant (Awoken). The CaC page summarizes them as 'Low attack, but high health'; the race page says their basic attacks are strong but their Supers weak, which fits.",
+   "moveset": {
+    "based_on": [],
+    "strings": [
+     {"id": "9L", "name": "Light String (9L)", "text": "First two attacks have the Namekians slap their opponent with their extending left arm, third is a right hand chop, fourth is a left arm backhand, fifth is a triple extending punch. Third and Fourth attack can lead into either break. Sixth is a low punch with left arm, seventh is a launcher knee kick causing a long knockback. Eight attack has the player chase the opponent when rolling, before they teleport in their path instead and backhand knockback them. This knockback is shorter, but it's still in the category to land a perfect shot. The last attack chases behind the opponent into their back, and hits them away again with two kicks. The last attack be can be replaced with a heavy one, which will make user do the alternating string finisher instead, causing a Hard Knockdown.", "features": ["extended_reach", "launcher", "long_knockback", "teleport", "chase", "branch", "hard_knockdown"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-NAMEKIAN", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "5H", "name": "Heavy String (5H)", "text": "First attack is a right hand chop, second attack is a left kick, third attack is an upward right kick, fourth is a front downward flip kick, last attack is a double kick, one towards the opponent, juggling them, and the second one coming back, knocking them away.", "features": ["juggle"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-NAMEKIAN", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "LHH", "name": "LHH", "text": "The second attack is a juggling right kick, and the second is a downward left kick, knocking opponent down.", "features": ["juggle"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-NAMEKIAN", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "HLHLH", "name": "Alternating String (HLHLH)", "text": "The third attack is a double hit with both extended arms, the fourth attack is a launching upkick causing a long knockback, last attack has the player roll chasing the opponent, before delivering a right kick causing a hard knockdown.", "features": ["extended_reach", "launcher", "long_knockback", "chase", "hard_knockdown"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-NAMEKIAN", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "5L3H", "name": "5L3H", "text": "The first heavy attack is a knee kick, the second is a sweeping left kick knocking the opponent upwards, and the last is a sledgehammer with extended hands, slamming the opponent down with another hard knockdown.", "features": ["launcher", "extended_reach", "hard_knockdown"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-NAMEKIAN", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "grab", "name": "Grab", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-NAMEKIAN", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "light_break", "name": "Light Break", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-NAMEKIAN", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "heavy_break", "name": "Heavy Break", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-NAMEKIAN", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}}
+    ],
+    "traits": [
+     {"id": "stretching-reach", "kind": "bonus", "text": "Stretchy arms with substantially increased hit range.", "property": "melee_reach", "operation": "qualitative",
+      "magnitude": {"status": "unknown", "value": null, "unit": "fraction", "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-NAMEKIAN", "STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "The source describes it, but gives no number."}},
+      "condition": null,
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-NAMEKIAN", "STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "The source describes it, but gives no number."}},
+     {"id": "slower-combos", "kind": "penalty", "text": "Combos on the slower side, low hit priority in PvP.", "property": "combo_speed", "operation": "qualitative",
+      "magnitude": {"status": "unknown", "value": null, "unit": "fraction", "evidence": {"status": "game", "verification": "documented", "source_keys": ["STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "The source describes it, but gives no number."}},
+      "condition": null,
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "The source describes it, but gives no number."}}
+    ],
+    "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-NAMEKIAN", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null},
+    "notes": "One gender only. Grab and break animations are not described on the wiki."
+   }
   },
   {
    "id": "race.earthling-male",
@@ -112,7 +178,42 @@
    ],
    "spec_ref": "§11.2",
    "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-MALE", "R10"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null},
-   "notes": "Race-exclusive skills: Power Pole Pro (Earthlings only); Shining Slash and Burning Slash (Earthlings and Saiyans)."
+   "notes": "Race-exclusive skills: Power Pole Pro (Earthlings only); Shining Slash and Burning Slash (Earthlings and Saiyans).",
+   "moveset": {
+    "based_on": [{"character": "Krillin", "note": "The wiki says the grab is the same as Krillin's."}],
+    "strings": [
+     {"id": "9L", "name": "Light String (9L)", "text": "Series of single punches and kicks. Seventh attack is a low kick that juggles opponent, while eight's is a launcher causing a long knockback. Ninth attack chases opponent with a kick. Causes a hard knockdown if ended with a heavy attack instead.", "features": ["juggle", "launcher", "long_knockback", "chase", "hard_knockdown", "branch"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "5H", "name": "Heavy String (5H)", "text": "String of hard hitting forward punches and kicks. Last kick sends the opponent flying backwards.", "features": [],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "LHH", "name": "LHH", "text": "The first attack is a punch from light string. The second attack is a kick that send opponents upwards. This attack is very quick as step cancellable. The final attack has the character flip upwards and strike the opponent down.", "features": ["launcher", "step_cancel"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "HLHLH", "name": "Alternating String (HLHLH)", "text": "Series of punches and kicks, fourth attack will cause a notable stun on the opponent, which can allow the player to land various moves, even slow ones like Time Skip/Molotov, Meteor Explosion or Apocalyptic Burst to name a few.", "features": ["stun"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "5L3H", "name": "5L3H", "text": "User throws light punches before kicking them into the air. Last hit teleports and causes a hard knockdown. The last hit can also be cancelled by guarding, use of a Super Attack or inputting a light stamina break.", "features": ["launcher", "teleport", "hard_knockdown", "guard_cancel"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "other-4h-1l-1h-3l-3h", "name": "Other (4H-1L-1H-3L-3H)", "text": "Starts off with a series of heavy attacks before leaning into the stun effect, then combos into the hard knockdown.", "features": ["stun", "hard_knockdown"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "grab", "name": "Grab", "text": "Does a rising combo attack, before kicking the opponent away downwards. Same as Krillin's.", "features": [],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "light_break", "name": "Light Break", "text": "Does a punch while making a step, same animation as HLHL.", "features": [],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "heavy_break", "name": "Heavy Break", "text": "Does a sledgehammer hit.", "features": [],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}}
+    ],
+    "traits": [
+     {"id": "strong-strings", "kind": "bonus", "text": "Arguably the best combo strings in the game.", "property": "combo_quality", "operation": "qualitative",
+      "magnitude": {"status": "unknown", "value": null, "unit": "fraction", "evidence": {"status": "game", "verification": "documented", "source_keys": ["STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "An opinion in a community guide, written for Earthlings of both genders."}},
+      "condition": null,
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "An opinion in a community guide, written for Earthlings of both genders."}},
+     {"id": "stun-setup", "kind": "bonus", "text": "Fourth attack will cause a notable stun on the opponent, which can allow the player to land various moves, even slow ones.", "property": "combo_follow_up", "operation": "qualitative",
+      "magnitude": {"status": "unknown", "value": null, "unit": "fraction", "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-MALE"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "From the Alternating String (HLHLH)."}},
+      "condition": null,
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-MALE"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "From the Alternating String (HLHLH)."}}
+    ],
+    "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null},
+    "notes": "Gender changes the moveset: the male and female pages describe different strings, and the Combo String page says strings differ by character."
+   }
   },
   {
    "id": "race.earthling-female",
@@ -147,7 +248,36 @@
    ],
    "spec_ref": "§11.2",
    "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-FEMALE", "R10"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null},
-   "notes": "Race-exclusive skills: Power Pole Pro (Earthlings only); Shining Slash and Burning Slash (Earthlings and Saiyans)."
+   "notes": "Race-exclusive skills: Power Pole Pro (Earthlings only); Shining Slash and Burning Slash (Earthlings and Saiyans).",
+   "moveset": {
+    "based_on": [],
+    "strings": [
+     {"id": "9L", "name": "Light String (9L)", "text": "first five mostly singular hits with punches. Sixth attack is a double hit done with both hands held together. Seventh attack is a launcher done with both hands in a similar fashion as the previous attack, it can be step cancelled. Next attack teleports user in the path of the flying opponent, rebounding them with an uppercut punch, this attack can be directly cancelled into a light or heavy break, or guard cancelled to return to the beginning of combo. The last attack has them chase the flying opponent to kick them away. The ninth or eight attack can be replaced with a heavy attack instead of light, which will cause a more damaging flip kick capable of causing a hard knockdown.", "features": ["launcher", "step_cancel", "teleport", "guard_cancel", "chase", "branch", "hard_knockdown"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "5H", "name": "Heavy String (5H)", "text": "series of alterating kicks, fourth kick will put enemy in a juggle state.", "features": ["juggle"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "LHH", "name": "LHH", "text": "The first heavy attack is a palm strike done with both hands, the second is a double kick upwards. The double kick can be step cancelled, allowing combo to continue, but if it performed against an enemy in a juggle state, the double kick will be replaced with a quadruple kick, which will lock you in an animation for a moment and prevent the usual follow up from being used. This change was made to remove the infinite combo form this attack that HuFs could perform in Xenoverse 1. Replacing the second heavy attack with a light attack will make the character perform light attack launcher instead, which can be continued like regular light string.", "features": ["step_cancel", "branch"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "HLHLH", "name": "Alternating String (HLHLH)", "text": "First attack is kick from the heavy string or dashing/step vanish light attack. Second is the double hit done with both arms. Third has the user jump a little kick enemy several times in place. Fourth is a backflip kick which causes a long knockback and can be step cancelled. Fifth is a chase attack which circles around the flying opponent and kicks them with both legs in the back, knocking them away again. If you use a light attack in place of last heavy attack, you will perform the teleport attack from the light string, which will then allow you to either finish it with light attack chase or heavy attack teleport flipkick.", "features": ["long_knockback", "step_cancel", "chase", "branch"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "5L3H", "name": "5L3H", "text": "after the light string attacks, user does a straight punch, and then the uppercut launcher. The last attack is the same flip kick as the heavy ending of a light string. However unlike the light string version, it will most likely not cause a hard knockdown, as it puts user way higher, though if you manage to get the launcher to launch enemy downwards, or have enemy land on an elevated terrain, it willl cause a hard knockdown. Similarily as with alternating string, instead of the last heavy attack you can perform the light string teleport attack.", "features": ["launcher", "branch"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "grab", "name": "Grab", "text": "Punches opponent with right arm, then left arm, then teleports behind them to kick them away and to the ground. It can be followed up with a burst dash, dash attack or a fast super, if it's done near or on the ground.", "features": ["teleport"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "light_break", "name": "Light Break", "text": "Strikes forward with both palms. Same animation as LH.", "features": [],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "heavy_break", "name": "Heavy Break", "text": "Does a front flip and kicks opponent down. Same animation as 5L3H ending.", "features": [],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}}
+    ],
+    "traits": [
+     {"id": "strong-strings", "kind": "bonus", "text": "Arguably the best combo strings in the game.", "property": "combo_quality", "operation": "qualitative",
+      "magnitude": {"status": "unknown", "value": null, "unit": "fraction", "evidence": {"status": "game", "verification": "documented", "source_keys": ["STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "An opinion in a community guide, written for Earthlings of both genders."}},
+      "condition": null,
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "An opinion in a community guide, written for Earthlings of both genders."}}
+    ],
+    "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-HUMAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null},
+    "notes": "Gender changes the moveset: the male and female pages describe different strings, and the Combo String page says strings differ by character. The 5L3H flip kick usually does not cause a hard knockdown because it hits too high, so that feature is left off."
+   }
   },
   {
    "id": "race.saiyan-male",
@@ -186,7 +316,36 @@
    ],
    "spec_ref": "§11.2",
    "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-SAIYAN-MALE", "R10"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null},
-   "notes": "Race-exclusive skills: Saiyan Spirit (Saiyans only); Shining Slash and Burning Slash (Earthlings and Saiyans); the Super Saiyan transformations."
+   "notes": "Race-exclusive skills: Saiyan Spirit (Saiyans only); Shining Slash and Burning Slash (Earthlings and Saiyans); the Super Saiyan transformations.",
+   "moveset": {
+    "based_on": [],
+    "strings": [
+     {"id": "9L", "name": "Light String (9L)", "text": "Ends with two chase attacks, either can be replaced with LHH's last spin kick.", "features": ["chase", "branch"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-SAIYAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "5H", "name": "Heavy String (5H)", "text": "Third attack puts opponent in juggle state. Fourth attack is a launcher upwards kick that can be step cancelled, fifth attack chases after the opponent and slaps them onto ground, causing a hard knockdown.", "features": ["juggle", "launcher", "step_cancel", "chase", "hard_knockdown"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-SAIYAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "LHH", "name": "LHH", "text": "Second attack is a long knockback launcher that can be step cancelled. Last one is a teleport attack where you teleport in front of opponent's path and do a spin kick.", "features": ["launcher", "long_knockback", "step_cancel", "teleport"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-SAIYAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "HLHLH", "name": "Alternating String (HLHLH)", "text": "Ends with a chase stunning upkick.", "features": ["chase", "stun"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-SAIYAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "5L3H", "name": "5L3H", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-SAIYAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "grab", "name": "Grab", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-SAIYAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "light_break", "name": "Light Break", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-SAIYAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "heavy_break", "name": "Heavy Break", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-SAIYAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}}
+    ],
+    "traits": [
+     {"id": "best-combo-damage", "kind": "bonus", "text": "Saiyan males have best combo damage output.", "property": "combo_damage", "operation": "qualitative",
+      "magnitude": {"status": "unknown", "value": null, "unit": "fraction", "evidence": {"status": "game", "verification": "documented", "source_keys": ["STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "A ranking in a community guide; no number."}},
+      "condition": null,
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "A ranking in a community guide; no number."}}
+    ],
+    "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-SAIYAN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null},
+    "notes": "Gender changes the moveset: the male and female pages describe different strings, and the Combo String page says strings differ by character. The wiki gives a heading for 5L3H with no description, and does not describe the grab or breaks."
+   }
   },
   {
    "id": "race.saiyan-female",
@@ -229,7 +388,40 @@
    ],
    "spec_ref": "§11.2",
    "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-SAIYAN-FEMALE", "R10"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null},
-   "notes": "Race-exclusive skills: Saiyan Spirit (Saiyans only); Shining Slash and Burning Slash (Earthlings and Saiyans); the Super Saiyan transformations."
+   "notes": "Race-exclusive skills: Saiyan Spirit (Saiyans only); Shining Slash and Burning Slash (Earthlings and Saiyans); the Super Saiyan transformations.",
+   "moveset": {
+    "based_on": [],
+    "strings": [
+     {"id": "9L", "name": "Light String (9L)", "text": "Series of hand chops and spin kicks. Seventh attack is multiple spin kicks, eight attack is a launcher, and the last attack is a teleport kick that sends opponents down. This attack might have the property of causing Hard Knockdowns, but the attacks in light string always seem to leave the opponent too high up for it to trigger. The teleport attack can also be guard cancelled, or cancelled into a super/break. The eight attack can be replaced with heavy attack to use the heavy string fourth attack and finisher instead.", "features": ["launcher", "teleport", "guard_cancel", "branch"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-SAIYAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "5H", "name": "Heavy String (5H)", "text": "Series of short punches. Fourth attack is a double uppercut that juggles the opponent and can be step cancelled, while the last attack is a launcher kick.", "features": ["juggle", "step_cancel", "launcher"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-SAIYAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "LHH", "name": "LHH", "text": "First heavy attack is a downward spin-kick, and the second is a similar kick that actually kicks the opponent down.", "features": [],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-SAIYAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "HLHLH", "name": "Alternating String (HLHLH)", "text": "Third attack is a juggling up-kick, fourth attack is a sliding kick that causes a long knockback and the last attack is a chasing punch that causes the knockback slightly below command one. The last attack can be replaced with light attack instead of heavy, using the light string teleport kick finisher instead, this time capable of causing hard knockdowns. The fourth attack is notorious about missing online, but can be remedied by slightly delaying it. Due to the tracking on the last attack being rather lenient, it will not hit on weaker computers that may have trouble properly updating character's positions.", "features": ["juggle", "long_knockback", "chase", "branch", "hard_knockdown"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-SAIYAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "5L3H", "name": "5L3H", "text": "The first heavy attack is a launching short punch, the next is a cancellable teleport attack, then multiple kicks and then a launching finishing kick. Due to actually being 5L4H, AI will not finish this attack properly. Doing 5LHL will end the combo with the hard knockdown causing teleport kick, but may leave you in vanish range.", "features": ["launcher", "teleport", "branch", "hard_knockdown"],
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-SAIYAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null}},
+     {"id": "grab", "name": "Grab", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-SAIYAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "light_break", "name": "Light Break", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-SAIYAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "heavy_break", "name": "Heavy Break", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-SAIYAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}}
+    ],
+    "traits": [
+     {"id": "average-combo-damage", "kind": "neutral", "text": "Their combos are surprisingly average in damage.", "property": "combo_damage", "operation": "qualitative",
+      "magnitude": {"status": "unknown", "value": null, "unit": "fraction", "evidence": {"status": "game", "verification": "documented", "source_keys": ["STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "An opinion in a community guide; no number."}},
+      "condition": null,
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "An opinion in a community guide; no number."}},
+     {"id": "online-timing", "kind": "penalty", "text": "The fourth attack is notorious about missing online, but can be remedied by slightly delaying it.", "property": "combo_reliability", "operation": "qualitative",
+      "magnitude": {"status": "unknown", "value": null, "unit": "fraction", "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-SAIYAN-FEMALE"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "From the Alternating String (HLHLH)."}},
+      "condition": null,
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-SAIYAN-FEMALE"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "From the Alternating String (HLHLH)."}}
+    ],
+    "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-SAIYAN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null},
+    "notes": "Gender changes the moveset: the male and female pages describe different strings, and the Combo String page says strings differ by character. The wiki says this 5L3H is really 5L4H, so the AI does not finish it. Grab and breaks are not described."
+   }
   },
   {
    "id": "race.majin-male",
@@ -264,7 +456,40 @@
    ],
    "spec_ref": "§11.2",
    "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-MAJIN-MALE", "R10"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null},
-   "notes": "Race-exclusive skills: Purification (Awoken), Ill Bomber, Majin Kamehameha, Quick Sleep, Explosive Buu Buu Punch, Candy Beam (Evasive)."
+   "notes": "Race-exclusive skills: Purification (Awoken), Ill Bomber, Majin Kamehameha, Quick Sleep, Explosive Buu Buu Punch, Candy Beam (Evasive).",
+   "moveset": {
+    "based_on": [],
+    "strings": [
+     {"id": "9L", "name": "Light String (9L)", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-MAJIN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet; the wiki's Combo Strings section for this race is empty."}},
+     {"id": "5H", "name": "Heavy String (5H)", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-MAJIN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet; the wiki's Combo Strings section for this race is empty."}},
+     {"id": "LHH", "name": "LHH", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-MAJIN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet; the wiki's Combo Strings section for this race is empty."}},
+     {"id": "HLHLH", "name": "Alternating String (HLHLH)", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-MAJIN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet; the wiki's Combo Strings section for this race is empty."}},
+     {"id": "5L3H", "name": "5L3H", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-MAJIN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet; the wiki's Combo Strings section for this race is empty."}},
+     {"id": "grab", "name": "Grab", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-MAJIN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet; the wiki's Combo Strings section for this race is empty."}},
+     {"id": "light_break", "name": "Light Break", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-MAJIN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet; the wiki's Combo Strings section for this race is empty."}},
+     {"id": "heavy_break", "name": "Heavy Break", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-MAJIN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet; the wiki's Combo Strings section for this race is empty."}}
+    ],
+    "traits": [
+     {"id": "slow-combos", "kind": "penalty", "text": "Male majins just kind of suck, they are extremely slow in their combos with not amazing damage output.", "property": "combo_speed", "operation": "qualitative",
+      "magnitude": {"status": "unknown", "value": null, "unit": "fraction", "evidence": {"status": "game", "verification": "documented", "source_keys": ["STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "An opinion in a community guide; no number."}},
+      "condition": null,
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "An opinion in a community guide; no number."}},
+     {"id": "stretching-reach", "kind": "bonus", "text": "Stretchy arms with somewhat increased hit range.", "property": "melee_reach", "operation": "qualitative",
+      "magnitude": {"status": "unknown", "value": null, "unit": "fraction", "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "The guide lists this for Majins without naming a gender; the wiki confirms it only for Majin Female."}},
+      "condition": null,
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "The guide lists this for Majins without naming a gender; the wiki confirms it only for Majin Female."}}
+    ],
+    "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-MAJIN-MALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null},
+    "notes": "Gender changes the moveset: the wiki says male Majin combos are much different from the female Majin's. No string is described yet."
+   }
   },
   {
    "id": "race.majin-female",
@@ -299,7 +524,40 @@
    ],
    "spec_ref": "§11.2",
    "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-MAJIN-FEMALE", "R10"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null},
-   "notes": "Race-exclusive skills: Evil Flight Strike, Majin Kamehameha, Ill Bomber, Quick Sleep, Buu Buu Ball, Explosive Buu Buu Punch, Candy Beam (Evasive), Purification (Awoken)."
+   "notes": "Race-exclusive skills: Evil Flight Strike, Majin Kamehameha, Ill Bomber, Quick Sleep, Buu Buu Ball, Explosive Buu Buu Punch, Candy Beam (Evasive), Purification (Awoken).",
+   "moveset": {
+    "based_on": [{"character": "Kid Buu", "note": "The wiki says female Majin combos, idle pose and grab are mostly based off Kid Buu."}],
+    "strings": [
+     {"id": "9L", "name": "Light String (9L)", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-MAJIN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "5H", "name": "Heavy String (5H)", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-MAJIN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "LHH", "name": "LHH", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-MAJIN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "HLHLH", "name": "Alternating String (HLHLH)", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-MAJIN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "5L3H", "name": "5L3H", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-MAJIN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "grab", "name": "Grab", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-MAJIN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "light_break", "name": "Light Break", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-MAJIN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}},
+     {"id": "heavy_break", "name": "Heavy Break", "text": null, "features": [],
+      "evidence": {"status": "verify", "verification": "unknown", "source_keys": ["WIKI-MAJIN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "No source describes this string yet."}}
+    ],
+    "traits": [
+     {"id": "stretching-reach", "kind": "bonus", "text": "They have extended reach by stretching, similar to Namekians, although not quite as far.", "property": "melee_reach", "operation": "qualitative",
+      "magnitude": {"status": "unknown", "value": null, "unit": "fraction", "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-MAJIN-FEMALE", "STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "The source describes it, but gives no number."}},
+      "condition": null,
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-MAJIN-FEMALE", "STEAM-HIDDEN-MECHANICS"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "The source describes it, but gives no number."}},
+     {"id": "longest-step", "kind": "bonus", "text": "They cover the most distance with their step dash.", "property": "step_distance", "operation": "qualitative",
+      "magnitude": {"status": "unknown", "value": null, "unit": "fraction", "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-MAJIN-FEMALE"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "The source describes it, but gives no number."}},
+      "condition": null,
+      "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-MAJIN-FEMALE"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": "The source describes it, but gives no number."}}
+    ],
+    "evidence": {"status": "game", "verification": "documented", "source_keys": ["WIKI-MAJIN-FEMALE", "WIKI-COMBO-STRING"], "version": "game-2026-11 (wiki checked 2026-11-12)", "notes": null},
+    "notes": "Gender changes the moveset: the wiki says male Majin combos are much different from the female Majin's. The wiki names the strings but does not describe any of them."
+   }
   }
  ],
  "heights": [

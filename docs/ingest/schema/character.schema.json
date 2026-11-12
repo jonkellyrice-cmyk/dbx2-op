@@ -22,7 +22,7 @@
   },
   "Race": {
    "type": "object", "additionalProperties": false,
-   "required": ["id", "archetypes", "name", "summary", "traits", "spec_ref", "evidence"],
+   "required": ["id", "archetypes", "name", "summary", "traits", "spec_ref", "evidence", "moveset"],
    "properties": {
     "id": {"type": "string", "pattern": "^race\\.[a-z0-9]+(?:-[a-z0-9]+)*$"},
     "archetypes": {"type": "array", "minItems": 1, "items": {"enum": ["male_saiyan", "female_saiyan", "male_earthling", "female_earthling", "male_majin", "female_majin", "namekian", "frieza_race"]}},
@@ -30,6 +30,30 @@
     "summary": {"type": "string"},
     "traits": {"type": "array", "items": {"$ref": "#/$defs/Trait"}},
     "spec_ref": {"$ref": "vocabulary.schema.json#/$defs/SpecRef"},
+    "evidence": {"$ref": "vocabulary.schema.json#/$defs/Evidence"},
+    "notes": {"type": ["string", "null"]},
+    "moveset": {"$ref": "#/$defs/Moveset", "description": "The race's basic-attack combo strings (each gender has its own record, and its own strings)"}
+   }
+  },
+  "ComboString": {
+   "type": "object", "additionalProperties": false,
+   "required": ["id", "name", "text", "features", "evidence"],
+   "properties": {
+    "id": {"type": "string", "pattern": "^(9L|5H|LHH|HLHLH|5L3H|grab|light_break|heavy_break|other-[a-z0-9-]+)$"},
+    "name": {"type": "string", "minLength": 1},
+    "text": {"type": ["string", "null"], "description": "The string as the source describes it; null when no source describes it yet"},
+    "features": {"type": "array", "uniqueItems": true, "items": {"enum": ["launcher", "juggle", "long_knockback", "hard_knockdown", "stun", "teleport", "chase", "extended_reach", "step_cancel", "guard_cancel", "branch"]},
+     "description": "What the source says the string does: launcher (sends the opponent flying), juggle (puts them in a juggle state), long_knockback, hard_knockdown, stun, teleport (the user teleports mid-string), chase (the user chases a flying opponent), extended_reach (stretching limbs), step_cancel and guard_cancel (can be cancelled that way), branch (another input switches to a different ending). Empty when the string is undescribed."},
+    "evidence": {"$ref": "vocabulary.schema.json#/$defs/Evidence"}
+   }
+  },
+  "Moveset": {
+   "type": "object", "additionalProperties": false,
+   "required": ["based_on", "strings", "traits", "evidence", "notes"],
+   "properties": {
+    "based_on": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["character", "note"], "properties": {"character": {"type": "string"}, "note": {"type": "string"}}}, "description": "Roster characters the source says these animations come from; a lead for research, not a copy of their strings"},
+    "strings": {"type": "array", "items": {"$ref": "#/$defs/ComboString"}},
+    "traits": {"type": "array", "items": {"$ref": "#/$defs/Trait"}},
     "evidence": {"$ref": "vocabulary.schema.json#/$defs/Evidence"},
     "notes": {"type": ["string", "null"]}
    }

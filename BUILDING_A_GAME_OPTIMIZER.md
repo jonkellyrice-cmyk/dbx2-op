@@ -301,6 +301,10 @@ This is DBX2-op, the Dragon Ball Xenoverse 2 optimizer, spun off from the templa
 - **Kept on purpose:** the toy game, at `/toy`, as the engine's worked example and browser-test
   target. The process says to remove it, but the engine's own tests depend on it.
 
+- **Step 5 in progress:** character-creation data is in `docs/ingest/catalog/character.json`
+  (a DBX2-op extension with its own schema): the Frieza Race's traits, all four heights and all three
+  body types, with sources in `catalog/sources.json`. They are settings next to race, not scored yet.
+
 **The next step is step 5: the small slice.** Enter 5-10 real records (the owner's Ice build) into
 `docs/ingest/catalog/catalog.json`, see how the optimizer handles them, and fix the framework
 where they show a gap.

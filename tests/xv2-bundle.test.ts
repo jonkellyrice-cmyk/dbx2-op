@@ -11,6 +11,8 @@ import {parse} from "yaml";
 import Ajv2020 from "ajv/dist/2020";
 import {XV2_BLOCKERS,XV2_GOALS,XV2_METRICS,XV2_PEERS,XV2_PRESETS,XV2_RULES,XV2_SCORING,XV2_SLOTS} from "../src/domain/xv2/profile";
 import {XV2_CATALOG} from "../src/domain/xv2/catalog";
+import {XV2_CHARACTER} from "../src/domain/xv2/character";
+import {XV2_ARCHETYPES,XV2_CONTEXT} from "../src/domain/xv2/context";
 // MDV_BLOCK:BEGIN id="DBX.TEST.BUNDLE.010" intent="Fail the build when the code's copy of the profile no longer matches the bundle" kind="logic" tags="xv2,tests,profile"
 const INGEST=join(process.cwd(),"docs","ingest");
 const profile=parse(readFileSync(join(INGEST,"optimizer-profile.yaml"),"utf8"));
@@ -65,3 +67,25 @@ test("catalog: production records are never the synthetic fixtures", ()=>{
  assert.ok(XV2_CATALOG.options.every(o=>!o.id.includes("fixture")&&o.evidence.notes?.includes("TEST ONLY")!==true));
 });
 // MDV_BLOCK:END id="DBX.TEST.BUNDLE.020" kind="logic" tags="xv2,tests,schemas,catalog"
+// MDV_BLOCK:BEGIN id="DBX.TEST.BUNDLE.030" intent="Hold the character-creation data to its schema, its sources and the player's settings" kind="logic" tags="xv2,tests,character"
+test("character: races, heights and body types match their schema", ()=>{
+ assert.deepEqual(schemaErrors(XV2_CHARACTER as unknown as {id?:string},"character"),[]);
+});
+test("character: every source key is in the spec's list or in catalog/sources.json", ()=>{
+ const extra=new Set(JSON.parse(readFileSync(join(INGEST,"catalog","sources.json"),"utf8")).sources.map((s:{key:string})=>s.key));
+ const spec=readFileSync(join(INGEST,"spec.md"),"utf8");
+ const keys=new Set<string>();
+ const walk=(v:unknown)=>{if(Array.isArray(v))v.forEach(walk);else if(v&&typeof v==="object")for(const [k,x] of Object.entries(v))k==="source_keys"?(x as string[]).forEach(s=>keys.add(s)):walk(x);};
+ walk(XV2_CHARACTER);
+ for(const k of keys)assert.ok(extra.has(k)||spec.includes("**\\["+k+"\\]**"),"unlisted source key "+k);
+});
+test("character: every race's archetypes exist, and height and body type are offered as settings", ()=>{
+ const archetypes=new Set<string>(XV2_ARCHETYPES.map(a=>a.id));
+ for(const r of XV2_CHARACTER.races)for(const a of r.archetypes)assert.ok(archetypes.has(a),r.id+" "+a);
+ const field=(id:string)=>XV2_CONTEXT.find(f=>f.id===id)!;
+ assert.deepEqual(field("height").options.slice(1).map(o=>o.id),XV2_CHARACTER.heights.map(h=>h.id));
+ assert.deepEqual(field("body_type").options.slice(1).map(o=>o.id),XV2_CHARACTER.body_types.map(b=>b.id));
+ assert.equal(field("height").options[4].label,"4 (tallest): +10% health, -5% speed");
+ assert.equal(field("body_type").options[1].label,"Thin","a disputed bonus shows no number");
+});
+// MDV_BLOCK:END id="DBX.TEST.BUNDLE.030" kind="logic" tags="xv2,tests,character"

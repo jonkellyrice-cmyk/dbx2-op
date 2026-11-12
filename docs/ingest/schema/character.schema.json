@@ -11,7 +11,7 @@
    "required": ["id", "kind", "text", "property", "operation", "magnitude", "condition", "evidence"],
    "properties": {
     "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
-    "kind": {"enum": ["bonus", "penalty"]},
+    "kind": {"enum": ["bonus", "penalty", "neutral"], "description": "neutral: a ranking that is neither a clear strength nor a weakness (for example, middle-of-the-pack health)"},
     "text": {"type": "string", "minLength": 1, "description": "The trait as the source words it"},
     "property": {"type": "string", "minLength": 1, "description": "What it changes: max_health, movement_speed, stamina_recovery..."},
     "operation": {"enum": ["multiply", "add", "chance", "qualitative"], "description": "qualitative: the source states a direction (high/low) but no number"},

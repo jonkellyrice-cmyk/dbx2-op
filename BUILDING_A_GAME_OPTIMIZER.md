@@ -270,9 +270,15 @@ finding becomes an acceptance case**, so a later patch or catalog edit can't qui
 
 ## Where this repository is now
 
-The template is ready: the generic engine, the toy game (`src/domain/toy-game/`) as the worked
-example of steps 4-7, the placeholder UI, the report and the PDF, and `ingest-template/` as the
-worked example of step 2 (it was derived from a real Dragon Ball Xenoverse 2 bundle and reduced to
-the toy game). No game has been started.
+This is DBX2-op, the Dragon Ball Xenoverse 2 optimizer, spun off from the template.
 
-**The next step is step 1: choose the target.**
+- **Step 1 (target), done:** a custom character's loadout (4 Supers, 2 Ultimates, Evasive,
+  Awoken, Super Soul, QQ Bang, attribute spread) for a chosen kind of play.
+- **Step 2 (ingest), done:** the v3.1 bundle in `docs/ingest/`. Its validator passes; the
+  catalog is still empty.
+- **Step 3 (spin off), done:** this repository, renamed.
+- **Decided for step 4:** attribute points are chosen from named spreads offered as one slot's
+  options; the first catalog slice comes from the owner's own Ice build.
+
+**The next step is step 4: wire the Xenoverse 2 adapter.** The toy game (`src/domain/toy-game/`)
+and `ingest-template/` stay until the XV2 adapter replaces them.

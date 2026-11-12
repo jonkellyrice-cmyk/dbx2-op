@@ -9,7 +9,8 @@
     "typecheck": "tsc --noEmit",
     "test": "node --import tsx --test \"tests/**/*.test.ts\"",
     "arch:check": "node scripts/check-boundaries.mjs",
-    "test:ui": "node --test tests/ui/template-ui.test.mjs"
+    "test:ui": "node --test tests/ui/template-ui.test.mjs",
+    "gaps": "node --import tsx scripts/write-gaps.ts"
   },
   "dependencies": {
     "@sparticuz/chromium": "^153.0.0",

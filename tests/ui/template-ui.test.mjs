@@ -31,11 +31,11 @@ test("template: clean hydration, auto build, persistence, report, export/import 
    await t.test(viewport.width+"px",async()=>{
     const context=await browser.newContext({viewport,acceptDownloads:true});const page=await context.newPage();
     const errors=[];page.on("pageerror",error=>errors.push(error.message));page.on("console",message=>{if(message.type()==="error")errors.push(message.text()+" ("+message.location().url+")");});
-    // The home page is the Xenoverse 2 optimizer: it loads cleanly, says its catalog is empty, offers the
-    // bundle's presets and the named attribute spreads, and asks for race and scenario.
+    // The home page is the Xenoverse 2 optimizer: it loads cleanly, offers the bundle's presets, the named
+    // attribute spreads and the first real skills, and asks for race, scenario and where options may come from.
     await page.goto(base);
     await page.getByRole("heading",{name:"DBX2-op: Xenoverse 2 loadout optimizer"}).waitFor();
-    assert.ok(await page.getByText("The Xenoverse 2 catalog is still empty").isVisible());
+    assert.ok(await page.getByText("let Auto Build fill the loadout").isVisible());
     await page.getByRole("button",{name:"Parallel Quest farmer",exact:true}).click();
     assert.match(await page.getByTestId("request").textContent(),/^Crowd handling > Ki economy/);
     assert.ok((await page.getByLabel("attribute_spread pick",{exact:true}).locator("option").count())>=5,"the spreads are offered");
@@ -43,6 +43,11 @@ test("template: clean hydration, auto build, persistence, report, export/import 
     assert.equal(await page.getByLabel("Race / gender",{exact:true}).inputValue(),"frieza_race");
     await page.getByLabel("Height",{exact:true}).selectOption("height.4");
     await page.getByLabel("Body type",{exact:true}).selectOption("body.thin");
+    assert.ok((await page.getByLabel("super_1 pick",{exact:true}).locator("option",{hasText:"Innocence Cannon"}).count())===1,"the first real Super is offered");
+    const ultimate=page.getByLabel("ultimate_1 pick",{exact:true}).locator("option",{hasText:"Emperor's Death Beam"});
+    assert.equal(await ultimate.count(),1,"a TP-only Ultimate is offered by default");
+    await page.getByLabel("Where options may come from",{exact:true}).selectOption("no_tp_only");
+    await page.waitForFunction(()=>![...document.querySelectorAll('[aria-label="ultimate_1 pick"] option')].some(o=>o.textContent.includes("Emperor's Death Beam")));
     // The template's toy game stays at /toy as the engine's worked example; the rest of this test runs there.
     await page.goto(base+"/toy");
     const icon=await page.locator('link[rel="icon"]').first().getAttribute("href");

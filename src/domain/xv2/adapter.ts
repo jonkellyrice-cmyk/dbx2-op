@@ -10,6 +10,7 @@ import {XV2_CONTEXT,contextValue} from "./context";
 import {XV2_SPREADS,type Spread} from "./spreads";
 import {XV2_ENGINE_SLOTS,legalOptionsFor,validateBuild,type Lookup} from "./rules";
 import {rateOption,relationsBetween} from "./scoring";
+import {acquisitionSummary} from "./acquisition";
 // MDV_BLOCK:BEGIN id="DBX.XV2.ADAPTER.010" intent="Give each goal the color and plain-language voice the report uses, next to the bundle's own wording" kind="config" tags="xv2,adapter,goals"
 /** `plays` finishes the sentence "A build that ..."; MODEL wording for the report, not a game claim. */
 const VOICE:Record<Xv2Goal,{color:string;plays:string}>={
@@ -67,7 +68,7 @@ export function createXv2Adapter(catalog:Catalog,options:{id?:string;title?:stri
  const spreads=new Map(XV2_SPREADS.map(s=>[s.id,s]));
  const lookup:Lookup={option:id=>byId.get(id),spread:id=>spreads.get(id)};
  const info:OptionInfo[]=[
-  ...catalog.options.map(o=>({id:o.id,name:o.name,summary:o.description??familyOf(o.id)+" option",level:1,tags:(o.role_tags??[]).map(t=>t.tag)})),
+  ...catalog.options.map(o=>({id:o.id,name:o.name,summary:[o.description,acquisitionSummary(o)].filter(Boolean).join(" ")||familyOf(o.id)+" option",level:1,tags:(o.role_tags??[]).map(t=>t.tag)})),
   ...XV2_SPREADS.map(s=>({id:s.id,name:s.name,summary:s.summary,level:1,tags:["spread"]})),
  ];
  const ratings=new Map<string,Rating<Xv2Goal>>();

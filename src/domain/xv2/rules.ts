@@ -8,17 +8,21 @@
  * by construction (one Soul slot, one QQ Bang slot). Not yet checked, because the context they need
  * isn't collected: R-003/R-004 (earned points and stat caps), R-006 (ownership), R-008 (DLC and
  * unlocks), R-010 (mode rules), R-011 (level). Unknown data never fails a rule (on_unknown:
- * unverified); it simply isn't asserted as legal either.
+ * unverified); it simply isn't asserted as legal either. One player setting also filters here: "Skip TP
+ * Medal Shop only" removes options whose only recorded source is the rotating TP Medal Shop.
  */
 import type {Build,Issue,OptionInfo,Slot} from "../../kernel/optimization/contract";
 import {XV2_RULES,XV2_SLOTS,type ProfileSlot,type RuleId,type SlotFamily} from "./profile";
 import {familyOf,type Option} from "./records";
 import {contextValue} from "./context";
 import type {Spread} from "./spreads";
+import {tpShopOnly} from "./acquisition";
 // MDV_BLOCK:BEGIN id="DBX.XV2.RULES.010" intent="Expose the eleven loadout slots, all available from the start" kind="config" tags="xv2,rules,slots"
 export type Xv2Slot=Slot&{family:SlotFamily};
 export const XV2_ENGINE_SLOTS:readonly Xv2Slot[]=XV2_SLOTS.map((s:ProfileSlot)=>({id:s.id,label:s.label,level:1,family:s.family}));
 const message=(id:RuleId)=>XV2_RULES.find(r=>r.id===id)!.message;
+/** The player's "Skip TP Medal Shop only" setting, not a game rule: the shop's stock rotates weekly. */
+export const TP_ONLY="Only sold in the TP Medal Shop, whose stock rotates weekly; this build skips TP-only options.";
 // MDV_BLOCK:END id="DBX.XV2.RULES.010" kind="config" tags="xv2,rules,slots"
 // MDV_BLOCK:BEGIN id="DBX.XV2.RULES.020" intent="Say every rule an option breaks in a slot, given the rest of the loadout and the player's race" kind="logic" tags="xv2,rules,legality"
 /** Which slot family an option can fill (R-007). */
@@ -42,6 +46,7 @@ export function selectionReasons(build:Build,slot:Xv2Slot,id:string,lookup:Looku
  const archetype=contextValue(build,"archetype");
  const allowed=option?.eligibility.archetypes;
  if(archetype&&allowed?.status==="known"&&allowed.values&&!allowed.values.includes(archetype))reasons.push(message("R-002"));
+ if(option&&contextValue(build,"acquisition")==="no_tp_only"&&tpShopOnly(option))reasons.push(TP_ONLY);
  return reasons;
 }
 // MDV_BLOCK:END id="DBX.XV2.RULES.020" kind="logic" tags="xv2,rules,legality"

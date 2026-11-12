@@ -11,7 +11,7 @@ import {parse} from "yaml";
 import type {Build} from "../src/kernel/optimization/contract";
 import {createXv2Adapter} from "../src/domain/xv2/adapter";
 import {rateOption} from "../src/domain/xv2/scoring";
-import {checkAttributeBudget} from "../src/domain/xv2/rules";
+import {checkAttributeBudget,TP_ONLY} from "../src/domain/xv2/rules";
 import type {Catalog} from "../src/domain/xv2/records";
 import {XV2_ADAPTER} from "../src/domain/xv2/catalog";
 import {XV2_SCORING} from "../src/domain/xv2/profile";
@@ -131,14 +131,36 @@ test("contract: every preset auto-builds a legal loadout, filling every slot tha
   for(const slot of ADAPTER.slots(r.build))if(ADAPTER.legalOptions({...r.build,picks:{}},slot).length)assert.ok(r.build.picks[slot.id],p.id+" left "+slot.id+" open");
  }
 });
-test("the app's adapter loads the real catalog, which is empty, and still offers the named spreads", ()=>{
- assert.ok(XV2_ADAPTER.options.every(o=>o.id.startsWith("spread.")));
+test("the app's adapter loads the real catalog and still offers the named spreads; ungraded options are unknown, not zero", ()=>{
+ for(const id of ["skill.super.innocence-cannon","skill.ultimate.emperors-death-beam","awoken.turn-golden"])assert.ok(XV2_ADAPTER.options.some(o=>o.id===id),id);
  const slot=XV2_ADAPTER.slots(build({})).find(s=>s.id==="attribute_spread")!;
  assert.ok(XV2_ADAPTER.legalOptions(build({}),slot).length>=4);
  assert.ok(XV2_ADAPTER.rate("spread.balanced",build({})).unknown?.length===8,"spreads are ungraded: unknown, not zero");
+ assert.equal(XV2_ADAPTER.rate("skill.super.innocence-cannon",build({})).unknown?.length,8,"the first real skills are ungraded: unknown, not zero");
 });
 test("rank weights follow the profile's table, not the template's linear default", ()=>{
  const w=weightsFromRanks({burst_damage:1,control:2},XV2_SCORING.rankWeights);
  assert.ok(Math.abs((w.burst_damage??0)-8/14)<1e-9&&Math.abs((w.control??0)-6/14)<1e-9);
 });
 // MDV_BLOCK:END id="DBX.TEST.ACCEPT.050" kind="logic" tags="xv2,tests,contract"
+// MDV_BLOCK:BEGIN id="DBX.TEST.ACCEPT.060" intent="Pin where-to-get-it: every option says where it comes from, and the TP-only setting removes exactly the TP-only options" kind="logic" tags="xv2,tests,acquisition"
+test("acquisition: every real option says where to get it", ()=>{
+ for(const o of XV2_ADAPTER.options.filter(o=>!o.id.startsWith("spread.")))assert.match(o.summary,/^Where to get it: /,o.id);
+ assert.equal(XV2_ADAPTER.options.find(o=>o.id==="skill.super.god-of-destructions-anger")!.summary,"Where to get it: Train with Beerus");
+ assert.equal(XV2_ADAPTER.options.find(o=>o.id==="skill.super.consecutive-energy-blast")!.summary,"Where to get it: Skill Shop");
+ assert.equal(XV2_ADAPTER.options.find(o=>o.id==="skill.ultimate.emperors-death-beam")!.summary,"Where to get it: TP Medal Shop (rotating stock)");
+});
+test("acquisition: 'Skip TP Medal Shop only' removes TP-only options from the picker and flags them in validation", ()=>{
+ const slot=XV2_ADAPTER.slots(build({})).find(s=>s.id==="ultimate_1")!;
+ const ids=(b:Build)=>XV2_ADAPTER.legalOptions(b,slot).map(o=>o.id);
+ assert.ok(ids(build({})).includes("skill.ultimate.emperors-death-beam"),"offered by default");
+ assert.ok(!ids(build({},{acquisition:"no_tp_only"})).includes("skill.ultimate.emperors-death-beam"),"hidden when TP-only is skipped");
+ assert.deepEqual(XV2_ADAPTER.validate(build({ultimate_1:"skill.ultimate.emperors-death-beam"},{acquisition:"no_tp_only"})).map(i=>i.reason),[TP_ONLY]);
+ assert.deepEqual(XV2_ADAPTER.validate(build({super_1:"skill.super.innocence-cannon"},{acquisition:"no_tp_only"})),[],"an instructor skill stays legal");
+ assert.deepEqual(ADAPTER.validate(build({super_1:"skill.super.fixture-a"},{acquisition:"no_tp_only"})),[],"no recorded source is unknown, never filtered");
+});
+test("acquisition: Turn Golden is Frieza Race only", ()=>{
+ assert.deepEqual(XV2_ADAPTER.validate(build({awoken:"awoken.turn-golden"},{archetype:"frieza_race"})),[]);
+ assert.ok(XV2_ADAPTER.validate(build({awoken:"awoken.turn-golden"},{archetype:"male_saiyan"})).some(i=>i.reason.includes("race/gender")));
+});
+// MDV_BLOCK:END id="DBX.TEST.ACCEPT.060" kind="logic" tags="xv2,tests,acquisition"

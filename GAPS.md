@@ -1,14 +1,15 @@
 # Gaps to fill
 
-What the optimizer's data still doesn't know. This file is generated from `docs/ingest/catalog/character.json` by `npm run gaps`; a test fails if it falls out of date, so don't edit it by hand.
+What the optimizer's data still doesn't know. This file is generated from `docs/ingest/catalog/character.json` and `catalog.json` by `npm run gaps`; a test fails if it falls out of date, so don't edit it by hand.
 
-To fill a gap: add the source to `docs/ingest/catalog/sources.json` (with the page revision or date), put the value or description in `character.json` with `verification: "documented"`, then run `npm run gaps`.
+To fill a gap: add the source to `docs/ingest/catalog/sources.json` (with the page revision or date), put the value or description in `character.json` or `catalog.json` with `verification: "documented"`, then run `npm run gaps`.
 
 | Gap | Count |
 |---|---|
 | Values the sources disagree on | 11 |
 | Combo strings with no description | 34 |
 | Numbers no source gives | 56 |
+| Skills and other options: what's still unknown | 13 |
 
 ## Values the sources disagree on
 
@@ -120,3 +121,27 @@ The source gives a direction or a ranking (for example "high health") but no num
 - **Majin (female) (moveset)**
   - `stretching-reach`: They have extended reach by stretching, similar to Namekians, although not quite as far. (The source describes it, but gives no number.)
   - `longest-step`: They cover the most distance with their step dash. (The source describes it, but gives no number.)
+
+## Skills and other options: what's still unknown
+
+From docs/ingest/catalog/catalog.json. Ungraded options score as unknown, not zero, until someone grades them.
+
+- **Innocence Cannon**
+  - `tactical grades`: not graded on any goal
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
+- **God of Destruction's Anger**
+  - `tactical grades`: not graded on any goal
+  - `flags`: aoe, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Reverse Launcher**
+  - `tactical grades`: not graded on any goal
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, auto_dodge
+- **Consecutive Energy Blast**
+  - `tactical grades`: not graded on any goal
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Emperor's Death Beam**
+  - `tactical grades`: not graded on any goal
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, reposition, auto_dodge
+  - `price`: tp_medal amount not recorded
+- **Turn Golden**
+  - `tactical grades`: not graded on any goal

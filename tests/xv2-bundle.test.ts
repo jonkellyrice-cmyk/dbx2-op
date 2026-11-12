@@ -12,7 +12,7 @@ import Ajv2020 from "ajv/dist/2020";
 import {XV2_BLOCKERS,XV2_GOALS,XV2_METRICS,XV2_PEERS,XV2_PRESETS,XV2_RULES,XV2_SCORING,XV2_SLOTS} from "../src/domain/xv2/profile";
 import {XV2_CATALOG} from "../src/domain/xv2/catalog";
 import {XV2_CHARACTER} from "../src/domain/xv2/character";
-import {characterGaps,gapsMarkdown} from "../src/domain/xv2/gaps";
+import {catalogGaps,characterGaps,gapsMarkdown} from "../src/domain/xv2/gaps";
 import {XV2_ARCHETYPES,XV2_CONTEXT} from "../src/domain/xv2/context";
 // MDV_BLOCK:BEGIN id="DBX.TEST.BUNDLE.010" intent="Fail the build when the code's copy of the profile no longer matches the bundle" kind="logic" tags="xv2,tests,profile"
 const INGEST=join(process.cwd(),"docs","ingest");
@@ -105,8 +105,9 @@ test("character: every race lists the standard combo strings, and only described
 // MDV_BLOCK:END id="DBX.TEST.BUNDLE.040" kind="logic" tags="xv2,tests,character,moveset"
 // MDV_BLOCK:BEGIN id="DBX.TEST.BUNDLE.050" intent="Keep GAPS.md exactly in step with the character data, and make sure every kind of gap is found" kind="logic" tags="xv2,tests,character,gaps"
 test("GAPS.md matches the character data (run npm run gaps after changing it)", ()=>{
- const gaps=characterGaps(XV2_CHARACTER);
+ const gaps=[...characterGaps(XV2_CHARACTER),...catalogGaps(XV2_CATALOG.options)];
  assert.equal(readFileSync(join(process.cwd(),"GAPS.md"),"utf8"),gapsMarkdown(gaps));
+ assert.ok(gaps.some(g=>g.kind==="option_unknown"&&g.owner==="Emperor's Death Beam"&&g.item==="price"));
  for(const kind of ["disputed","undescribed_string","unknown_number"])assert.ok(gaps.some(g=>g.kind===kind),"no "+kind+" gap found");
  assert.ok(gaps.some(g=>g.kind==="undescribed_string"&&g.owner==="Frieza Race"&&g.item==="Light String (9L)"));
  assert.ok(!gaps.some(g=>g.owner==="Height 4"),"known heights are not gaps");

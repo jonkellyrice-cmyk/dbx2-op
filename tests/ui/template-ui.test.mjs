@@ -31,7 +31,18 @@ test("template: clean hydration, auto build, persistence, report, export/import 
    await t.test(viewport.width+"px",async()=>{
     const context=await browser.newContext({viewport,acceptDownloads:true});const page=await context.newPage();
     const errors=[];page.on("pageerror",error=>errors.push(error.message));page.on("console",message=>{if(message.type()==="error")errors.push(message.text()+" ("+message.location().url+")");});
+    // The home page is the Xenoverse 2 optimizer: it loads cleanly, says its catalog is empty, offers the
+    // bundle's presets and the named attribute spreads, and asks for race and scenario.
     await page.goto(base);
+    await page.getByRole("heading",{name:"DBX2-op: Xenoverse 2 loadout optimizer"}).waitFor();
+    assert.ok(await page.getByText("The Xenoverse 2 catalog is still empty").isVisible());
+    await page.getByRole("button",{name:"Parallel Quest farmer",exact:true}).click();
+    assert.match(await page.getByTestId("request").textContent(),/^Crowd handling > Ki economy/);
+    assert.ok((await page.getByLabel("attribute_spread pick",{exact:true}).locator("option").count())>=5,"the spreads are offered");
+    await page.getByLabel("Race / gender",{exact:true}).selectOption("frieza_race");
+    assert.equal(await page.getByLabel("Race / gender",{exact:true}).inputValue(),"frieza_race");
+    // The template's toy game stays at /toy as the engine's worked example; the rest of this test runs there.
+    await page.goto(base+"/toy");
     const icon=await page.locator('link[rel="icon"]').first().getAttribute("href");
     assert.ok(icon,"The page must declare its favicon");
     await page.getByRole("region",{name:"Step 1: request"}).waitFor();

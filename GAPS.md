@@ -9,7 +9,7 @@ To fill a gap: add the source to `docs/ingest/catalog/sources.json` (with the pa
 | Values the sources disagree on | 11 |
 | Combo strings with no description | 34 |
 | Numbers no source gives | 56 |
-| Skills and other options: what's still unknown | 13 |
+| Skills and other options: what's still unknown | 19 |
 
 ## Values the sources disagree on
 
@@ -127,21 +127,30 @@ The source gives a direction or a ranking (for example "high health") but no num
 From docs/ingest/catalog/catalog.json. Ungraded options score as unknown, not zero, until someone grades them.
 
 - **Innocence Cannon**
-  - `tactical grades`: not graded on any goal
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
 - **God of Destruction's Anger**
-  - `tactical grades`: not graded on any goal
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Reverse Launcher**
-  - `tactical grades`: not graded on any goal
+  - `tactical grades`: stamina_safety, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, auto_dodge
 - **Consecutive Energy Blast**
-  - `tactical grades`: not graded on any goal
+  - `tactical grades`: stamina_safety, mobility, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
   - `price`: zeni amount not recorded
 - **Emperor's Death Beam**
-  - `tactical grades`: not graded on any goal
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, reposition, auto_dodge
   - `price`: tp_medal amount not recorded
+- **Death Psycho Bomb**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Punisher Shield**
+  - `tactical grades`: stamina_safety, crowd_handling
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+- **Blaster Ball**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
 - **Turn Golden**
-  - `tactical grades`: not graded on any goal
+  - `tactical grades`: stamina_safety, control, crowd_handling

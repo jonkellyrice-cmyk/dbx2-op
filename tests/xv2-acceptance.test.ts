@@ -13,7 +13,7 @@ import {createXv2Adapter} from "../src/domain/xv2/adapter";
 import {rateOption} from "../src/domain/xv2/scoring";
 import {checkAttributeBudget,TP_ONLY} from "../src/domain/xv2/rules";
 import type {Catalog} from "../src/domain/xv2/records";
-import {XV2_ADAPTER} from "../src/domain/xv2/catalog";
+import {XV2_ADAPTER,XV2_CATALOG} from "../src/domain/xv2/catalog";
 import {XV2_SCORING} from "../src/domain/xv2/profile";
 import {rateInBuild} from "../src/application/optimization/evaluate";
 import {checkBlockers} from "../src/application/optimization/requirements";
@@ -136,7 +136,8 @@ test("the app's adapter loads the real catalog and still offers the named spread
  const slot=XV2_ADAPTER.slots(build({})).find(s=>s.id==="attribute_spread")!;
  assert.ok(XV2_ADAPTER.legalOptions(build({}),slot).length>=4);
  assert.ok(XV2_ADAPTER.rate("spread.balanced",build({})).unknown?.length===8,"spreads are ungraded: unknown, not zero");
- assert.equal(XV2_ADAPTER.rate("skill.super.innocence-cannon",build({})).unknown?.length,8,"the first real skills are ungraded: unknown, not zero");
+ const ic=XV2_ADAPTER.rate("skill.super.innocence-cannon",build({}));
+ assert.ok(ic.unknown?.includes("stamina_safety")&&!ic.unknown.includes("burst_damage"),"graded goals score; ungraded goals stay unknown, not zero");
 });
 test("rank weights follow the profile's table, not the template's linear default", ()=>{
  const w=weightsFromRanks({burst_damage:1,control:2},XV2_SCORING.rankWeights);
@@ -164,3 +165,19 @@ test("acquisition: Turn Golden is Frieza Race only", ()=>{
  assert.ok(XV2_ADAPTER.validate(build({awoken:"awoken.turn-golden"},{archetype:"male_saiyan"})).some(i=>i.reason.includes("race/gender")));
 });
 // MDV_BLOCK:END id="DBX.TEST.ACCEPT.060" kind="logic" tags="xv2,tests,acquisition"
+// MDV_BLOCK:BEGIN id="DBX.TEST.ACCEPT.070" intent="Keep real grades honest (MODEL with a reason) and Ki costs in bars, so scores and the loadout Ki benchmark read them right" kind="logic" tags="xv2,tests,grades"
+test("grades: every known grade on a real option is a MODEL or GAME judgment with a reason", ()=>{
+ for(const o of XV2_CATALOG.options)for(const [goal,g] of Object.entries(o.tactical_grades))if(g.status==="known"){
+  assert.ok(g.evidence.status==="model"||g.evidence.status==="game",o.id+" "+goal);
+  assert.ok(g.reason.length>10,o.id+" "+goal+" needs a reason");
+ }
+});
+test("costs: every real Ki cost is in bars, so the scorer and the loadout Ki benchmark read it right", ()=>{
+ for(const o of XV2_CATALOG.options)for(const c of [...(o.cost_schedule??[]),...(o.activation_costs??[])])if(c.resource==="ki")assert.equal((c.amount as {unit?:string}).unit,"ki_bars",o.id);
+ const ice={super_1:"skill.super.death-psycho-bomb",super_2:"skill.super.god-of-destructions-anger",super_3:"skill.super.punisher-shield",super_4:"skill.super.blaster-ball"};
+ assert.equal(XV2_ADAPTER.benchmarks!.measure(build(ice)).loadout_ki,5,"1 + 2 + 1 + 1 bars");
+});
+test("PQ rewards say which Parallel Quest", ()=>{
+ assert.equal(XV2_ADAPTER.options.find(o=>o.id==="skill.super.death-psycho-bomb")!.summary,'Where to get it: Parallel Quest 33 ("Earth in Danger!")');
+});
+// MDV_BLOCK:END id="DBX.TEST.ACCEPT.070" kind="logic" tags="xv2,tests,grades"

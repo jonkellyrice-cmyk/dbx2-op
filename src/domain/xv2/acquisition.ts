@@ -19,7 +19,7 @@ type Route=NonNullable<Option["acquisition_options"]>[number];
 export function routeLabel(r:Route):string{
  if(r.source==="instructor")return r.source_id?"Train with "+r.source_id:"Instructor";
  if(r.source==="zeni_shop")return (r.source_id&&SHOP_LABEL[r.source_id])||SOURCE_LABEL.zeni_shop;
- if(r.source==="pq_drop"&&r.source_id)return "Parallel Quest: "+r.source_id;
+ if(r.source==="pq_drop"&&r.source_id)return "Parallel Quest "+r.source_id;
  const base=SOURCE_LABEL[r.source]??r.source;
  return r.rotation.status==="rotating"?base+" (rotating stock)":base;
 }

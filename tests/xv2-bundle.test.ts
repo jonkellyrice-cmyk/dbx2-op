@@ -89,3 +89,16 @@ test("character: every race's archetypes exist, and height and body type are off
  assert.equal(field("body_type").options[1].label,"Thin","a disputed bonus shows no number");
 });
 // MDV_BLOCK:END id="DBX.TEST.BUNDLE.030" kind="logic" tags="xv2,tests,character"
+// MDV_BLOCK:BEGIN id="DBX.TEST.BUNDLE.040" intent="Keep every race's moveset complete and honest: all standard strings listed, features only where a source describes the string" kind="logic" tags="xv2,tests,character,moveset"
+test("character: every race lists the standard combo strings, and only described strings carry features", ()=>{
+ const standard=["9L","5H","LHH","HLHLH","5L3H","grab","light_break","heavy_break"];
+ for(const r of XV2_CHARACTER.races){
+  const ids=r.moveset.strings.map(s=>s.id);
+  for(const id of standard)assert.ok(ids.includes(id),r.id+" is missing "+id);
+  for(const s of r.moveset.strings){
+   if(s.text===null){assert.deepEqual(s.features,[],r.id+" "+s.id+" has features but no description");assert.notEqual(s.evidence.verification,"documented",r.id+" "+s.id);}
+   else assert.equal(s.evidence.verification,"documented",r.id+" "+s.id);
+  }
+ }
+});
+// MDV_BLOCK:END id="DBX.TEST.BUNDLE.040" kind="logic" tags="xv2,tests,character,moveset"

@@ -10,6 +10,8 @@
   {"key": "WIKI-SAIYAN-MALE", "title": "Xenoverse 2 Wiki: Saiyan Male", "url": "https://dbxv2.fandom.com/wiki/Saiyan_Male", "revision": 4252, "checked": "2026-11-12", "kind": "community"},
   {"key": "WIKI-SAIYAN-FEMALE", "title": "Xenoverse 2 Wiki: Saiyan Female", "url": "https://dbxv2.fandom.com/wiki/Saiyan_Female", "revision": 6580, "checked": "2026-11-12", "kind": "community"},
   {"key": "WIKI-MAJIN-MALE", "title": "Xenoverse 2 Wiki: Majin Male", "url": "https://dbxv2.fandom.com/wiki/Majin_Male", "revision": 8127, "checked": "2026-11-12", "kind": "community"},
-  {"key": "WIKI-MAJIN-FEMALE", "title": "Xenoverse 2 Wiki: Majin Female", "url": "https://dbxv2.fandom.com/wiki/Majin_Female", "revision": 10392, "checked": "2026-11-12", "kind": "community"}
+  {"key": "WIKI-MAJIN-FEMALE", "title": "Xenoverse 2 Wiki: Majin Female", "url": "https://dbxv2.fandom.com/wiki/Majin_Female", "revision": 10392, "checked": "2026-11-12", "kind": "community"},
+  {"key": "WIKI-COMBO-STRING", "title": "Xenoverse 2 Wiki: Combo String", "url": "https://dbxv2.fandom.com/wiki/Combo_String", "revision": 236, "checked": "2026-11-12", "kind": "community"},
+  {"key": "STEAM-HIDDEN-MECHANICS", "title": "Steam guide: Xenoverse 2 Hidden Mechanics and Noteworthy Quirks", "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2865944444", "revision": "last updated 2025-09-09", "checked": "2026-11-12", "kind": "community"}
  ]
 }

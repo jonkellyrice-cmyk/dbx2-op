@@ -11,7 +11,11 @@ import data from "../../../docs/ingest/catalog/character.json";
 import type {Evidence,Known} from "./records";
 // MDV_BLOCK:BEGIN id="DBX.XV2.CHARACTER.010" intent="Name the shapes of race traits, heights and body types as recorded" kind="types" tags="xv2,character,context"
 export type Trait={id:string;kind:"bonus"|"penalty"|"neutral";text:string;property:string;operation:"multiply"|"add"|"chance"|"qualitative";magnitude:Known<number>;condition:string|null;evidence:Evidence};
-export type Race={id:string;archetypes:readonly string[];name:string;summary:string;traits:readonly Trait[];spec_ref:string;evidence:Evidence;notes?:string|null};
+export type ComboFeature="launcher"|"juggle"|"long_knockback"|"hard_knockdown"|"stun"|"teleport"|"chase"|"extended_reach"|"step_cancel"|"guard_cancel"|"branch";
+/** One basic-attack string; text is null until a source describes it. */
+export type ComboString={id:string;name:string;text:string|null;features:readonly ComboFeature[];evidence:Evidence};
+export type Moveset={based_on:readonly {character:string;note:string}[];strings:readonly ComboString[];traits:readonly Trait[];evidence:Evidence;notes:string|null};
+export type Race={id:string;archetypes:readonly string[];name:string;summary:string;traits:readonly Trait[];spec_ref:string;evidence:Evidence;notes?:string|null;moveset:Moveset};
 export type Height={id:string;step:number;label:string;health_multiplier:Known<number>;speed_multiplier:Known<number>;evidence:Evidence;notes?:string|null};
 export type BodyType={id:string;name:string;strike_and_basic_damage_bonus:Known<number>;ki_super_damage_bonus:Known<number>;evidence:Evidence;notes?:string|null};
 export type CharacterData={version:string;races:readonly Race[];heights:readonly Height[];body_types:readonly BodyType[]};

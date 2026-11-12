@@ -1,0 +1,29 @@
+{
+  "fixture_only": true,
+  "relations": [
+    {
+      "id": "relation.fixture-confirmed-pair",
+      "name": "Synthetic verified independent synergy",
+      "spec_ref": "\u00a721.1",
+      "version": "synthetic-3.1",
+      "evidence": {
+        "status": "model",
+        "verification": "derived",
+        "source_keys": [],
+        "version": "synthetic-3.1",
+        "notes": "TEST ONLY; not Xenoverse 2 evidence"
+      },
+      "a": "skill.super.fixture-a",
+      "b": "soul.fixture-pair-bonus",
+      "kind": "synergy",
+      "goal_id": "burst_damage",
+      "weight_band": "moderate",
+      "reason": "Artificial confirmed incremental pair for adapter ranking test only",
+      "generator_id": null,
+      "state": "confirmed",
+      "non_overlap": "passed",
+      "size_basis": "Synthetic acceptance premise: +10 point marginal synergy is verified by the fixture, not a game claim",
+      "contribution_policy": "apply_band_if_confirmed"
+    }
+  ]
+}

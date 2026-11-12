@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SuperSoulDefinition",
+  "description": "One Soul contains independent effect clauses and its Limit Burst",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "vocabulary.schema.json#/$defs/EntityId"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "spec_ref": {
+      "$ref": "vocabulary.schema.json#/$defs/SpecRef"
+    },
+    "version": {
+      "$ref": "vocabulary.schema.json#/$defs/ContentVersion"
+    },
+    "evidence": {
+      "$ref": "vocabulary.schema.json#/$defs/Evidence"
+    },
+    "eligibility": {
+      "$ref": "vocabulary.schema.json#/$defs/Eligibility"
+    },
+    "acquisition_options": {
+      "type": "array",
+      "items": {
+        "$ref": "acquisition.schema.json"
+      }
+    },
+    "charged_ki_blast": {
+      "$ref": "vocabulary.schema.json#/$defs/KnownString"
+    },
+    "limit_burst": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "known",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "effects": {
+          "type": "array",
+          "items": {
+            "$ref": "effect-clause.schema.json"
+          }
+        },
+        "team_scope": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownBoolean"
+        },
+        "activation_limit": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "type",
+        "effects",
+        "team_scope",
+        "activation_limit"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "known"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "type": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "unknown",
+                  "not_applicable"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "type": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "effect_clauses": {
+      "type": "array",
+      "items": {
+        "$ref": "effect-clause.schema.json"
+      }
+    },
+    "rarity": {
+      "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+    },
+    "associated_character": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tactical_grades": {
+      "$ref": "vocabulary.schema.json#/$defs/TacticalGrades"
+    },
+    "catalog_coverage": {
+      "type": "object",
+      "properties": {
+        "role_tags": {
+          "enum": [
+            "complete",
+            "partial",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "effects": {
+          "enum": [
+            "complete",
+            "partial",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "flags": {
+          "enum": [
+            "complete",
+            "partial",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "costs": {
+          "enum": [
+            "complete",
+            "partial",
+            "unknown",
+            "not_applicable"
+          ]
+        }
+      },
+      "required": [
+        "role_tags",
+        "effects",
+        "flags",
+        "costs"
+      ],
+      "additionalProperties": false,
+      "description": "Completeness envelope; absence of a capability is zero only in complete applicable fields"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "spec_ref",
+    "version",
+    "evidence",
+    "eligibility",
+    "acquisition_options",
+    "charged_ki_blast",
+    "limit_burst",
+    "effect_clauses",
+    "tactical_grades",
+    "catalog_coverage"
+  ]
+}

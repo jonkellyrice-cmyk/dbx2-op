@@ -1,0 +1,326 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CharacterBuild",
+  "description": "Every decision variable is explicit; null slot means intentionally empty",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "vocabulary.schema.json#/$defs/EntityId"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "spec_ref": {
+      "$ref": "vocabulary.schema.json#/$defs/SpecRef"
+    },
+    "version": {
+      "$ref": "vocabulary.schema.json#/$defs/ContentVersion"
+    },
+    "evidence": {
+      "$ref": "vocabulary.schema.json#/$defs/Evidence"
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "archetype": {
+          "type": "string",
+          "enum": [
+            "male_saiyan",
+            "female_saiyan",
+            "male_earthling",
+            "female_earthling",
+            "male_majin",
+            "female_majin",
+            "namekian",
+            "frieza_race"
+          ]
+        },
+        "level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 199
+        },
+        "mode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owned_only": {
+          "type": "boolean"
+        },
+        "owned_inventory": {
+          "type": "array",
+          "items": {
+            "$ref": "vocabulary.schema.json#/$defs/EntityId"
+          }
+        },
+        "entitlements": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "unlock_flags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "per_attribute_cap": {
+          "type": "integer",
+          "enum": [
+            100,
+            125,
+            200
+          ]
+        },
+        "earned_points": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+        },
+        "body_size": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownString"
+        },
+        "preferences": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "owned_inventory_state": {
+          "type": "string",
+          "enum": [
+            "complete",
+            "partial",
+            "unknown"
+          ]
+        },
+        "entitlements_state": {
+          "type": "string",
+          "enum": [
+            "complete",
+            "partial",
+            "unknown"
+          ]
+        },
+        "unlock_flags_state": {
+          "type": "string",
+          "enum": [
+            "complete",
+            "partial",
+            "unknown"
+          ]
+        },
+        "scenario": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "requires_armor_answer": {
+              "$ref": "vocabulary.schema.json#/$defs/KnownBoolean"
+            },
+            "target_armor": {
+              "$ref": "vocabulary.schema.json#/$defs/KnownString"
+            },
+            "requires_escort_heal": {
+              "$ref": "vocabulary.schema.json#/$defs/KnownBoolean"
+            },
+            "requires_damage_floor": {
+              "$ref": "vocabulary.schema.json#/$defs/KnownBoolean"
+            },
+            "damage_floor": {
+              "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+            },
+            "target_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "benchmark_scenario_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "requires_armor_answer",
+            "target_armor",
+            "requires_escort_heal",
+            "requires_damage_floor",
+            "damage_floor",
+            "target_id",
+            "benchmark_scenario_id"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "archetype",
+        "level",
+        "mode",
+        "owned_only",
+        "owned_inventory",
+        "owned_inventory_state",
+        "entitlements",
+        "entitlements_state",
+        "unlock_flags",
+        "unlock_flags_state",
+        "per_attribute_cap",
+        "earned_points",
+        "body_size",
+        "preferences",
+        "scenario"
+      ]
+    },
+    "slots": {
+      "type": "object",
+      "properties": {
+        "super_1": {
+          "anyOf": [
+            {
+              "$ref": "vocabulary.schema.json#/$defs/EntityId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "super_2": {
+          "anyOf": [
+            {
+              "$ref": "vocabulary.schema.json#/$defs/EntityId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "super_3": {
+          "anyOf": [
+            {
+              "$ref": "vocabulary.schema.json#/$defs/EntityId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "super_4": {
+          "anyOf": [
+            {
+              "$ref": "vocabulary.schema.json#/$defs/EntityId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ultimate_1": {
+          "anyOf": [
+            {
+              "$ref": "vocabulary.schema.json#/$defs/EntityId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ultimate_2": {
+          "anyOf": [
+            {
+              "$ref": "vocabulary.schema.json#/$defs/EntityId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evasive": {
+          "anyOf": [
+            {
+              "$ref": "vocabulary.schema.json#/$defs/EntityId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "awoken": {
+          "anyOf": [
+            {
+              "$ref": "vocabulary.schema.json#/$defs/EntityId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "super_soul": {
+          "anyOf": [
+            {
+              "$ref": "vocabulary.schema.json#/$defs/EntityId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "qq_bang": {
+          "anyOf": [
+            {
+              "$ref": "vocabulary.schema.json#/$defs/EntityId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "super_1",
+        "super_2",
+        "super_3",
+        "super_4",
+        "ultimate_1",
+        "ultimate_2",
+        "evasive",
+        "awoken",
+        "super_soul",
+        "qq_bang"
+      ]
+    },
+    "attribute_spread": {
+      "$ref": "vocabulary.schema.json#/$defs/StatSpread"
+    },
+    "search_discretization": {
+      "type": "string",
+      "enum": [
+        "named_spreads",
+        "step_10",
+        "exact_integer"
+      ]
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "spec_ref",
+    "version",
+    "evidence",
+    "context",
+    "slots",
+    "attribute_spread",
+    "search_discretization"
+  ]
+}

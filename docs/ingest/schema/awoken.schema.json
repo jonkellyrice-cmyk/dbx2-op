@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AwokenDefinition",
+  "description": "Awoken as a state machine, not an ultimate",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "vocabulary.schema.json#/$defs/EntityId"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "spec_ref": {
+      "$ref": "vocabulary.schema.json#/$defs/SpecRef"
+    },
+    "version": {
+      "$ref": "vocabulary.schema.json#/$defs/ContentVersion"
+    },
+    "evidence": {
+      "$ref": "vocabulary.schema.json#/$defs/Evidence"
+    },
+    "eligibility": {
+      "$ref": "vocabulary.schema.json#/$defs/Eligibility"
+    },
+    "activation_costs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "resource": {
+            "$ref": "vocabulary.schema.json#/$defs/Resource"
+          },
+          "phase": {
+            "$ref": "vocabulary.schema.json#/$defs/CostPhase"
+          },
+          "amount": {
+            "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+          },
+          "condition": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "resource",
+          "phase",
+          "amount",
+          "condition"
+        ]
+      }
+    },
+    "upkeep_costs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "resource": {
+            "$ref": "vocabulary.schema.json#/$defs/Resource"
+          },
+          "phase": {
+            "$ref": "vocabulary.schema.json#/$defs/CostPhase"
+          },
+          "amount": {
+            "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+          },
+          "condition": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "resource",
+          "phase",
+          "amount",
+          "condition"
+        ]
+      }
+    },
+    "action_overrides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "action_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operation": {
+            "type": "string",
+            "enum": [
+              "add",
+              "replace",
+              "remove"
+            ]
+          },
+          "notes": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "action_id",
+          "operation",
+          "notes"
+        ]
+      }
+    },
+    "termination_events": {
+      "type": "array",
+      "items": {
+        "$ref": "vocabulary.schema.json#/$defs/TriggerEvent"
+      }
+    },
+    "effects": {
+      "type": "array",
+      "items": {
+        "$ref": "effect-clause.schema.json"
+      }
+    },
+    "role_tags": {
+      "type": "array",
+      "items": {
+        "$ref": "vocabulary.schema.json#/$defs/RoleTag"
+      }
+    },
+    "acquisition_options": {
+      "type": "array",
+      "items": {
+        "$ref": "acquisition.schema.json"
+      }
+    },
+    "state_stages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tactical_grades": {
+      "$ref": "vocabulary.schema.json#/$defs/TacticalGrades"
+    },
+    "catalog_coverage": {
+      "type": "object",
+      "properties": {
+        "role_tags": {
+          "enum": [
+            "complete",
+            "partial",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "effects": {
+          "enum": [
+            "complete",
+            "partial",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "flags": {
+          "enum": [
+            "complete",
+            "partial",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "costs": {
+          "enum": [
+            "complete",
+            "partial",
+            "unknown",
+            "not_applicable"
+          ]
+        }
+      },
+      "required": [
+        "role_tags",
+        "effects",
+        "flags",
+        "costs"
+      ],
+      "additionalProperties": false,
+      "description": "Completeness envelope; absence of a capability is zero only in complete applicable fields"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "spec_ref",
+    "version",
+    "evidence",
+    "eligibility",
+    "activation_costs",
+    "upkeep_costs",
+    "action_overrides",
+    "termination_events",
+    "effects",
+    "role_tags",
+    "acquisition_options",
+    "state_stages",
+    "tactical_grades",
+    "catalog_coverage"
+  ]
+}

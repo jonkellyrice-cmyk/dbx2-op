@@ -1,0 +1,248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OptimizationResult",
+  "description": "Evidence-aware optimization recommendation envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "build_id": {
+      "$ref": "vocabulary.schema.json#/$defs/EntityId"
+    },
+    "spec_ref": {
+      "$ref": "vocabulary.schema.json#/$defs/SpecRef"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence": {
+      "$ref": "vocabulary.schema.json#/$defs/Evidence"
+    },
+    "mode": {
+      "type": "string",
+      "minLength": 1
+    },
+    "legality": {
+      "type": "string",
+      "enum": [
+        "legal",
+        "illegal",
+        "unverified_legal"
+      ]
+    },
+    "violations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "slot_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail",
+              "unverified"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence": {
+            "$ref": "vocabulary.schema.json#/$defs/Evidence"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "rule_id",
+          "slot_id",
+          "outcome",
+          "message",
+          "evidence"
+        ]
+      }
+    },
+    "goals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "goal_id": {
+            "$ref": "vocabulary.schema.json#/$defs/GoalId"
+          },
+          "value": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 100
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "known",
+              "partial",
+              "unknown",
+              "not_applicable"
+            ]
+          },
+          "coverage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "gap_advice": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "$ref": "vocabulary.schema.json#/$defs/Evidence"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "goal_id",
+          "value",
+          "status",
+          "coverage",
+          "gap_advice",
+          "evidence"
+        ]
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail",
+              "unknown"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "status",
+          "message"
+        ]
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "$ref": "relation.schema.json"
+      }
+    },
+    "benchmarks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "metric_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "value": {
+            "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+          },
+          "measurement_type": {
+            "type": "string",
+            "enum": [
+              "catalog",
+              "in_game"
+            ]
+          },
+          "trial_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "conditions": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "evidence": {
+            "$ref": "vocabulary.schema.json#/$defs/Evidence"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "metric_id",
+          "unit",
+          "value",
+          "measurement_type",
+          "trial_count",
+          "conditions",
+          "evidence"
+        ]
+      }
+    },
+    "rank": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "not_ranked_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "build_id",
+    "spec_ref",
+    "version",
+    "evidence",
+    "mode",
+    "legality",
+    "violations",
+    "goals",
+    "blockers",
+    "relations",
+    "benchmarks",
+    "rank",
+    "not_ranked_reason",
+    "summary"
+  ]
+}

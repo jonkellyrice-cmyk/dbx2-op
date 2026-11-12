@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Relation",
+  "description": "A pairwise marginal effect on one goal, after each option is independently rated. Model point bands are not damage values.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "vocabulary.schema.json#/$defs/EntityId"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "spec_ref": {
+      "$ref": "vocabulary.schema.json#/$defs/SpecRef"
+    },
+    "version": {
+      "$ref": "vocabulary.schema.json#/$defs/ContentVersion"
+    },
+    "evidence": {
+      "$ref": "vocabulary.schema.json#/$defs/Evidence"
+    },
+    "a": {
+      "$ref": "vocabulary.schema.json#/$defs/EntityId"
+    },
+    "b": {
+      "$ref": "vocabulary.schema.json#/$defs/EntityId"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "synergy",
+        "anti_synergy",
+        "redundancy"
+      ]
+    },
+    "goal_id": {
+      "$ref": "vocabulary.schema.json#/$defs/GoalId"
+    },
+    "weight_band": {
+      "type": "string",
+      "enum": [
+        "minor",
+        "moderate",
+        "major"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generator_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "confirmed",
+        "candidate"
+      ]
+    },
+    "non_overlap": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "failed",
+        "unknown"
+      ]
+    },
+    "size_basis": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Evidence/rationale justifying selected point band; null for unconfirmed"
+    },
+    "contribution_policy": {
+      "type": "string",
+      "enum": [
+        "apply_band_if_confirmed",
+        "explain_only"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "spec_ref",
+    "version",
+    "evidence",
+    "a",
+    "b",
+    "kind",
+    "goal_id",
+    "weight_band",
+    "reason",
+    "generator_id",
+    "state",
+    "non_overlap",
+    "size_basis",
+    "contribution_policy"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "confirmed"
+          }
+        },
+        "required": [
+          "state"
+        ]
+      },
+      "then": {
+        "properties": {
+          "non_overlap": {
+            "const": "passed"
+          },
+          "size_basis": {
+            "type": "string",
+            "minLength": 1
+          },
+          "contribution_policy": {
+            "const": "apply_band_if_confirmed"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "candidate"
+          }
+        },
+        "required": [
+          "state"
+        ]
+      },
+      "then": {
+        "properties": {
+          "contribution_policy": {
+            "const": "explain_only"
+          }
+        }
+      }
+    }
+  ]
+}

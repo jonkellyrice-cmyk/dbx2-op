@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QQBangDefinition",
+  "description": "Gear modifiers; exact modifiers can be unknown",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "vocabulary.schema.json#/$defs/EntityId"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "spec_ref": {
+      "$ref": "vocabulary.schema.json#/$defs/SpecRef"
+    },
+    "version": {
+      "$ref": "vocabulary.schema.json#/$defs/ContentVersion"
+    },
+    "evidence": {
+      "$ref": "vocabulary.schema.json#/$defs/Evidence"
+    },
+    "eligibility": {
+      "$ref": "vocabulary.schema.json#/$defs/Eligibility"
+    },
+    "stat_modifiers": {
+      "type": "object",
+      "properties": {
+        "health": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+        },
+        "max_ki": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+        },
+        "max_stamina": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+        },
+        "basic_attack": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+        },
+        "strike_supers": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+        },
+        "ki_blast_supers": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "health",
+        "max_ki",
+        "max_stamina",
+        "basic_attack",
+        "strike_supers",
+        "ki_blast_supers"
+      ]
+    },
+    "acquisition_options": {
+      "type": "array",
+      "items": {
+        "$ref": "acquisition.schema.json"
+      }
+    },
+    "star_level": {
+      "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tactical_grades": {
+      "$ref": "vocabulary.schema.json#/$defs/TacticalGrades"
+    },
+    "catalog_coverage": {
+      "type": "object",
+      "properties": {
+        "role_tags": {
+          "enum": [
+            "complete",
+            "partial",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "effects": {
+          "enum": [
+            "complete",
+            "partial",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "flags": {
+          "enum": [
+            "complete",
+            "partial",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "costs": {
+          "enum": [
+            "complete",
+            "partial",
+            "unknown",
+            "not_applicable"
+          ]
+        }
+      },
+      "required": [
+        "role_tags",
+        "effects",
+        "flags",
+        "costs"
+      ],
+      "additionalProperties": false,
+      "description": "Completeness envelope; absence of a capability is zero only in complete applicable fields"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "spec_ref",
+    "version",
+    "evidence",
+    "eligibility",
+    "stat_modifiers",
+    "acquisition_options",
+    "tactical_grades",
+    "catalog_coverage"
+  ]
+}

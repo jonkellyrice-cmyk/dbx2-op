@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AcquisitionOption",
+  "description": "Item can have many independent acquisition options",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "spec_ref": {
+      "$ref": "vocabulary.schema.json#/$defs/SpecRef"
+    },
+    "version": {
+      "$ref": "vocabulary.schema.json#/$defs/ContentVersion"
+    },
+    "evidence": {
+      "$ref": "vocabulary.schema.json#/$defs/Evidence"
+    },
+    "source": {
+      "$ref": "vocabulary.schema.json#/$defs/AcquisitionSource"
+    },
+    "source_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "prerequisites": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "price": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string",
+            "enum": [
+              "zeni",
+              "tp_medal",
+              "stp_medal",
+              "material",
+              "none",
+              "other"
+            ]
+          },
+          "amount": {
+            "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+          },
+          "item_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "currency",
+          "amount",
+          "item_id"
+        ]
+      }
+    },
+    "drop_probability": {
+      "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+    },
+    "rotation": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "always",
+            "rotating",
+            "event_only",
+            "unknown"
+          ]
+        },
+        "schedule": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "schedule"
+      ]
+    },
+    "repeatability": {
+      "type": "string",
+      "enum": [
+        "repeatable",
+        "one_time",
+        "unknown"
+      ]
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "spec_ref",
+    "version",
+    "evidence",
+    "source",
+    "source_id",
+    "prerequisites",
+    "price",
+    "drop_probability",
+    "rotation",
+    "repeatability",
+    "notes"
+  ]
+}

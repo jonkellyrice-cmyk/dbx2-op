@@ -1,0 +1,273 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SkillDefinition",
+  "description": "Universal skill for the three active combat slot families. Awoken is separate.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "vocabulary.schema.json#/$defs/EntityId"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "spec_ref": {
+      "$ref": "vocabulary.schema.json#/$defs/SpecRef"
+    },
+    "version": {
+      "$ref": "vocabulary.schema.json#/$defs/ContentVersion"
+    },
+    "evidence": {
+      "$ref": "vocabulary.schema.json#/$defs/Evidence"
+    },
+    "slot_family": {
+      "type": "string",
+      "enum": [
+        "super",
+        "ultimate",
+        "evasive"
+      ]
+    },
+    "classification": {
+      "$ref": "vocabulary.schema.json#/$defs/Classification"
+    },
+    "eligibility": {
+      "$ref": "vocabulary.schema.json#/$defs/Eligibility"
+    },
+    "cost_schedule": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "resource": {
+            "$ref": "vocabulary.schema.json#/$defs/Resource"
+          },
+          "phase": {
+            "$ref": "vocabulary.schema.json#/$defs/CostPhase"
+          },
+          "amount": {
+            "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+          },
+          "condition": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "resource",
+          "phase",
+          "amount",
+          "condition"
+        ]
+      }
+    },
+    "role_tags": {
+      "type": "array",
+      "items": {
+        "$ref": "vocabulary.schema.json#/$defs/RoleTag"
+      }
+    },
+    "flags": {
+      "type": "object",
+      "properties": {
+        "hit": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownBoolean"
+        },
+        "aoe": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownBoolean"
+        },
+        "guard_break": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownBoolean"
+        },
+        "stamina_break": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownBoolean"
+        },
+        "armor_answer": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownBoolean"
+        },
+        "super_armor": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownBoolean"
+        },
+        "invulnerability": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownBoolean"
+        },
+        "projectile": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownBoolean"
+        },
+        "tracking": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownBoolean"
+        },
+        "reposition": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownBoolean"
+        },
+        "auto_dodge": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownBoolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "hit",
+        "aoe",
+        "guard_break",
+        "stamina_break",
+        "armor_answer",
+        "super_armor",
+        "invulnerability",
+        "projectile",
+        "tracking",
+        "reposition",
+        "auto_dodge"
+      ]
+    },
+    "effect_clauses": {
+      "type": "array",
+      "items": {
+        "$ref": "effect-clause.schema.json"
+      }
+    },
+    "acquisition_options": {
+      "type": "array",
+      "items": {
+        "$ref": "acquisition.schema.json"
+      }
+    },
+    "input_profile": {
+      "type": "object",
+      "properties": {
+        "press_pattern": {
+          "type": "string",
+          "enum": [
+            "single_press",
+            "repeated_press",
+            "hold",
+            "directional",
+            "multi_stage",
+            "automatic",
+            "unknown"
+          ]
+        },
+        "extra_input_required": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownBoolean"
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "press_pattern",
+        "extra_input_required",
+        "notes"
+      ]
+    },
+    "targeting": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "measurement_notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "documentation_only": {
+      "type": "object",
+      "properties": {
+        "animation_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "vfx_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sfx_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": []
+    },
+    "tactical_grades": {
+      "$ref": "vocabulary.schema.json#/$defs/TacticalGrades"
+    },
+    "catalog_coverage": {
+      "type": "object",
+      "properties": {
+        "role_tags": {
+          "enum": [
+            "complete",
+            "partial",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "effects": {
+          "enum": [
+            "complete",
+            "partial",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "flags": {
+          "enum": [
+            "complete",
+            "partial",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "costs": {
+          "enum": [
+            "complete",
+            "partial",
+            "unknown",
+            "not_applicable"
+          ]
+        }
+      },
+      "required": [
+        "role_tags",
+        "effects",
+        "flags",
+        "costs"
+      ],
+      "additionalProperties": false,
+      "description": "Completeness envelope; absence of a capability is zero only in complete applicable fields"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "spec_ref",
+    "version",
+    "evidence",
+    "slot_family",
+    "classification",
+    "eligibility",
+    "cost_schedule",
+    "role_tags",
+    "flags",
+    "effect_clauses",
+    "acquisition_options",
+    "tactical_grades",
+    "catalog_coverage"
+  ]
+}

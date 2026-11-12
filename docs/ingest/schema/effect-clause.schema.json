@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EffectClause",
+  "description": "Independent triggered effect clause; required unknowns remain explicit",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "vocabulary.schema.json#/$defs/EntityId"
+    },
+    "spec_ref": {
+      "$ref": "vocabulary.schema.json#/$defs/SpecRef"
+    },
+    "version": {
+      "$ref": "vocabulary.schema.json#/$defs/ContentVersion"
+    },
+    "evidence": {
+      "$ref": "vocabulary.schema.json#/$defs/Evidence"
+    },
+    "trigger": {
+      "type": "object",
+      "properties": {
+        "event": {
+          "$ref": "vocabulary.schema.json#/$defs/TriggerEvent"
+        },
+        "predicates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "enum": [
+                  "event.skill_id",
+                  "event.type",
+                  "actor.awoken_id",
+                  "actor.archetype",
+                  "actor.health_pct",
+                  "actor.ki",
+                  "actor.stamina",
+                  "target.guard_state",
+                  "target.break_state",
+                  "context.mode",
+                  "context.target_armor",
+                  "actor.status",
+                  "target.status"
+                ]
+              },
+              "operator": {
+                "type": "string",
+                "enum": [
+                  "eq",
+                  "ne",
+                  "gte",
+                  "lte",
+                  "gt",
+                  "lt",
+                  "in",
+                  "not_in",
+                  "exists"
+                ]
+              },
+              "value": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean"
+                  ]
+                }
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "operator",
+              "value"
+            ]
+          }
+        },
+        "when": {
+          "type": "string",
+          "enum": [
+            "on_event",
+            "while_true",
+            "on_enter",
+            "on_exit"
+          ]
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "event",
+        "predicates",
+        "when",
+        "notes"
+      ]
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "self",
+          "target",
+          "ally",
+          "team",
+          "area"
+        ]
+      }
+    },
+    "operation": {
+      "$ref": "vocabulary.schema.json#/$defs/EffectOperation"
+    },
+    "property": {
+      "type": "string",
+      "minLength": 1
+    },
+    "magnitude": {
+      "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+    },
+    "duration": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "instant",
+            "timed",
+            "condition_held",
+            "battle",
+            "indefinite",
+            "unknown"
+          ]
+        },
+        "quantity": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "quantity"
+      ]
+    },
+    "activation_limit": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "once_per_battle",
+            "once_per_activation",
+            "unlimited",
+            "n_times",
+            "unknown"
+          ]
+        },
+        "count": {
+          "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "count"
+      ]
+    },
+    "stacking": {
+      "$ref": "vocabulary.schema.json#/$defs/StackPolicy"
+    },
+    "termination_events": {
+      "type": "array",
+      "items": {
+        "$ref": "vocabulary.schema.json#/$defs/TriggerEvent"
+      }
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "spec_ref",
+    "version",
+    "evidence",
+    "trigger",
+    "targets",
+    "operation",
+    "property",
+    "magnitude",
+    "duration",
+    "activation_limit",
+    "stacking",
+    "termination_events",
+    "notes"
+  ]
+}

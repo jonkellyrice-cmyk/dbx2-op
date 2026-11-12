@@ -1,0 +1,827 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "XV2 shared vocabulary",
+  "description": "Canonical enums, identifiers, known/unknown wrappers and evidence",
+  "type": "object",
+  "properties": {},
+  "$defs": {
+    "EntityId": {
+      "type": "string",
+      "pattern": "^(?:skill\\.(?:super|ultimate|evasive)|awoken|soul|qqbang|build|relation|effect)\\.[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "Immutable lower-kebab-case ID with fixed namespace"
+    },
+    "SpecRef": {
+      "type": "string",
+      "pattern": "^§(?:[1-9]|1\\d|2[0-6])(?:\\.\\d+)?$"
+    },
+    "ContentVersion": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Named patch/content build; exact number may be unknown only when explicitly marked as such in evidence"
+    },
+    "Evidence": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "game",
+            "model",
+            "verify"
+          ]
+        },
+        "verification": {
+          "type": "string",
+          "enum": [
+            "documented",
+            "observed",
+            "derived",
+            "unknown",
+            "disputed"
+          ]
+        },
+        "source_keys": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "verification",
+        "source_keys",
+        "version",
+        "notes"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "game"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "source_keys": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "KnownNumber": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "known",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence": {
+          "$ref": "vocabulary.schema.json#/$defs/Evidence"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "value",
+        "unit",
+        "evidence"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "known"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "unknown",
+                  "not_applicable"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "KnownBoolean": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "known",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "value": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "evidence": {
+          "$ref": "vocabulary.schema.json#/$defs/Evidence"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "value",
+        "evidence"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "known"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "unknown",
+                  "not_applicable"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "KnownString": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "known",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence": {
+          "$ref": "vocabulary.schema.json#/$defs/Evidence"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "value",
+        "evidence"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "known"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "unknown",
+                  "not_applicable"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "RoleTag": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "type": "string",
+          "enum": [
+            "burst_damage",
+            "sustained_damage",
+            "ki_generate",
+            "ki_charge",
+            "stamina_regen",
+            "stamina_preserve",
+            "stamina_break",
+            "guard_break",
+            "hitstun",
+            "paralysis",
+            "counter",
+            "gap_close",
+            "reposition",
+            "tracking",
+            "area_damage",
+            "area_denial",
+            "crowd_control",
+            "escape",
+            "heal",
+            "damage_mitigation",
+            "armor_answer",
+            "buff",
+            "debuff",
+            "projectile_counter",
+            "guard_pressure",
+            "combo_extend",
+            "combo_start",
+            "resource_drain",
+            "resource_refund",
+            "reflect",
+            "revive",
+            "input_simple"
+          ]
+        },
+        "evidence": {
+          "$ref": "vocabulary.schema.json#/$defs/Evidence"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "tag",
+        "evidence"
+      ]
+    },
+    "Eligibility": {
+      "type": "object",
+      "properties": {
+        "archetypes": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "known",
+                "unknown",
+                "not_applicable"
+              ]
+            },
+            "values": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string",
+                "enum": [
+                  "male_saiyan",
+                  "female_saiyan",
+                  "male_earthling",
+                  "female_earthling",
+                  "male_majin",
+                  "female_majin",
+                  "namekian",
+                  "frieza_race"
+                ]
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "values"
+          ],
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "known"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "values": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "male_saiyan",
+                        "female_saiyan",
+                        "male_earthling",
+                        "female_earthling",
+                        "male_majin",
+                        "female_majin",
+                        "namekian",
+                        "frieza_race"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "unknown",
+                      "not_applicable"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "values": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "required_entitlements": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required_flags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "mode_allowlist": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "archetypes",
+        "required_entitlements",
+        "required_flags",
+        "mode_allowlist",
+        "notes"
+      ]
+    },
+    "GoalId": {
+      "type": "string",
+      "enum": [
+        "burst_damage",
+        "sustained_damage",
+        "ki_economy",
+        "stamina_safety",
+        "control",
+        "mobility",
+        "crowd_handling",
+        "survivability"
+      ]
+    },
+    "DecisionSlotId": {
+      "type": "string",
+      "enum": [
+        "super_1",
+        "super_2",
+        "super_3",
+        "super_4",
+        "ultimate_1",
+        "ultimate_2",
+        "evasive",
+        "awoken",
+        "super_soul",
+        "qq_bang",
+        "attribute_spread"
+      ]
+    },
+    "Classification": {
+      "type": "string",
+      "enum": [
+        "strike",
+        "ki_blast",
+        "power_up",
+        "other"
+      ]
+    },
+    "RoleTagId": {
+      "type": "string",
+      "enum": [
+        "burst_damage",
+        "sustained_damage",
+        "ki_generate",
+        "ki_charge",
+        "stamina_regen",
+        "stamina_preserve",
+        "stamina_break",
+        "guard_break",
+        "hitstun",
+        "paralysis",
+        "counter",
+        "gap_close",
+        "reposition",
+        "tracking",
+        "area_damage",
+        "area_denial",
+        "crowd_control",
+        "escape",
+        "heal",
+        "damage_mitigation",
+        "armor_answer",
+        "buff",
+        "debuff",
+        "projectile_counter",
+        "guard_pressure",
+        "combo_extend",
+        "combo_start",
+        "resource_drain",
+        "resource_refund",
+        "reflect",
+        "revive",
+        "input_simple"
+      ]
+    },
+    "Resource": {
+      "type": "string",
+      "enum": [
+        "ki",
+        "stamina",
+        "health"
+      ]
+    },
+    "CostPhase": {
+      "type": "string",
+      "enum": [
+        "activation",
+        "charge",
+        "per_hit",
+        "per_tick",
+        "hold_extension",
+        "counter_followup",
+        "upkeep"
+      ]
+    },
+    "TriggerEvent": {
+      "type": "string",
+      "enum": [
+        "battle_start",
+        "activation",
+        "on_attempt",
+        "on_hit",
+        "on_block",
+        "on_miss",
+        "threshold_cross",
+        "threshold_held",
+        "on_guard",
+        "on_perfect_guard",
+        "on_dodge",
+        "on_vanish",
+        "on_stamina_break",
+        "on_ko",
+        "on_revive",
+        "on_transform",
+        "on_deactivate",
+        "on_timer",
+        "on_end_of_battle"
+      ]
+    },
+    "EffectOperation": {
+      "type": "string",
+      "enum": [
+        "add_flat",
+        "multiply",
+        "replace",
+        "restore",
+        "drain",
+        "grant_state",
+        "remove_state",
+        "prevent_state",
+        "override_action",
+        "teleport",
+        "apply_damage",
+        "heal",
+        "reduce_cost",
+        "set_cost"
+      ]
+    },
+    "StackPolicy": {
+      "type": "string",
+      "enum": [
+        "stack",
+        "refresh",
+        "replace",
+        "exclusive",
+        "no_stack",
+        "unknown"
+      ]
+    },
+    "AcquisitionSource": {
+      "type": "string",
+      "enum": [
+        "zeni_shop",
+        "tp_medal_shop",
+        "pq_drop",
+        "expert_mission_drop",
+        "instructor",
+        "story",
+        "event",
+        "raid_reward",
+        "mix_recipe",
+        "shenron_wish",
+        "dlc",
+        "other",
+        "unknown"
+      ]
+    },
+    "TacticalGrade": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "known",
+            "unknown"
+          ]
+        },
+        "value": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 5
+        },
+        "evidence": {
+          "$ref": "vocabulary.schema.json#/$defs/Evidence"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "value",
+        "evidence",
+        "reason"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "known"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "unknown"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "StatSpread": {
+      "type": "object",
+      "properties": {
+        "health": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_ki": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_stamina": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "basic_attack": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "strike_supers": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "ki_blast_supers": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "health",
+        "max_ki",
+        "max_stamina",
+        "basic_attack",
+        "strike_supers",
+        "ki_blast_supers"
+      ]
+    },
+    "TacticalGrades": {
+      "type": "object",
+      "properties": {
+        "burst_damage": {
+          "$ref": "vocabulary.schema.json#/$defs/TacticalGrade"
+        },
+        "sustained_damage": {
+          "$ref": "vocabulary.schema.json#/$defs/TacticalGrade"
+        },
+        "ki_economy": {
+          "$ref": "vocabulary.schema.json#/$defs/TacticalGrade"
+        },
+        "stamina_safety": {
+          "$ref": "vocabulary.schema.json#/$defs/TacticalGrade"
+        },
+        "control": {
+          "$ref": "vocabulary.schema.json#/$defs/TacticalGrade"
+        },
+        "mobility": {
+          "$ref": "vocabulary.schema.json#/$defs/TacticalGrade"
+        },
+        "crowd_handling": {
+          "$ref": "vocabulary.schema.json#/$defs/TacticalGrade"
+        },
+        "survivability": {
+          "$ref": "vocabulary.schema.json#/$defs/TacticalGrade"
+        }
+      },
+      "required": [
+        "burst_damage",
+        "sustained_damage",
+        "ki_economy",
+        "stamina_safety",
+        "control",
+        "mobility",
+        "crowd_handling",
+        "survivability"
+      ],
+      "additionalProperties": false,
+      "description": "Exactly one explicit known/unknown grade for every closed goal; missing is schema error"
+    }
+  }
+}

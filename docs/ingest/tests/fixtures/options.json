@@ -1,0 +1,2114 @@
+{
+  "fixture_only": true,
+  "notice": "All names and effects are synthetic, not game catalog claims",
+  "options": [
+    {
+      "name": "Synthetic fixture",
+      "version": "synthetic-3.1",
+      "evidence": {
+        "status": "model",
+        "verification": "derived",
+        "source_keys": [],
+        "version": "synthetic-3.1",
+        "notes": "TEST ONLY; not Xenoverse 2 evidence"
+      },
+      "eligibility": {
+        "archetypes": {
+          "status": "known",
+          "values": [
+            "male_saiyan",
+            "female_saiyan",
+            "male_earthling",
+            "female_earthling",
+            "male_majin",
+            "female_majin",
+            "namekian",
+            "frieza_race"
+          ]
+        },
+        "required_entitlements": [],
+        "required_flags": [],
+        "mode_allowlist": null,
+        "notes": null
+      },
+      "acquisition_options": [],
+      "tactical_grades": {
+        "burst_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "sustained_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "ki_economy": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "stamina_safety": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "control": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "mobility": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "crowd_handling": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "survivability": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      },
+      "id": "skill.super.fixture-a",
+      "spec_ref": "\u00a76.2",
+      "slot_family": "super",
+      "classification": "ki_blast",
+      "cost_schedule": [
+        {
+          "resource": "ki",
+          "phase": "activation",
+          "amount": {
+            "status": "known",
+            "value": 1,
+            "unit": "ki_bars",
+            "evidence": {
+              "status": "model",
+              "verification": "derived",
+              "source_keys": [],
+              "version": "synthetic-3.1",
+              "notes": "TEST ONLY; not Xenoverse 2 evidence"
+            }
+          },
+          "condition": null
+        }
+      ],
+      "role_tags": [
+        {
+          "tag": "burst_damage",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      ],
+      "flags": {
+        "hit": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "aoe": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "guard_break": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "stamina_break": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "armor_answer": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "super_armor": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "invulnerability": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "projectile": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "tracking": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "reposition": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "auto_dodge": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      },
+      "effect_clauses": [],
+      "catalog_coverage": {
+        "role_tags": "complete",
+        "effects": "complete",
+        "flags": "complete",
+        "costs": "complete"
+      }
+    },
+    {
+      "name": "Synthetic fixture",
+      "version": "synthetic-3.1",
+      "evidence": {
+        "status": "model",
+        "verification": "derived",
+        "source_keys": [],
+        "version": "synthetic-3.1",
+        "notes": "TEST ONLY; not Xenoverse 2 evidence"
+      },
+      "eligibility": {
+        "archetypes": {
+          "status": "known",
+          "values": [
+            "male_saiyan",
+            "female_saiyan",
+            "male_earthling",
+            "female_earthling",
+            "male_majin",
+            "female_majin",
+            "namekian",
+            "frieza_race"
+          ]
+        },
+        "required_entitlements": [],
+        "required_flags": [],
+        "mode_allowlist": null,
+        "notes": null
+      },
+      "acquisition_options": [],
+      "tactical_grades": {
+        "burst_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "sustained_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "ki_economy": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "stamina_safety": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "control": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "mobility": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "crowd_handling": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "survivability": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      },
+      "id": "skill.super.fixture-b",
+      "spec_ref": "\u00a76.2",
+      "slot_family": "super",
+      "classification": "ki_blast",
+      "cost_schedule": [
+        {
+          "resource": "ki",
+          "phase": "activation",
+          "amount": {
+            "status": "known",
+            "value": 1,
+            "unit": "ki_bars",
+            "evidence": {
+              "status": "model",
+              "verification": "derived",
+              "source_keys": [],
+              "version": "synthetic-3.1",
+              "notes": "TEST ONLY; not Xenoverse 2 evidence"
+            }
+          },
+          "condition": null
+        }
+      ],
+      "role_tags": [
+        {
+          "tag": "burst_damage",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      ],
+      "flags": {
+        "hit": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "aoe": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "guard_break": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "stamina_break": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "armor_answer": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "super_armor": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "invulnerability": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "projectile": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "tracking": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "reposition": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "auto_dodge": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      },
+      "effect_clauses": [],
+      "catalog_coverage": {
+        "role_tags": "complete",
+        "effects": "complete",
+        "flags": "complete",
+        "costs": "complete"
+      }
+    },
+    {
+      "name": "Synthetic fixture",
+      "version": "synthetic-3.1",
+      "evidence": {
+        "status": "model",
+        "verification": "derived",
+        "source_keys": [],
+        "version": "synthetic-3.1",
+        "notes": "TEST ONLY; not Xenoverse 2 evidence"
+      },
+      "eligibility": {
+        "archetypes": {
+          "status": "known",
+          "values": [
+            "male_saiyan",
+            "female_saiyan",
+            "male_earthling",
+            "female_earthling",
+            "male_majin",
+            "female_majin",
+            "namekian",
+            "frieza_race"
+          ]
+        },
+        "required_entitlements": [],
+        "required_flags": [],
+        "mode_allowlist": null,
+        "notes": null
+      },
+      "acquisition_options": [],
+      "tactical_grades": {
+        "burst_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "sustained_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "ki_economy": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "stamina_safety": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "control": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "mobility": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "crowd_handling": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "survivability": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      },
+      "id": "skill.super.fixture-charge",
+      "spec_ref": "\u00a76.2",
+      "slot_family": "super",
+      "classification": "ki_blast",
+      "cost_schedule": [
+        {
+          "resource": "ki",
+          "phase": "activation",
+          "amount": {
+            "status": "known",
+            "value": 0,
+            "unit": "ki_bars",
+            "evidence": {
+              "status": "model",
+              "verification": "derived",
+              "source_keys": [],
+              "version": "synthetic-3.1",
+              "notes": "TEST ONLY; not Xenoverse 2 evidence"
+            }
+          },
+          "condition": null
+        }
+      ],
+      "role_tags": [
+        {
+          "tag": "ki_charge",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      ],
+      "flags": {
+        "hit": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "aoe": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "guard_break": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "stamina_break": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "armor_answer": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "super_armor": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "invulnerability": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "projectile": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "tracking": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "reposition": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "auto_dodge": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      },
+      "effect_clauses": [],
+      "catalog_coverage": {
+        "role_tags": "complete",
+        "effects": "complete",
+        "flags": "complete",
+        "costs": "complete"
+      }
+    },
+    {
+      "name": "Synthetic fixture",
+      "version": "synthetic-3.1",
+      "evidence": {
+        "status": "model",
+        "verification": "derived",
+        "source_keys": [],
+        "version": "synthetic-3.1",
+        "notes": "TEST ONLY; not Xenoverse 2 evidence"
+      },
+      "eligibility": {
+        "archetypes": {
+          "status": "known",
+          "values": [
+            "male_saiyan",
+            "female_saiyan",
+            "male_earthling",
+            "female_earthling",
+            "male_majin",
+            "female_majin",
+            "namekian",
+            "frieza_race"
+          ]
+        },
+        "required_entitlements": [],
+        "required_flags": [],
+        "mode_allowlist": null,
+        "notes": null
+      },
+      "acquisition_options": [],
+      "tactical_grades": {
+        "burst_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "sustained_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "ki_economy": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "stamina_safety": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "control": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "mobility": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "crowd_handling": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "survivability": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      },
+      "id": "skill.super.fixture-dodon-ray",
+      "spec_ref": "\u00a76.2",
+      "slot_family": "super",
+      "classification": "ki_blast",
+      "cost_schedule": [
+        {
+          "resource": "ki",
+          "phase": "activation",
+          "amount": {
+            "status": "known",
+            "value": 0,
+            "unit": "ki_bars",
+            "evidence": {
+              "status": "model",
+              "verification": "derived",
+              "source_keys": [],
+              "version": "synthetic-3.1",
+              "notes": "TEST ONLY; not Xenoverse 2 evidence"
+            }
+          },
+          "condition": null
+        }
+      ],
+      "role_tags": [
+        {
+          "tag": "ki_generate",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      ],
+      "flags": {
+        "hit": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "aoe": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "guard_break": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "stamina_break": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "armor_answer": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "super_armor": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "invulnerability": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "projectile": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "tracking": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "reposition": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "auto_dodge": {
+          "status": "known",
+          "value": false,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      },
+      "effect_clauses": [],
+      "catalog_coverage": {
+        "role_tags": "complete",
+        "effects": "complete",
+        "flags": "complete",
+        "costs": "complete"
+      }
+    },
+    {
+      "name": "Synthetic fixture",
+      "version": "synthetic-3.1",
+      "evidence": {
+        "status": "model",
+        "verification": "derived",
+        "source_keys": [],
+        "version": "synthetic-3.1",
+        "notes": "TEST ONLY; not Xenoverse 2 evidence"
+      },
+      "eligibility": {
+        "archetypes": {
+          "status": "known",
+          "values": [
+            "male_saiyan",
+            "female_saiyan"
+          ]
+        },
+        "required_entitlements": [],
+        "required_flags": [],
+        "mode_allowlist": null,
+        "notes": null
+      },
+      "acquisition_options": [],
+      "tactical_grades": {
+        "burst_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "sustained_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "ki_economy": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "stamina_safety": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "control": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "mobility": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "crowd_handling": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "survivability": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      },
+      "id": "awoken.fixture-saiyan-only",
+      "spec_ref": "\u00a77.3",
+      "activation_costs": [],
+      "upkeep_costs": [],
+      "action_overrides": [],
+      "termination_events": [],
+      "effects": [],
+      "role_tags": [],
+      "state_stages": [
+        "synthetic_state"
+      ],
+      "catalog_coverage": {
+        "role_tags": "complete",
+        "effects": "complete",
+        "flags": "not_applicable",
+        "costs": "complete"
+      }
+    },
+    {
+      "name": "Synthetic fixture",
+      "version": "synthetic-3.1",
+      "evidence": {
+        "status": "model",
+        "verification": "derived",
+        "source_keys": [],
+        "version": "synthetic-3.1",
+        "notes": "TEST ONLY; not Xenoverse 2 evidence"
+      },
+      "eligibility": {
+        "archetypes": {
+          "status": "known",
+          "values": [
+            "male_saiyan",
+            "female_saiyan",
+            "male_earthling",
+            "female_earthling",
+            "male_majin",
+            "female_majin",
+            "namekian",
+            "frieza_race"
+          ]
+        },
+        "required_entitlements": [],
+        "required_flags": [],
+        "mode_allowlist": null,
+        "notes": null
+      },
+      "acquisition_options": [],
+      "tactical_grades": {
+        "burst_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "sustained_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "ki_economy": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "stamina_safety": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "control": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "mobility": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "crowd_handling": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "survivability": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      },
+      "id": "awoken.fixture-charge-form",
+      "spec_ref": "\u00a77.3",
+      "activation_costs": [],
+      "upkeep_costs": [],
+      "action_overrides": [
+        {
+          "action_id": "charge",
+          "operation": "add",
+          "notes": "synthetic built-in charge"
+        }
+      ],
+      "termination_events": [],
+      "effects": [],
+      "role_tags": [],
+      "state_stages": [
+        "synthetic_state"
+      ],
+      "catalog_coverage": {
+        "role_tags": "complete",
+        "effects": "complete",
+        "flags": "not_applicable",
+        "costs": "complete"
+      }
+    },
+    {
+      "name": "Synthetic fixture",
+      "version": "synthetic-3.1",
+      "evidence": {
+        "status": "model",
+        "verification": "derived",
+        "source_keys": [],
+        "version": "synthetic-3.1",
+        "notes": "TEST ONLY; not Xenoverse 2 evidence"
+      },
+      "eligibility": {
+        "archetypes": {
+          "status": "known",
+          "values": [
+            "male_saiyan",
+            "female_saiyan",
+            "male_earthling",
+            "female_earthling",
+            "male_majin",
+            "female_majin",
+            "namekian",
+            "frieza_race"
+          ]
+        },
+        "required_entitlements": [],
+        "required_flags": [],
+        "mode_allowlist": null,
+        "notes": null
+      },
+      "acquisition_options": [],
+      "tactical_grades": {
+        "burst_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "sustained_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "ki_economy": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "stamina_safety": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "control": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "mobility": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "crowd_handling": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "survivability": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      },
+      "id": "soul.fixture-dodon-trigger",
+      "spec_ref": "\u00a78.1",
+      "charged_ki_blast": {
+        "status": "unknown",
+        "value": null,
+        "evidence": {
+          "status": "model",
+          "verification": "derived",
+          "source_keys": [],
+          "version": "synthetic-3.1",
+          "notes": "TEST ONLY; not Xenoverse 2 evidence"
+        }
+      },
+      "limit_burst": {
+        "status": "unknown",
+        "type": null,
+        "effects": [],
+        "team_scope": {
+          "status": "unknown",
+          "value": null,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "activation_limit": {
+          "status": "unknown",
+          "value": null,
+          "unit": null,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      },
+      "effect_clauses": [
+        {
+          "id": "effect.fixture-soul-clause",
+          "spec_ref": "\u00a78.3",
+          "version": "synthetic-3.1",
+          "evidence": {
+            "status": "verify",
+            "verification": "unknown",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY candidate"
+          },
+          "trigger": {
+            "event": "on_hit",
+            "predicates": [
+              {
+                "path": "event.skill_id",
+                "operator": "eq",
+                "value": "skill.super.fixture-dodon-ray"
+              }
+            ],
+            "when": "on_event",
+            "notes": null
+          },
+          "targets": [
+            "self"
+          ],
+          "operation": "restore",
+          "property": "ki",
+          "magnitude": {
+            "status": "unknown",
+            "value": null,
+            "unit": "ki_bars",
+            "evidence": {
+              "status": "model",
+              "verification": "derived",
+              "source_keys": [],
+              "version": "synthetic-3.1",
+              "notes": "TEST ONLY; not Xenoverse 2 evidence"
+            }
+          },
+          "duration": {
+            "kind": "instant",
+            "quantity": {
+              "status": "not_applicable",
+              "value": null,
+              "unit": "seconds",
+              "evidence": {
+                "status": "model",
+                "verification": "derived",
+                "source_keys": [],
+                "version": "synthetic-3.1",
+                "notes": "TEST ONLY; not Xenoverse 2 evidence"
+              }
+            }
+          },
+          "activation_limit": {
+            "kind": "unknown",
+            "count": {
+              "status": "unknown",
+              "value": null,
+              "unit": null,
+              "evidence": {
+                "status": "model",
+                "verification": "derived",
+                "source_keys": [],
+                "version": "synthetic-3.1",
+                "notes": "TEST ONLY; not Xenoverse 2 evidence"
+              }
+            }
+          },
+          "stacking": "unknown",
+          "termination_events": [],
+          "notes": "Synthetic predicate; no game claim"
+        }
+      ],
+      "catalog_coverage": {
+        "role_tags": "not_applicable",
+        "effects": "complete",
+        "flags": "not_applicable",
+        "costs": "not_applicable"
+      }
+    },
+    {
+      "name": "Synthetic fixture",
+      "version": "synthetic-3.1",
+      "evidence": {
+        "status": "model",
+        "verification": "derived",
+        "source_keys": [],
+        "version": "synthetic-3.1",
+        "notes": "TEST ONLY; not Xenoverse 2 evidence"
+      },
+      "eligibility": {
+        "archetypes": {
+          "status": "known",
+          "values": [
+            "male_saiyan",
+            "female_saiyan",
+            "male_earthling",
+            "female_earthling",
+            "male_majin",
+            "female_majin",
+            "namekian",
+            "frieza_race"
+          ]
+        },
+        "required_entitlements": [],
+        "required_flags": [],
+        "mode_allowlist": null,
+        "notes": null
+      },
+      "acquisition_options": [],
+      "tactical_grades": {
+        "burst_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "sustained_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "ki_economy": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "stamina_safety": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "control": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "mobility": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "crowd_handling": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "survivability": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      },
+      "id": "soul.fixture-pair-bonus",
+      "spec_ref": "\u00a78.1",
+      "charged_ki_blast": {
+        "status": "unknown",
+        "value": null,
+        "evidence": {
+          "status": "model",
+          "verification": "derived",
+          "source_keys": [],
+          "version": "synthetic-3.1",
+          "notes": "TEST ONLY; not Xenoverse 2 evidence"
+        }
+      },
+      "limit_burst": {
+        "status": "unknown",
+        "type": null,
+        "effects": [],
+        "team_scope": {
+          "status": "unknown",
+          "value": null,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "activation_limit": {
+          "status": "unknown",
+          "value": null,
+          "unit": null,
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      },
+      "effect_clauses": [],
+      "catalog_coverage": {
+        "role_tags": "not_applicable",
+        "effects": "complete",
+        "flags": "not_applicable",
+        "costs": "not_applicable"
+      }
+    },
+    {
+      "name": "Synthetic fixture",
+      "version": "synthetic-3.1",
+      "evidence": {
+        "status": "model",
+        "verification": "derived",
+        "source_keys": [],
+        "version": "synthetic-3.1",
+        "notes": "TEST ONLY; not Xenoverse 2 evidence"
+      },
+      "eligibility": {
+        "archetypes": {
+          "status": "known",
+          "values": [
+            "male_saiyan",
+            "female_saiyan",
+            "male_earthling",
+            "female_earthling",
+            "male_majin",
+            "female_majin",
+            "namekian",
+            "frieza_race"
+          ]
+        },
+        "required_entitlements": [],
+        "required_flags": [],
+        "mode_allowlist": null,
+        "notes": null
+      },
+      "acquisition_options": [],
+      "tactical_grades": {
+        "burst_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "sustained_damage": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "ki_economy": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "stamina_safety": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "control": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "mobility": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "crowd_handling": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "survivability": {
+          "status": "known",
+          "value": 3,
+          "reason": "Synthetic ordinal input for testing deterministic scoring only",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      },
+      "id": "qqbang.fixture-neutral",
+      "spec_ref": "\u00a712.2",
+      "stat_modifiers": {
+        "health": {
+          "status": "known",
+          "value": 0,
+          "unit": "stat_steps",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "max_ki": {
+          "status": "known",
+          "value": 0,
+          "unit": "stat_steps",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "max_stamina": {
+          "status": "known",
+          "value": 0,
+          "unit": "stat_steps",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "basic_attack": {
+          "status": "known",
+          "value": 0,
+          "unit": "stat_steps",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "strike_supers": {
+          "status": "known",
+          "value": 0,
+          "unit": "stat_steps",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        },
+        "ki_blast_supers": {
+          "status": "known",
+          "value": 0,
+          "unit": "stat_steps",
+          "evidence": {
+            "status": "model",
+            "verification": "derived",
+            "source_keys": [],
+            "version": "synthetic-3.1",
+            "notes": "TEST ONLY; not Xenoverse 2 evidence"
+          }
+        }
+      },
+      "catalog_coverage": {
+        "role_tags": "not_applicable",
+        "effects": "not_applicable",
+        "flags": "not_applicable",
+        "costs": "not_applicable"
+      }
+    }
+  ]
+}

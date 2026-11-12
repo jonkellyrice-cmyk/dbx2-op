@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BenchmarkRecord",
+  "description": "No null metric may be scored as zero",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "vocabulary.schema.json#/$defs/EntityId"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "spec_ref": {
+      "$ref": "vocabulary.schema.json#/$defs/SpecRef"
+    },
+    "version": {
+      "$ref": "vocabulary.schema.json#/$defs/ContentVersion"
+    },
+    "evidence": {
+      "$ref": "vocabulary.schema.json#/$defs/Evidence"
+    },
+    "build_id": {
+      "$ref": "vocabulary.schema.json#/$defs/EntityId"
+    },
+    "scenario_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "metric_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "value": {
+            "$ref": "vocabulary.schema.json#/$defs/KnownNumber"
+          },
+          "measurement_type": {
+            "type": "string",
+            "enum": [
+              "catalog",
+              "in_game"
+            ]
+          },
+          "trial_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "conditions": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "evidence": {
+            "$ref": "vocabulary.schema.json#/$defs/Evidence"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "metric_id",
+          "unit",
+          "value",
+          "measurement_type",
+          "trial_count",
+          "conditions",
+          "evidence"
+        ]
+      }
+    },
+    "peer_role": {
+      "type": "string",
+      "enum": [
+        "candidate",
+        "reference"
+      ]
+    },
+    "environment": {
+      "type": "object",
+      "properties": {
+        "platform": {
+          "type": "string",
+          "minLength": 1
+        },
+        "patch": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "partner_settings": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "platform",
+        "patch",
+        "mode",
+        "target",
+        "partner_settings"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "spec_ref",
+    "version",
+    "evidence",
+    "build_id",
+    "scenario_id",
+    "metrics",
+    "peer_role",
+    "environment"
+  ]
+}

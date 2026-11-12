@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "XV2 Community Findings Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "3.1"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "community-finding.schema.json"
+      }
+    }
+  },
+  "required": [
+    "version",
+    "findings"
+  ]
+}

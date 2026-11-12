@@ -1,0 +1,144 @@
+version: '3.1'
+fixture_policy: Synthetic contract-only fixtures; no actual game catalog facts or unmeasured numeric claims
+cases:
+- id: A-001
+  status: confirmed
+  spec_ref: §25
+  covered_by: test_duplicate_and_legal_options
+  description: R-001 rejects duplicate skill and legalOptions excludes it
+  given:
+    super_1: skill.super.fixture-a
+    super_2: skill.super.fixture-a
+  expect:
+    legal: false
+    failed_rule: R-001
+    reported_slot: super_2
+    legal_options_excludes_duplicate: true
+- id: A-002
+  status: confirmed
+  spec_ref: §25
+  covered_by: test_archetype_rule
+  description: R-002 excludes documented race-locked Awoken
+  given:
+    archetype: frieza_race
+    awoken_id: awoken.fixture-saiyan-only
+  expect:
+    legal: false
+    failed_rule: R-002
+    reported_slot: awoken
+- id: A-003
+  status: confirmed
+  spec_ref: §25
+  covered_by: test_unknown_grade_not_zero
+  description: Unknown catalog tactical grade must not become a zero score
+  given:
+    option_id: skill.super.fixture-a
+    goal: burst_damage
+    override_grade: unknown
+  expect:
+    goal_score_status: unknown
+    goal_score_value: null
+- id: A-004
+  status: provisional
+  spec_ref: §25
+  covered_by: test_candidate_relation
+  description: Unverified soul predicate generates candidate, never numeric bonus
+  given:
+    a: soul.fixture-dodon-trigger
+    b: skill.super.fixture-dodon-ray
+  expect:
+    generator: G-001
+    kind: synergy
+    state: candidate
+    contribution_policy: explain_only
+- id: A-005
+  status: confirmed
+  spec_ref: §25
+  covered_by: test_conditional_armor_blocker
+  description: Armor blocker only fails where scenario requires it
+  given:
+    mode: expert_mission
+    blocker: B-ARMOR
+    has_verified_armor_answer: false
+    scenarios:
+    - requires_armor_answer: false
+    - requires_armor_answer: true
+      target_armor_evidence_known: true
+  expect:
+    results:
+    - pass
+    - fail
+- id: A-006
+  status: provisional
+  spec_ref: §25
+  covered_by: test_charge_redundancy
+  description: Built-in charge and skill charge yield conditional redundancy
+  given:
+    a: awoken.fixture-charge-form
+    b: skill.super.fixture-charge
+  expect:
+    generator: G-003
+    kind: redundancy
+    goal: ki_economy
+    state: candidate
+    automatic_unequip: false
+- id: A-007
+  status: confirmed
+  spec_ref: §25
+  covered_by: test_budget_rule
+  description: Known over-budget build fails, unknown budget unverified
+  given:
+    attribute_spread:
+      health: 20
+      max_ki: 10
+      max_stamina: 10
+      basic_attack: 40
+      strike_supers: 0
+      ki_blast_supers: 50
+    per_stat_cap: 125
+    budgets:
+    - status: known
+      value: 120
+    - status: unknown
+      value: null
+  expect:
+    allocated_total: 130
+    outcomes:
+    - fail_R-003
+    - unverified_R-003
+- id: A-008
+  status: confirmed
+  spec_ref: §25
+  covered_by: test_confirmed_relation_changes_rank
+  description: Confirmed independent pair has 10 point burst synergy and flips tie
+  given:
+    a: skill.super.fixture-a
+    b: soul.fixture-pair-bonus
+    competitor: skill.super.fixture-b
+    relation_id: relation.fixture-confirmed-pair
+    goal: burst_damage
+  expect:
+    base_option_tie: true
+    relation_points: 10
+    pair_a_wins: true
+- id: A-009
+  status: confirmed
+  spec_ref: §25
+  covered_by: test_empty_benchmarks_do_not_gate
+  description: Fully characterized catalog option rates without benchmark measurements
+  given:
+    option_id: skill.super.fixture-a
+  expect:
+    every_goal_coverage_at_least: 0.6
+    benchmarks_required: false
+- id: A-010
+  status: confirmed
+  spec_ref: §25
+  covered_by: test_not_applicable_denominator
+  description: N/A resource-cost criterion removed from denominator with reason
+  given:
+    option_id: qqbang.fixture-neutral
+    goal: stamina_safety
+  expect:
+    not_applicable_recorded: true
+    known_score: true

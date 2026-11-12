@@ -23,6 +23,8 @@ export type Option={
  effect_clauses?:readonly EffectClause[];effects?:readonly EffectClause[];
  cost_schedule?:readonly Cost[];activation_costs?:readonly Cost[];
  action_overrides?:readonly {action_id:string;operation:string}[];
+ /** Every way to get the option; several routes can coexist (bundle acquisition.schema.json). */
+ acquisition_options?:readonly {source:string;source_id:string|null;prerequisites:readonly string[];rotation:{status:string;schedule:string|null};notes:string|null}[];
  /** Skills only: super, ultimate or evasive. */
  slot_family?:"super"|"ultimate"|"evasive";
  description?:string;

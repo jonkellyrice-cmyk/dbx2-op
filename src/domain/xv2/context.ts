@@ -18,6 +18,7 @@ export const XV2_CONTEXT:readonly ContextField[]=[
  {id:"archetype",label:"Race / gender",note:"Unset means race-locked options can't be checked yet.",options:[{id:"",label:"Not set"},...XV2_ARCHETYPES]},
  {id:"height",label:"Height",note:"Set at character creation; changes health and speed.",options:[{id:"",label:"Not set"},...XV2_CHARACTER.heights.map(h=>({id:h.id,label:heightLabel(h)}))]},
  {id:"body_type",label:"Body type",note:"Set at character creation; shifts damage between strike and Ki Blast Supers.",options:[{id:"",label:"Not set"},...XV2_CHARACTER.body_types.map(b=>({id:b.id,label:bodyLabel(b)}))]},
+ {id:"acquisition",label:"Where options may come from",note:"The TP Medal Shop stock rotates weekly, so a TP-only option may not be buyable when you need it.",options:[{id:"",label:"Any source"},{id:"no_tp_only",label:"Skip TP Medal Shop only"}]},
  {id:"armor_answer",label:"Expert Mission: answer to boss Super Armor",options:[{id:"",label:"Not required"},{id:"required_known",label:"Required (boss armor documented)"},{id:"required_unknown",label:"Required (boss armor not documented)"}]},
  {id:"escort_heal",label:"Parallel Quest: escort needs healing",options:[{id:"",label:"Not required"},{id:"required",label:"Required"}]},
  {id:"raid_damage_floor",label:"Raid: damage floor",options:[{id:"",label:"Not required"},{id:"required",label:"Required"}]},

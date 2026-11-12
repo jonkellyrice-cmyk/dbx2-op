@@ -33,8 +33,14 @@ export type GoalInfo<G extends string>={id:G;label:string;color:string;plays:str
 export type OptionInfo={id:string;name:string;summary:string;level:number;tags:readonly string[];source?:string};
 /** A place a choice goes, unlocked at `level`. Non-pick decisions (class, subclass, origin) are slots too. */
 export type Slot={id:string;label:string;level:number};
-/** A build is a level plus one option id per filled slot. Empty slots are simply absent. */
-export type Build={version:1;level:number;picks:Record<string,string>};
+/**
+ * A build is a level plus one option id per filled slot. Empty slots are simply absent.
+ * `context` holds facts the player states and the optimizer never chooses (race, scenario flags),
+ * keyed by the adapter's ContextField ids; "" or absent means not set.
+ */
+export type Build={version:1;level:number;picks:Record<string,string>;context?:Readonly<Record<string,string>>};
+/** A fact the player states about their situation, offered as a fixed list of choices. */
+export type ContextField={id:string;label:string;note?:string;options:readonly {id:string;label:string}[]};
 /** A rule the build breaks, reported against the slot that breaks it. Never silently drop a pick. */
 export type Issue={slotId:string;reason:string};
 // MDV_BLOCK:END id="TPL.KERNEL.CONTRACT.020" kind="types" tags="optimization,contract,build"
@@ -99,5 +105,11 @@ export type OptimizationAdapter<G extends string>={
  report?:ReportStyle;
  /** Optional hard requirements that presets can name (see Blocker). */
  blockers?:readonly Blocker[];
+ /** Optional facts the player states (stored in Build.context, never filled by Auto Build). */
+ context?:readonly ContextField[];
+ /** Optional weight of goal rank 1, 2, 3...; the default is linear (see weightsFromRanks). */
+ rankWeights?:readonly number[];
+ /** Optional one-paragraph introduction shown above the optimizer. */
+ intro?:string;
 };
 // MDV_BLOCK:END id="TPL.KERNEL.CONTRACT.040" kind="types" tags="optimization,contract,adapter"

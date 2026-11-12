@@ -98,6 +98,9 @@ the game only through the adapter, and `app/` reaches the UI only through `prese
 - **Unconfirmed isn't counted.** A relation with `state: "candidate"` is explained wherever the
   pair appears but adds nothing until its evidence confirms it (the toy's Bulwark Stance + Second
   Wind).
+- **The player's situation isn't a pick.** Facts the player states (race, scenario) go in
+  `Build.context`, declared as the adapter's `context` fields; Auto Build never fills them. A game
+  can also give its own `rankWeights` table and an `intro` line.
 - **Requirements are checked, not assumed.** A preset can name `blockers`: hard requirements of
   the request, defined on the adapter, each returning met, not met or can't tell. The UI and report
   flag them; they are not game rules (the toy's Bodyguard needs a guard option).

@@ -18,7 +18,9 @@ function load<G extends string>(adapter:OptimizationAdapter<G>):Saved<G>|null{
   if(!raw||raw.build?.version!==1||typeof raw.build.level!=="number"||typeof raw.build.picks!=="object")return null;
   const ids=new Set(adapter.options.map(o=>o.id));
   const picks=Object.fromEntries(Object.entries(raw.build.picks as Record<string,unknown>).filter((e):e is [string,string]=>typeof e[1]==="string"&&ids.has(e[1])));
-  return {ranks:raw.ranks??{},build:{version:1,level:Math.max(1,Math.min(adapter.maxLevel,Math.round(raw.build.level))),picks}};
+  const fields=adapter.context??[];
+  const context=Object.fromEntries(Object.entries((raw.build.context??{}) as Record<string,unknown>).filter((e):e is [string,string]=>typeof e[1]==="string"&&fields.some(f=>f.id===e[0]&&f.options.some(o=>o.id===e[1]))));
+  return {ranks:raw.ranks??{},build:{version:1,level:Math.max(1,Math.min(adapter.maxLevel,Math.round(raw.build.level))),picks,...(Object.keys(context).length?{context}:{})}};
  }catch{return null;}
 }
 // MDV_BLOCK:END id="TPL.UI.EXPLORER.010" kind="logic" tags="optimization,ui,persistence"
@@ -35,7 +37,7 @@ export function OptimizerTemplate<G extends string>({adapter}:{adapter:Optimizat
  const [loaded,setLoaded]=useState(false);
  useEffect(()=>{const saved=load(adapter);if(saved){setRanks(saved.ranks);setBuild(saved.build);}setLoaded(true);},[adapter]);
  useEffect(()=>{if(loaded)try{localStorage.setItem(storageKey(adapter.id),JSON.stringify({ranks,build}));}catch{}},[adapter.id,loaded,ranks,build]);
- const weights=useMemo(()=>weightsFromRanks(ranks),[ranks]);
+ const weights=useMemo(()=>weightsFromRanks(ranks,adapter.rankWeights),[ranks,adapter.rankWeights]);
  const request=describeRanks(ranks,g=>adapter.goals.find(x=>x.id===g)?.label??g);
  const slots=adapter.slots(build);
  const profile=useMemo(()=>coverage(adapter,build),[adapter,build]);
@@ -48,7 +50,7 @@ export function OptimizerTemplate<G extends string>({adapter}:{adapter:Optimizat
  const panel={border:"1px solid var(--line)",background:"var(--panel)",padding:16,borderRadius:8,margin:"12px 0"} as const;
  return <section className="tpl-root" style={{padding:"20px 0 60px"}} aria-label="Optimization template">
   <h1 style={{fontSize:"clamp(1.6rem,4vw,2.6rem)"}}>{adapter.title}</h1>
-  <p className="lede">Template example. This screen runs the generic engine against a made-up toy game. To build a real optimizer, replace <code>src/domain/toy-game</code> with your game and pass its adapter here; see <code>docs/OPTIMIZATION_TEMPLATE.md</code>.</p>
+  <p className="lede">{adapter.intro??<>Template example. This screen runs the generic engine against a made-up toy game. To build a real optimizer, replace <code>src/domain/toy-game</code> with your game and pass its adapter here; see <code>docs/OPTIMIZATION_TEMPLATE.md</code>.</>}</p>
 
   <div style={panel} role="region" aria-label="Step 1: request">
    <h2>1 · What should the build be good at?</h2>
@@ -64,12 +66,15 @@ export function OptimizerTemplate<G extends string>({adapter}:{adapter:Optimizat
    <div style={{display:"flex",flexWrap:"wrap",gap:10,alignItems:"end"}}>
     <label style={{width:120}}><span>Level</span><input aria-label="Level" type="number" min={1} max={adapter.maxLevel} value={build.level} onChange={e=>setBuild(b=>({...b,level:Math.max(1,Math.min(adapter.maxLevel,Number(e.target.value)||1))}))} style={{width:"100%",padding:10,background:"#0c1219",color:"#fff",border:"1px solid #394858",borderRadius:4}}/></label>
     <button type="button" onClick={()=>{const r=autoBuild(adapter,build,weights);setBuild(r.build);setStatus("Filled "+r.filled.length+" open slot(s)"+(r.refined.length?", then improved "+r.refined.length+" with hindsight":"")+". "+(r.issues.length?r.issues.length+" rule(s) broken.":"All picks are legal."));}} style={{padding:"10px 16px",borderRadius:8,background:"#345b89",border:"1px solid #526780",cursor:"pointer"}}>Auto Build</button>
-    <button type="button" onClick={()=>{setBuild(empty);setStatus("Build cleared.");}} style={{padding:"10px 16px",borderRadius:8,background:"#1d2a3c",border:"1px solid #526780",cursor:"pointer"}}>Reset</button>
+    <button type="button" onClick={()=>{setBuild(b=>({...empty,...(b.context?{context:b.context}:{})}));setStatus("Build cleared.");}} style={{padding:"10px 16px",borderRadius:8,background:"#1d2a3c",border:"1px solid #526780",cursor:"pointer"}}>Reset</button>
     <button type="button" onClick={()=>setShowReport(true)} style={{padding:"10px 16px",borderRadius:8,background:"#1d2a3c",border:"1px solid #526780",cursor:"pointer"}}>Build report / PDF</button>
     <button type="button" onClick={()=>{const url=URL.createObjectURL(new Blob([exportBuild(adapter,build)],{type:"application/json"}));const a=document.createElement("a");a.href=url;a.download=adapter.id+"-build.json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60_000);}} style={{padding:"10px 16px",borderRadius:8,background:"#1d2a3c",border:"1px solid #526780",cursor:"pointer"}}>Export build</button>
     <label style={{padding:"10px 16px",borderRadius:8,background:"#1d2a3c",border:"1px solid #526780",cursor:"pointer"}}>Import build<input aria-label="Import build" type="file" accept="application/json,.json" hidden onChange={async e=>{const file=e.target.files?.[0];e.target.value="";if(!file)return;
      try{const r=importBuild(adapter,await file.text());setBuild(r.build);setStatus("Imported "+file.name+(r.dropped.length?"; dropped unknown entries: "+r.dropped.join(", "):"")+".");}catch(error){setStatus("Couldn't import "+file.name+": "+(error instanceof Error?error.message:String(error)));}}}/></label>
    </div>
+   {adapter.context?.length?<div role="group" aria-label="Your situation" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:10,margin:"12px 0"}}>{adapter.context.map(f=><label key={f.id} title={f.note}><span>{f.label}</span>
+    <select aria-label={f.label} value={build.context?.[f.id]??""} onChange={e=>{const value=e.target.value;setBuild(b=>{const context={...(b.context??{})};if(value)context[f.id]=value;else delete context[f.id];return {...b,context};});}}>
+     {f.options.map(o=><option key={o.id} value={o.id}>{o.label}</option>)}</select></label>)}</div>:null}
    <p className="muted" data-testid="build-status" aria-live="polite">{status||"Auto Build keeps your own picks and fills the rest."} Value for this request: <strong>{Math.round(value*10)/10}</strong>{issues.length?" · "+issues.length+" rule(s) broken":""}</p>
    {unmet.map(b=><p key={b.id} data-testid={"blocker-"+b.id} style={{color:"var(--red)",margin:"4px 0"}}>{b.result==="fail"?"Requirement not met: "+b.label+". "+b.message:"Requirement can't be checked yet: "+b.label+"."}</p>)}
    <div style={{display:"grid",gridTemplateColumns:"minmax(0,1fr) auto",gap:16,alignItems:"start"}} className="tpl-build-grid">

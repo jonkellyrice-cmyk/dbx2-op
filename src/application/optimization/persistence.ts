@@ -2,9 +2,9 @@
 import type {Build,OptimizationAdapter} from "../../kernel/optimization/contract";
 // MDV_BLOCK:BEGIN id="TPL.APP.PERSIST.010" intent="Restore versioned builds without trusting imported structure, and say what was dropped" kind="logic" tags="optimization,persistence"
 const MAX_BYTES=100_000;
-export type BuildFile={format:string;version:1;level:number;picks:Record<string,string>};
+export type BuildFile={format:string;version:1;level:number;picks:Record<string,string>;context?:Record<string,string>};
 export function exportBuild<G extends string>(adapter:OptimizationAdapter<G>,build:Build):string{
- const file:BuildFile={format:adapter.id,version:1,level:build.level,picks:{...build.picks}};
+ const file:BuildFile={format:adapter.id,version:1,level:build.level,picks:{...build.picks},...(build.context&&Object.keys(build.context).length?{context:{...build.context}}:{})};
  return JSON.stringify(file,null,2);
 }
 /**
@@ -27,6 +27,12 @@ export function importBuild<G extends string>(adapter:OptimizationAdapter<G>,tex
  for(const [slot,id] of Object.entries(file.picks as Record<string,unknown>)){
   if(slots.has(slot)&&typeof id==="string"&&options.has(id))picks[slot]=id;else dropped.push(slot+": "+String(id));
  }
- return {build:{version:1,level,picks},dropped};
+ // Context values must be one of the adapter's declared choices; anything else is dropped and listed.
+ const context:Record<string,string>={};
+ if(file.context&&typeof file.context==="object"&&!Array.isArray(file.context))for(const [key,value] of Object.entries(file.context as Record<string,unknown>)){
+  const field=adapter.context?.find(f=>f.id===key);
+  if(field&&typeof value==="string"&&field.options.some(o=>o.id===value))context[key]=value;else dropped.push("context "+key+": "+String(value));
+ }
+ return {build:{version:1,level,picks,...(Object.keys(context).length?{context}:{})},dropped};
 }
 // MDV_BLOCK:END id="TPL.APP.PERSIST.010" kind="logic" tags="optimization,persistence"

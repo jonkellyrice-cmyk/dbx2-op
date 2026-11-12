@@ -277,8 +277,30 @@ This is DBX2-op, the Dragon Ball Xenoverse 2 optimizer, spun off from the templa
 - **Step 2 (ingest), done:** the v3.1 bundle in `docs/ingest/`. Its validator passes; the
   catalog is still empty.
 - **Step 3 (spin off), done:** this repository, renamed.
-- **Decided for step 4:** attribute points are chosen from named spreads offered as one slot's
-  options; the first catalog slice comes from the owner's own Ice build.
+- **Step 4 (wire the framework), done:** `src/domain/xv2/` is the Xenoverse 2 adapter, and the
+  home page runs it.
+  - **Profile:** `profile.ts` is the profile as code. `tests/xv2-bundle.test.ts` fails if it
+    drifts from the YAML, and also checks every catalog record against the bundle's schemas.
+  - **Scoring:** `scoring.ts` ports the bundle's reference engine (grades, capability counts, cost
+    fitness, the 0.6 coverage rule, unknown never zero).
+  - **Relations:** catalog relation records count when confirmed; generators G-001 to G-003 give
+    candidates.
+  - **Rank weights:** the profile's table (8, 6, 4, 3, 2, 1, 1, 1), not the template's linear one.
+  - **Attribute points:** chosen from named spreads (`spreads.ts`, MODEL, ungraded).
+  - **Context:** race/gender and the scenario flags are player context (`Build.context`), not slots.
+  - **Tests:** all ten acceptance cases run in `tests/xv2-acceptance.test.ts` against the bundle's
+    fixtures, with the engine contract checks.
+- **Not wired yet, waiting for the data they need:**
+  - R-003/R-004 (earned points and stat caps; the check exists as `checkAttributeBudget` and is
+    tested);
+  - R-006 (ownership), R-008 (DLC and unlocks), R-010 (mode rules), R-011 (level);
+  - generators G-004 to G-006 (they need measured costs or target data);
+  - turning a named spread into exact points.
 
-**The next step is step 4: wire the Xenoverse 2 adapter.** The toy game (`src/domain/toy-game/`)
-and `ingest-template/` stay until the XV2 adapter replaces them.
+  Unknown legality is never reported as a failure.
+- **Kept on purpose:** the toy game, at `/toy`, as the engine's worked example and browser-test
+  target. The process says to remove it, but the engine's own tests depend on it.
+
+**The next step is step 5: the small slice.** Enter 5-10 real records (the owner's Ice build) into
+`docs/ingest/catalog/catalog.json`, see how the optimizer handles them, and fix the framework
+where they show a gap.

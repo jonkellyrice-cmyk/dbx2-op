@@ -22,8 +22,10 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "ajv": "8.17.1",
     "playwright": "^1.62.1",
     "tsx": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "yaml": "2.6.1"
   }
 }

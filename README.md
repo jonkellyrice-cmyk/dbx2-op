@@ -4,11 +4,14 @@ Finds the best custom-character loadout for a chosen kind of play in Dragon Ball
 4 Supers, 2 Ultimates, an Evasive, an Awoken skill, a Super Soul, a QQ Bang and an attribute
 spread. It explains every number and hands the player a clean printed report.
 
-**Status:** built from the Game Optimization Template. Steps 1-3 of
-[`BUILDING_A_GAME_OPTIMIZER.md`](BUILDING_A_GAME_OPTIMIZER.md) are done, and the ingest bundle
-(the v3.1 mechanics spec, optimizer profile, schemas and acceptance cases) is in
-[`docs/ingest/`](docs/ingest/README.md). Next is step 4: wiring the Xenoverse 2 adapter. Until
-then the app still runs the template's toy game.
+**Status:** built from the Game Optimization Template. Steps 1-4 of
+[`BUILDING_A_GAME_OPTIMIZER.md`](BUILDING_A_GAME_OPTIMIZER.md) are done.
+- **The bundle:** the v3.1 mechanics spec, optimizer profile, schemas and acceptance cases are in
+  [`docs/ingest/`](docs/ingest/README.md).
+- **The app:** the home page runs the Xenoverse 2 adapter (`src/domain/xv2/`). Its catalog is
+  still empty, so only the named attribute spreads can be picked yet.
+- **Next:** step 5, entering the first real records.
+- **The toy game:** the template's worked example, still at `/toy`.
 
 **Source of truth:** `docs/ingest/`. Its schemas define the records, `optimizer-profile.yaml` the
 goals, slots, rules and scoring, and `spec.md` explains why. If code and bundle disagree, the

@@ -30,3 +30,12 @@ findings:
     optimizer_says: "Grades a QQ Bang's +5 Ki 3 and +5 Stamina 4, above its +5 damage arrows (2)."
     status: open
     resolution: "Consistent with the wiki (R3): about 42 attribute points per Ki bar at levels 50-99 (45 at level 120), so +5 Ki (two bars) is about 84 points, while 50 points of a damage attribute is 5%. Not tested in game."
+  - id: C-004
+    claim: "Stat Calculator v2: every stat is a level multiplier times (1 + additive PSC from attribute points, equipment, race, height and body type); x10 for health, x200 for damage ratings; Ki and Stamina capped at 1500."
+    context: { mode: all, patch: "unknown (level table runs to 199)" }
+    sources: [{ ref: "Xenoverse 2 Stat Calculator v2 by Exxod, with Rechow and Durp (CALC-V2)", date: 2026-11-26 }]
+    agreement: several
+    tested_by_us: false
+    optimizer_says: "src/domain/xv2/stats.ts computes stats this way; tests/xv2-stats.test.ts checks it against the calculator's tables."
+    status: open
+    resolution: "Agrees with the wiki's Attributes page (R3) on Ki bars per point and per QQ arrow, and on +5 QQ damage (about 6.66%). Disagrees with the wiki on how much height changes health; its body-type table matches the CaC page's 7% reading. Confirm with in-game stat screens at two levels."

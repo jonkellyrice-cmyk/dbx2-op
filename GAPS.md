@@ -9,7 +9,7 @@ To fill a gap: add the source to `docs/ingest/catalog/sources.json` (with the pa
 | Values the sources disagree on | 11 |
 | Combo strings with no description | 34 |
 | Numbers no source gives | 56 |
-| Skills and other options: what's still unknown | 19 |
+| Skills and other options: what's still unknown | 36 |
 
 ## Values the sources disagree on
 
@@ -152,5 +152,29 @@ From docs/ingest/catalog/catalog.json. Ungraded options score as unknown, not ze
 - **Blaster Ball**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
+- **X4 Kaioken Kamehameha**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Special Beam Cannon**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Super Explosive Wave**
+  - `tactical grades`: sustained_damage, ki_economy, stamina_safety, mobility
+  - `flags`: guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `costs`: stamina (activation)
+- **Chaos Wall**
+  - `tactical grades`: sustained_damage, ki_economy, stamina_safety, mobility, crowd_handling
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
+  - `costs`: stamina (activation)
 - **Turn Golden**
   - `tactical grades`: stamina_safety, control, crowd_handling
+- **"Our two strengths aren't just added together."**
+  - `tactical grades`: burst_damage, sustained_damage, control, mobility, crowd_handling
+- **"HAAAAA!"**
+  - `tactical grades`: sustained_damage, stamina_safety, control, mobility, crowd_handling
+  - `price`: tp_medal, stp_medal amount not recorded
+- **QQ Bang: max Health and Stamina**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, control, mobility, crowd_handling
+  - `price`: zeni amount not recorded
+  - `stats`: max_ki not recorded

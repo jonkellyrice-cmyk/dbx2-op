@@ -181,3 +181,13 @@ test("PQ rewards say which Parallel Quest", ()=>{
  assert.equal(XV2_ADAPTER.options.find(o=>o.id==="skill.super.death-psycho-bomb")!.summary,'Where to get it: Parallel Quest 33 ("Earth in Danger!")');
 });
 // MDV_BLOCK:END id="DBX.TEST.ACCEPT.070" kind="logic" tags="xv2,tests,grades"
+// MDV_BLOCK:BEGIN id="DBX.TEST.ACCEPT.080" intent="Pin Ice's full loadout choices: every slot fillable and legal, and the TP-only setting removing exactly the TP-only Soul" kind="logic" tags="xv2,tests,acquisition,loadout"
+test("Ice's full loadout is legal, and 'Skip TP Medal Shop only' drops only the TP-only Soul", ()=>{
+ const ice={super_1:"skill.super.death-psycho-bomb",super_2:"skill.super.god-of-destructions-anger",super_3:"skill.super.punisher-shield",super_4:"skill.super.blaster-ball",
+  ultimate_1:"skill.ultimate.emperors-death-beam",ultimate_2:"skill.ultimate.x4-kaioken-kamehameha",evasive:"skill.evasive.super-explosive-wave",
+  awoken:"awoken.turn-golden",super_soul:"soul.our-two-strengths",qq_bang:"qqbang.ice-health-stamina"};
+ assert.deepEqual(XV2_ADAPTER.validate(build(ice,{archetype:"frieza_race"})),[]);
+ const skipTp=build({...ice,super_soul:"soul.haaaaa"},{archetype:"frieza_race",acquisition:"no_tp_only"});
+ assert.deepEqual(XV2_ADAPTER.validate(skipTp).map(i=>i.slotId).sort(),["super_soul","ultimate_1"],"HAAAAA! and Emperor's Death Beam are TP-only; nothing else is");
+});
+// MDV_BLOCK:END id="DBX.TEST.ACCEPT.080" kind="logic" tags="xv2,tests,acquisition,loadout"

@@ -187,6 +187,7 @@ test("Ice's full loadout is legal, and 'Skip TP Medal Shop only' drops only the 
   ultimate_1:"skill.ultimate.emperors-death-beam",ultimate_2:"skill.ultimate.x4-kaioken-kamehameha",evasive:"skill.evasive.super-explosive-wave",
   awoken:"awoken.turn-golden",super_soul:"soul.our-two-strengths",qq_bang:"qqbang.ice-health-stamina"};
  assert.deepEqual(XV2_ADAPTER.validate(build(ice,{archetype:"frieza_race"})),[]);
+ assert.equal(XV2_ADAPTER.benchmarks!.measure(build(ice)).evasive_stamina_cost,2,"Super Explosive Wave: 200 stamina, 100 to a bar");
  assert.deepEqual(XV2_ADAPTER.validate(build({...ice,qq_bang:"qqbang.ranged-target"},{archetype:"frieza_race"})),[],"the target QQ Bang, with its -5, fits the same slot");
  const skipTp=build({...ice,super_soul:"soul.haaaaa"},{archetype:"frieza_race",acquisition:"no_tp_only"});
  assert.deepEqual(XV2_ADAPTER.validate(skipTp).map(i=>i.slotId).sort(),["super_soul","ultimate_1"],"HAAAAA! and Emperor's Death Beam are TP-only; nothing else is");

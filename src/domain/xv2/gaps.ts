@@ -57,6 +57,8 @@ export function catalogGaps(options:readonly Option[]):Gap[]{
   if(!(o.acquisition_options??[]).length)add("where to get it","no source recorded");
   const prices=((o as Priced).acquisition_options??[]).flatMap(r=>r.price??[]).filter(p=>p.amount.status==="unknown").map(p=>p.currency);
   if(prices.length)add("price",prices.join(", ")+" amount not recorded");
+  const stats=Object.entries((o as {stat_modifiers?:Record<string,Known<number>>}).stat_modifiers??{}).filter(([,k])=>k.status==="unknown").map(([s])=>s);
+  if(stats.length)add("stats",stats.join(", ")+" not recorded");
  }
  return gaps;
 }

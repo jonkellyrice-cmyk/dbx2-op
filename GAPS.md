@@ -9,7 +9,7 @@ To fill a gap: add the source to `docs/ingest/catalog/sources.json` (with the pa
 | Values the sources disagree on | 11 |
 | Combo strings with no description | 34 |
 | Numbers no source gives | 56 |
-| Skills and other options: what's still unknown | 608 |
+| Skills and other options: what's still unknown | 658 |
 
 ## Values the sources disagree on
 
@@ -1004,4 +1004,73 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
 - **Meditation**
   - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Instant Transmission**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+- **Super Guard**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, projectile, tracking, reposition, auto_dodge
+- **Super Afterimage**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+  - `where to get it`: the source isn't recorded
+- **Backflip**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+  - `price`: zeni amount not recorded
+- **Wall of Defense**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+- **Lullaby Punch**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `costs`: ki (activation)
+  - `where to get it`: the source isn't recorded
+- **Afterimage**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+- **Solar Flare**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Rise to Action**
+  - `tactical grades`: burst_damage, sustained_damage, control, mobility, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Spirit Boost**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Time Control**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `where to get it`: the source isn't recorded
+- **Holstein Shock**
+  - `tactical grades`: not graded on any goal
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `costs`: ki (activation)
+- **Dancing Parapara**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Present For You**
+  - `tactical grades`: not graded on any goal
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `costs`: ki (activation)
+- **Energy Charge**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `costs`: ki (activation)
+- **Full Power Charge**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `costs`: ki (activation)
+- **Maximum Charge**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `costs`: ki (activation)
+- **Time Bullet**
+  - `tactical grades`: sustained_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Audacious Laugh**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, mobility, crowd_handling, survivability
   - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge

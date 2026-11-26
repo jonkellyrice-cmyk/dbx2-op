@@ -59,4 +59,11 @@ test("a row can name the TP Medal Shop or an Expert Mission as its source", ()=>
  assert.deepEqual([tp.acquisition_options[0].source,tp.acquisition_options[0].price[0].currency,tp.acquisition_options[0].price[0].amount.status],["tp_medal_shop","tp_medal","unknown"]);
  assert.deepEqual([ex.acquisition_options[0].source,ex.acquisition_options[0].source_id,ex.acquisition_options[0].drop_probability.status],["expert_mission_drop","5 (\"The Galactic Tyrant\")","unknown"]);
 });
+test("an Evasive on the sheet is one the owner has, and is paid for in stamina bars, never Ki", ()=>{
+ const owned=new Set(Object.values(XV2_OWNED.skills.evasive as Record<string,readonly string[]>).flat().map(sheetSlug));
+ for(const r of SHEET.rows)if(r.slot==="evasive"){assert.ok(owned.has(sheetSlug(r.name)),r.name);assert.equal(r.ki,undefined,r.name+" lists Ki");}
+ const [o,u]=expandSkillSheet({about:"",version:"v",rows:[{...row({}).rows[0],slot:"evasive",ki:undefined,stamina:300},{...row({}).rows[0],slot:"evasive",ki:undefined,name:"Test Dodge",key:"WIKI-TEST-DODGE"}]}) as unknown as Record<string,any>[];
+ assert.deepEqual([o.cost_schedule.length,o.cost_schedule[0].resource,o.cost_schedule[0].amount.value,o.cost_schedule[0].amount.unit],[1,"stamina",3,"stamina_bars"]);
+ assert.deepEqual([u.cost_schedule[0].resource,u.cost_schedule[0].amount.status,u.catalog_coverage.costs],["stamina","unknown","unknown"]);
+});
 // MDV_BLOCK:END id="DBX.TEST.SHEET.010" kind="logic" tags="xv2,tests,catalog,sheet"

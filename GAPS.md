@@ -9,7 +9,7 @@ To fill a gap: add the source to `docs/ingest/catalog/sources.json` (with the pa
 | Values the sources disagree on | 11 |
 | Combo strings with no description | 34 |
 | Numbers no source gives | 56 |
-| Skills and other options: what's still unknown | 364 |
+| Skills and other options: what's still unknown | 425 |
 
 ## Values the sources disagree on
 
@@ -655,3 +655,89 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
 - **DUAL Special Beam Cannon**
   - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Turn Retreat**
+  - `tactical grades`: ki_economy, crowd_handling
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+  - `price`: zeni amount not recorded
+- **High Tension Turn**
+  - `tactical grades`: ki_economy, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Spirit Slash**
+  - `tactical grades`: ki_economy, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Spinning Blade**
+  - `tactical grades`: ki_economy, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+  - `price`: tp_medal amount not recorded
+- **Headshot**
+  - `tactical grades`: ki_economy, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Bloody Counter**
+  - `tactical grades`: ki_economy, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Time Skip/Tremor Pulse**
+  - `tactical grades`: ki_economy, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+- **Special Beam Blast**
+  - `tactical grades`: ki_economy, crowd_handling
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+  - `price`: tp_medal amount not recorded
+- **Spread Shot Retreat**
+  - `tactical grades`: ki_economy, crowd_handling
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, auto_dodge
+- **Break Strike**
+  - `tactical grades`: ki_economy, mobility
+  - `flags`: guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Explosive Wave**
+  - `tactical grades`: ki_economy, mobility
+  - `flags`: guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Energy Field**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, mobility, crowd_handling
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Force Shield**
+  - `tactical grades`: ki_economy, mobility, crowd_handling
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Blaster Meteor**
+  - `tactical grades`: ki_economy, mobility
+  - `flags`: guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Absolute Zero**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, mobility, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Fake Blast**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, control, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Energy Dome**
+  - `tactical grades`: ki_economy, mobility, crowd_handling
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Mach Dash**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, control, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+- **Psycho Escape**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+- **Miracle Kneel**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, control, mobility, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Armored Boost**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, control, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, invulnerability, projectile, tracking, auto_dodge
+  - `price`: tp_medal amount not recorded
+- **Instant Rise**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, control, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, projectile, tracking, auto_dodge
+- **Super Back Jump**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, control, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+  - `price`: zeni amount not recorded
+- **Super Front Jump**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, control, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+  - `price`: zeni amount not recorded
+- **Punisher Guard**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, control, mobility, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded

@@ -46,8 +46,11 @@ export function characterGaps(data:CharacterData):Gap[]{
 type Priced={acquisition_options?:readonly {price?:readonly {currency:string;amount:Known<number>}[]}[]};
 export function catalogGaps(options:readonly Option[]):Gap[]{
  const gaps:Gap[]=[];
+ // Two options can share a name across slots (Super Explosive Wave is a Super and an Evasive): say which one.
+ const seen=new Map<string,number>();for(const o of options)seen.set(o.name,(seen.get(o.name)??0)+1);
  for(const o of options){
-  const add=(item:string,detail:string)=>gaps.push({kind:"option_unknown",owner:o.name,item,detail});
+  const owner=(seen.get(o.name)??0)>1&&o.slot_family?o.name+" ("+o.slot_family[0].toUpperCase()+o.slot_family.slice(1)+")":o.name;
+  const add=(item:string,detail:string)=>gaps.push({kind:"option_unknown",owner,item,detail});
   const ungraded=Object.entries(o.tactical_grades).filter(([,g])=>g.status==="unknown").map(([k])=>k);
   if(ungraded.length)add("tactical grades",ungraded.length===Object.keys(o.tactical_grades).length?"not graded on any goal":ungraded.join(", "));
   const flags=Object.entries(o.flags??{}).filter(([,f])=>f.status==="unknown").map(([k])=>k);

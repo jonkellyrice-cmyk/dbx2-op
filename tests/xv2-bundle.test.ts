@@ -111,5 +111,6 @@ test("GAPS.md matches the character data (run npm run gaps after changing it)", 
  for(const kind of ["disputed","undescribed_string","unknown_number"])assert.ok(gaps.some(g=>g.kind===kind),"no "+kind+" gap found");
  assert.ok(gaps.some(g=>g.kind==="undescribed_string"&&g.owner==="Frieza Race"&&g.item==="Light String (9L)"));
  assert.ok(!gaps.some(g=>g.owner==="Height 4"),"known heights are not gaps");
+ for(const slot of ["Super","Evasive"])assert.ok(gaps.some(g=>g.owner==="Super Explosive Wave ("+slot+")"),"same-named options are told apart by slot");
 });
 // MDV_BLOCK:END id="DBX.TEST.BUNDLE.050" kind="logic" tags="xv2,tests,character,gaps"

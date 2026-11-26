@@ -12,7 +12,7 @@ import {XV2_ENGINE_SLOTS,legalOptionsFor,validateBuild,type Lookup} from "./rule
 import {rateOption,relationsBetween} from "./scoring";
 import {acquisitionSummary} from "./acquisition";
 import {NO_STAT_CONTEXT,statContext,statFacts,type StatContext} from "./derived";
-import {describeMechanics,mechanicsOf,windupShare} from "./mechanics";
+import {describeMechanics,mechanicsGrades,mechanicsOf,windupShare} from "./mechanics";
 // MDV_BLOCK:BEGIN id="DBX.XV2.ADAPTER.010" intent="Give each goal the color and plain-language voice the report uses, next to the bundle's own wording" kind="config" tags="xv2,adapter,goals"
 /** `plays` finishes the sentence "A build that ..."; MODEL wording for the report, not a game claim. */
 const VOICE:Record<Xv2Goal,{color:string;plays:string}>={
@@ -97,6 +97,23 @@ function withWindup(o:Option,r:Rating<Xv2Goal>):Rating<Xv2Goal>{
  }
  return {...r,scores,contributions};
 }
+/**
+ * Let a move's recorded mechanics count on the goals they serve. A goal with no grade becomes known
+ * at the mechanics' grade; a goal already graded lower is raised to it; a higher grade is kept.
+ * The change is its own contribution, so the reason shows beside the score.
+ */
+function withMechanicsGoals(o:Option,r:Rating<Xv2Goal>):Rating<Xv2Goal>{
+ const grades=familyOf(o.id)==="skill"?mechanicsGrades(mechanicsOf(o)):[];
+ if(!grades.length)return r;
+ const scores={...r.scores},contributions=[...r.contributions];let unknown=r.unknown?[...r.unknown]:[];
+ for(const {goal,grade,reason} of grades){
+  const was=unknown.includes(goal)?null:r.scores[goal],now=20*grade;
+  if(was!==null&&was>=now)continue;
+  scores[goal]=now;unknown=unknown.filter(g=>g!==goal);
+  contributions.push({goal,value:Math.round((now-(was??0))*10)/10,reason:reason+(was===null?"":"; raised from "+was),evidence:"heuristic"});
+ }
+ return unknown.length?{scores,contributions,unknown}:{scores,contributions};
+}
 const spreadRating=(s:Spread):Rating<Xv2Goal>=>({scores:Object.fromEntries(XV2_GOALS.map(g=>[g.id,0])) as Rating<Xv2Goal>["scores"],contributions:[],unknown:XV2_GOALS.map(g=>g.id)});
 export function createXv2Adapter(catalog:Catalog,options:{id?:string;title?:string;intro?:string;owned?:(option:Option)=>boolean}={}):OptimizationAdapter<Xv2Goal>{
  const byId=new Map(catalog.options.map(o=>[o.id,o]));
@@ -110,7 +127,7 @@ export function createXv2Adapter(catalog:Catalog,options:{id?:string;title?:stri
  // An option's own rating depends on the build only through the character's stats, so that is the cache key.
  const rate=(id:string,ctx:StatContext=NO_STAT_CONTEXT):Rating<Xv2Goal>=>{
   const key=id+"|"+ctx.key;let r=ratings.get(key);
-  if(!r){const o=byId.get(id);const s=spreads.get(id);r=o?withWindup(o,withDamageShare(o,rateOption(o,ctx),ctx)):s?spreadRating(s):{scores:Object.fromEntries(XV2_GOALS.map(g=>[g.id,0])) as Rating<Xv2Goal>["scores"],contributions:[],unknown:XV2_GOALS.map(g=>g.id)};ratings.set(key,r);}
+  if(!r){const o=byId.get(id);const s=spreads.get(id);r=o?withMechanicsGoals(o,withWindup(o,withDamageShare(o,rateOption(o,ctx),ctx))):s?spreadRating(s):{scores:Object.fromEntries(XV2_GOALS.map(g=>[g.id,0])) as Rating<Xv2Goal>["scores"],contributions:[],unknown:XV2_GOALS.map(g=>g.id)};ratings.set(key,r);}
   return r;
  };
  const pick=(build:Build)=>Object.values(build.picks).map(id=>byId.get(id)).filter((o):o is Option=>!!o);

@@ -2,7 +2,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {XV2_ADAPTER,XV2_CATALOG} from "../src/domain/xv2/catalog";
-import {describeMechanics,mechanicsOf,readReach,readWindup,windupShare,UNMEASURED_AXES,WINDUP_SHARE,type Mechanics} from "../src/domain/xv2/mechanics";
+import {describeMechanics,mechanicsGrades,mechanicsOf,readReach,readWindup,windupShare,UNMEASURED_AXES,WINDUP_SHARE,type Mechanics} from "../src/domain/xv2/mechanics";
 import type {Build} from "../src/kernel/optimization/contract";
 // MDV_BLOCK:BEGIN id="DBX.TEST.MECHANICS.010" intent="Pin how a move's windup, reach and protection are read and how a slow windup lowers its damage score" kind="logic" tags="xv2,tests,mechanics,usability"
 const get=(id:string)=>XV2_CATALOG.options.find(o=>o.id===id)!;
@@ -52,3 +52,42 @@ test("the summary states the measured line after where to get it, and says nothi
  assert.match(XV2_ADAPTER.options.find(o=>o.id==="skill.super.death-psycho-bomb")!.summary,/Measured: cast speed short, range medium, 3,000 damage/);
 });
 // MDV_BLOCK:END id="DBX.TEST.MECHANICS.010" kind="logic" tags="xv2,tests,mechanics,usability"
+// MDV_BLOCK:BEGIN id="DBX.TEST.MECHANICS.020" intent="Pin how range, tracking, protection and hold count on mobility, control and survivability" kind="logic" tags="xv2,tests,mechanics,goals"
+test("mechanics earn grades on the goals they serve, and nothing recorded earns nothing", ()=>{
+ assert.deepEqual(mechanicsGrades(none),[]);
+ const grade=(m:Partial<Mechanics>,goal:string)=>mechanicsGrades({...none,...m}).find(g=>g.goal===goal)?.grade;
+ assert.equal(grade({reach:"long"},"mobility"),3);assert.equal(grade({reach:"medium"},"mobility"),2);
+ assert.equal(grade({reach:"melee"},"mobility"),undefined,"a melee or short reach earns no mobility");
+ assert.equal(grade({reach:"long",tracks:true},"mobility"),4,"a far-reaching move that also tracks is a step better");
+ assert.equal(grade({tracks:true},"mobility"),2);assert.equal(grade({movesYou:true},"mobility"),2);
+ assert.equal(grade({holdsTarget:true},"control"),3);assert.equal(grade({counter:true},"control"),3);
+ assert.equal(grade({invulnerable:true},"survivability"),3);assert.equal(grade({armored:true},"survivability"),2);
+ assert.equal(grade({invulnerable:true,armored:true},"survivability"),3);
+ for(const g of mechanicsGrades({...none,reach:"long",tracks:true,holdsTarget:true,invulnerable:true}))assert.match(g.reason,/^Mechanics: .+ \(MODEL\)$/);
+});
+test("in the catalog a goal with no grade becomes known, a lower grade is raised, and a higher one is kept", ()=>{
+ const rate=(id:string)=>XV2_ADAPTER.rate(id,bare);
+ // No hand-written mobility grade: long range and tracking make it known at grade 4.
+ const bending=rate("skill.super.bending-kamehameha");
+ assert.equal(bending.scores.mobility,80);assert.ok(!bending.unknown?.includes("mobility"));
+ const why=bending.contributions.find(c=>c.goal==="mobility"&&c.reason.startsWith("Mechanics:"))!;
+ assert.equal(why.value,80);assert.match(why.reason,/measured range long.*it tracks the target/);
+ assert.ok(bending.unknown?.includes("survivability"),"nothing is recorded about its protection, so that stays unknown");
+ // A hand-written grade at or above the mechanics' grade is left alone, with no extra reason.
+ const guard=rate("skill.super.super-guard");
+ assert.equal(guard.scores.survivability,60);assert.ok(!guard.contributions.some(c=>c.reason.startsWith("Mechanics:")));
+ // Every mechanics contribution is positive, lands on one of the three goals, and the score matches its grade.
+ let touched=0;
+ for(const o of XV2_CATALOG.options.filter(o=>o.id.startsWith("skill."))){
+  const r=rate(o.id),grades=mechanicsGrades(mechanicsOf(o));
+  for(const c of r.contributions.filter(c=>c.reason.startsWith("Mechanics:"))){
+   touched++;assert.ok(c.value>0,o.id);
+   const g=grades.find(g=>g.goal===c.goal)!;assert.ok(g,o.id+" "+c.goal);assert.equal(r.scores[c.goal],20*g.grade,o.id+" "+c.goal);
+  }
+  for(const g of grades)assert.ok(r.scores[g.goal]>=20*g.grade&&!r.unknown?.includes(g.goal),o.id+" "+g.goal+" is at least its mechanics' grade");
+ }
+ assert.ok(touched>50);
+ // Not a move: an Awoken Skill is never touched.
+ assert.ok(!rate("awoken.turn-golden").contributions.some(c=>c.reason.startsWith("Mechanics:")));
+});
+// MDV_BLOCK:END id="DBX.TEST.MECHANICS.020" kind="logic" tags="xv2,tests,mechanics,goals"

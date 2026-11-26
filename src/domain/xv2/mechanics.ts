@@ -77,3 +77,26 @@ export function describeMechanics(m:Mechanics):string{
  return (parts.length?"Measured: "+parts.join(", ")+". ":"")+(traits.length?"Recorded: "+traits.join(", ")+". ":"");
 }
 // MDV_BLOCK:END id="DBX.XV2.MECHANICS.030" kind="logic" tags="xv2,mechanics,profile"
+// MDV_BLOCK:BEGIN id="DBX.XV2.MECHANICS.040" intent="Say what a move's mechanics are worth on mobility, control and survivability, by the same steps the grading rubric uses" kind="logic" tags="xv2,mechanics,goals"
+export type MechanicsGoal="mobility"|"control"|"survivability";
+export type MechanicsGrade={goal:MechanicsGoal;grade:number;reason:string};
+/**
+ * MODEL: the grade a move's mechanics earn on the goals they serve, on the rubric's own steps
+ * (docs/ingest/catalog/GRADING.md). Only what a source states counts, so a move with nothing
+ * recorded earns nothing here rather than a low grade.
+ */
+export function mechanicsGrades(m:Mechanics):MechanicsGrade[]{
+ const out:MechanicsGrade[]=[];
+ const far=m.reach==="long"?3:m.reach==="medium"?2:0;
+ const reach=far+(far&&m.tracks?1:0);
+ const mobility=Math.max(reach,m.tracks?2:0,m.movesYou?2:0);
+ if(mobility){
+  const why=[far?"measured range "+m.reach+" (it reaches the target without closing in)":null,m.tracks?"it tracks the target":null,m.movesYou?"it moves you":null].filter(Boolean).join("; ");
+  out.push({goal:"mobility",grade:mobility,reason:"Mechanics: "+why+" (MODEL)"});
+ }
+ if(m.holdsTarget||m.counter)out.push({goal:"control",grade:3,reason:"Mechanics: "+[m.holdsTarget?"it holds the target in place":null,m.counter?"the damage tests list it as a counter":null].filter(Boolean).join("; ")+" (MODEL)"});
+ const safe=m.invulnerable?3:m.armored||m.counter?2:0;
+ if(safe)out.push({goal:"survivability",grade:safe,reason:"Mechanics: "+[m.invulnerable?"invulnerable for a time while using it":null,m.armored?"Super Armor while using it":null,m.counter?"as a counter it answers an incoming attack":null].filter(Boolean).join("; ")+" (MODEL)"});
+ return out;
+}
+// MDV_BLOCK:END id="DBX.XV2.MECHANICS.040" kind="logic" tags="xv2,mechanics,goals"

@@ -51,3 +51,15 @@ The scorer uses the cast speed. A slower move is dodged, blocked or interrupted 
 Recorded Super Armor or invulnerability makes a move one step safer (a long cast counts as medium). A move with no measured cast speed is left as it was. These shares are a MODEL judgment, not a measurement; the cut appears beside the score as its own reason.
 
 The damage tests give four steps, not frames. No source read so far gives, for any skill: startup and recovery in frames, commitment and overextension, frame advantage, hitstun and blockstun duration, i-frame and armor windows, hitbox size, cancel windows, or Ki gained on hit. Those stay unknown until a source for them is found.
+
+## What a move's mechanics add to the other goals
+
+The same profile feeds the goals its mechanics serve, on the rubric's own steps. Only what a source states counts, so a move with nothing recorded earns nothing here.
+
+| Goal | What the mechanics earn |
+|---|---|
+| Mobility | Measured range long → 3, medium → 2 (it reaches the target without closing in); one step more if it also tracks. Tracking alone → 2. A move that moves you → 2. Melee and short range earn nothing. |
+| Control | It holds the target in place, or the damage tests list it as a counter → 3. |
+| Survivability | Invulnerable for a time while using it → 3; Super Armor while using it, or a counter → 2. |
+
+A goal with no hand-written grade becomes known at the mechanics' grade. A goal already graded lower is raised to it. A higher hand-written grade is kept. The change appears beside the score as its own reason, starting "Mechanics:". These are MODEL judgments.

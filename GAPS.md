@@ -9,7 +9,7 @@ To fill a gap: add the source to `docs/ingest/catalog/sources.json` (with the pa
 | Values the sources disagree on | 11 |
 | Combo strings with no description | 34 |
 | Numbers no source gives | 56 |
-| Skills and other options: what's still unknown | 36 |
+| Skills and other options: what's still unknown | 37 |
 
 ## Values the sources disagree on
 
@@ -174,7 +174,9 @@ From docs/ingest/catalog/catalog.json. Ungraded options score as unknown, not ze
 - **"HAAAAA!"**
   - `tactical grades`: sustained_damage, stamina_safety, control, mobility, crowd_handling
   - `price`: tp_medal, stp_medal amount not recorded
-- **QQ Bang: max Health and Stamina**
-  - `tactical grades`: burst_damage, sustained_damage, ki_economy, control, mobility, crowd_handling
+- **QQ Bang: max Health, Ki and Stamina**
+  - `tactical grades`: burst_damage, sustained_damage, control, mobility, crowd_handling
   - `price`: zeni amount not recorded
-  - `stats`: max_ki not recorded
+- **QQ Bang: ranged target (+5 all but Strike Supers, which is -5)**
+  - `tactical grades`: control, mobility, crowd_handling
+  - `price`: zeni amount not recorded

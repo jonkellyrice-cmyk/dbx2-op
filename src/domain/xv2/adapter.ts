@@ -11,6 +11,7 @@ import {XV2_SPREADS,type Spread} from "./spreads";
 import {XV2_ENGINE_SLOTS,legalOptionsFor,validateBuild,type Lookup} from "./rules";
 import {rateOption,relationsBetween} from "./scoring";
 import {acquisitionSummary} from "./acquisition";
+import {statFacts} from "./derived";
 // MDV_BLOCK:BEGIN id="DBX.XV2.ADAPTER.010" intent="Give each goal the color and plain-language voice the report uses, next to the bundle's own wording" kind="config" tags="xv2,adapter,goals"
 /** `plays` finishes the sentence "A build that ..."; MODEL wording for the report, not a game claim. */
 const VOICE:Record<Xv2Goal,{color:string;plays:string}>={
@@ -90,6 +91,7 @@ export function createXv2Adapter(catalog:Catalog,options:{id?:string;title?:stri
   benchmarks:benchmarksFor(pick,id=>byId.get(id)),
   blockers:blockersFor(pick),
   context:XV2_CONTEXT,
+  facts:build=>statFacts(build,byId.get(build.picks.qq_bang??"")),
   rankWeights:XV2_SCORING.rankWeights,
   report:{theme:"clean",running:"DBX2-op · Xenoverse 2 loadout optimizer"},
  };

@@ -39,8 +39,19 @@ export type Slot={id:string;label:string;level:number};
  * keyed by the adapter's ContextField ids; "" or absent means not set.
  */
 export type Build={version:1;level:number;picks:Record<string,string>;context?:Readonly<Record<string,string>>};
-/** A fact the player states about their situation, offered as a fixed list of choices. */
-export type ContextField={id:string;label:string;note?:string;options:readonly {id:string;label:string}[]};
+/**
+ * A fact the player states about their situation: one of a fixed list of choices, or, when `number`
+ * is set, a whole number in that range (stored as its decimal string; `options` is then empty).
+ */
+export type ContextField={id:string;label:string;note?:string;options:readonly {id:string;label:string}[];number?:{min:number;max:number}};
+/** Whether `value` is something this field accepts. Storage, import and the UI all ask here. */
+export function contextAllowed(field:ContextField,value:string):boolean{
+ if(!field.number)return field.options.some(o=>o.id===value);
+ const n=Number(value);
+ return /^\d+$/.test(value)&&n>=field.number.min&&n<=field.number.max;
+}
+/** A figure worked out from the build and the player's context, shown beside the build ("Max Ki: 7 bars"). */
+export type BuildFact={label:string;value:string;note?:string};
 /** A rule the build breaks, reported against the slot that breaks it. Never silently drop a pick. */
 export type Issue={slotId:string;reason:string};
 // MDV_BLOCK:END id="TPL.KERNEL.CONTRACT.020" kind="types" tags="optimization,contract,build"
@@ -107,6 +118,8 @@ export type OptimizationAdapter<G extends string>={
  blockers?:readonly Blocker[];
  /** Optional facts the player states (stored in Build.context, never filled by Auto Build). */
  context?:readonly ContextField[];
+ /** Optional figures derived from the build and its context; an empty list shows nothing. */
+ facts?(build:Build):BuildFact[];
  /** Optional weight of goal rank 1, 2, 3...; the default is linear (see weightsFromRanks). */
  rankWeights?:readonly number[];
  /** Optional one-paragraph introduction shown above the optimizer. */

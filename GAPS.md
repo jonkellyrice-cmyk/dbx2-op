@@ -9,7 +9,7 @@ To fill a gap: add the source to `docs/ingest/catalog/sources.json` (with the pa
 | Values the sources disagree on | 11 |
 | Combo strings with no description | 34 |
 | Numbers no source gives | 56 |
-| Skills and other options: what's still unknown | 574 |
+| Skills and other options: what's still unknown | 608 |
 
 ## Values the sources disagree on
 
@@ -956,3 +956,52 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
 - **Heat Wave**
   - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling
   - `flags`: aoe, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Fighting Pose C**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Fighting Pose D**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Fighting Pose I**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Fighting Pose E**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Fighting Pose J**
+  - `tactical grades`: burst_damage, sustained_damage, control, mobility, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Fighting Pose K**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Fighting Pose B**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Fighting Pose G**
+  - `tactical grades`: sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Fighting Pose A**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Fighting Pose F**
+  - `tactical grades`: burst_damage, sustained_damage, control, mobility, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Prepare to be Punished**
+  - `tactical grades`: sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Fighting Sun**
+  - `tactical grades`: control, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Hero's Pose**
+  - `tactical grades`: sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Fruit of the Tree of Might**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+- **Meditation**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge

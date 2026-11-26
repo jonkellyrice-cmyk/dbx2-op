@@ -35,6 +35,12 @@ test("the Strike Supers on the sheet are ones the owner has", ()=>{
  const owned=new Set(XV2_OWNED.skills.super.strike.map(sheetSlug));
  for(const r of SHEET.rows)if(r.slot==="super"&&r.kind==="strike")assert.ok(owned.has(sheetSlug(r.name)),r.name);
 });
+test("the Power Up Supers on the sheet are ones the owner has", ()=>{
+ const owned=new Set(XV2_OWNED.skills.super.power_up.map(sheetSlug));
+ const rows=SHEET.rows.filter(r=>r.slot==="super"&&r.kind==="power_up");
+ assert.ok(rows.length>0);
+ for(const r of rows)assert.ok(owned.has(sheetSlug(r.name)),r.name);
+});
 test("the Ultimates on the sheet are ones the owner has, and a missing description is said, not invented", ()=>{
  const owned=new Set(Object.values(XV2_OWNED.skills.ultimate as Record<string,readonly string[]>).flat().map(sheetSlug));
  for(const r of SHEET.rows)if(r.slot==="ultimate")assert.ok(owned.has(sheetSlug(r.name)),r.name);

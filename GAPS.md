@@ -9,7 +9,7 @@ To fill a gap: add the source to `docs/ingest/catalog/sources.json` (with the pa
 | Values the sources disagree on | 11 |
 | Combo strings with no description | 34 |
 | Numbers no source gives | 56 |
-| Skills and other options: what's still unknown | 658 |
+| Skills and other options: what's still unknown | 666 |
 
 ## Values the sources disagree on
 
@@ -1074,3 +1074,19 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
 - **Audacious Laugh**
   - `tactical grades`: burst_damage, sustained_damage, stamina_safety, mobility, crowd_handling, survivability
   - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Kaioken**
+  - `tactical grades`: control, crowd_handling
+- **Potential Unleashed**
+  - `tactical grades`: stamina_safety, control, crowd_handling
+- **Beast**
+  - `tactical grades`: stamina_safety, control, mobility, crowd_handling
+- **Ultra Instinct**
+  - `tactical grades`: sustained_damage, mobility, crowd_handling
+- **Future Super Saiyan**
+  - `tactical grades`: sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+- **Super Saiyan God**
+  - `tactical grades`: stamina_safety, control, crowd_handling, survivability
+- **Super Saiyan God Super Saiyan**
+  - `tactical grades`: stamina_safety, control, mobility, crowd_handling
+- **Super Saiyan God Super Saiyan (Evolved)**
+  - `tactical grades`: stamina_safety, control, mobility, crowd_handling

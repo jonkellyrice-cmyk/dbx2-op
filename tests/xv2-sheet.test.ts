@@ -24,6 +24,12 @@ test("the Ki Blast Supers on the sheet are ones the owner has", ()=>{
  const owned=new Set(XV2_OWNED.skills.super.ki_blast.map(sheetSlug));
  for(const r of SHEET.rows)if(r.slot==="super"&&r.kind==="ki_blast")assert.ok(owned.has(sheetSlug(r.name)),r.name);
 });
+test("the Ultimates on the sheet are ones the owner has, and a missing description is said, not invented", ()=>{
+ const owned=new Set(Object.values(XV2_OWNED.skills.ultimate as Record<string,readonly string[]>).flat().map(sheetSlug));
+ for(const r of SHEET.rows)if(r.slot==="ultimate")assert.ok(owned.has(sheetSlug(r.name)),r.name);
+ const [o]=expandSkillSheet(row({description:null})) as unknown as [Record<string,any>];
+ assert.match(JSON.stringify(o),/doesn't quote the in-game description/);assert.doesNotMatch(JSON.stringify(o),/In-game description/);
+});
 test("a row says only what it states: an unstated flag, cost, damage figure or source stays unknown", ()=>{
  const [o]=expandSkillSheet(row({ki:null,flags:["hit"],get:{unknown:"The page doesn't say."}})) as unknown as [Record<string,any>];
  assert.equal(o.id,"skill.super.test-beam");

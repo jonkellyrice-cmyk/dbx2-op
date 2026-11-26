@@ -28,6 +28,8 @@ export type SheetRow={
  /** The wiki's damage figure in percent, with what it covers. */
  damage?:{percent:number;note:string};
  get:SheetGet;notes?:string;press?:string;
+ /** Set when using it stops you using any skill for a time; the text says for how long, as the source gives it. */
+ seals?:string;
  grades:Partial<Record<SheetGoal,readonly [number,string]>>;
 };
 export type SkillSheet={about:string;version:string;rows:readonly SheetRow[]};
@@ -67,10 +69,16 @@ function expandRow(row:SheetRow,version:string):Option{
   :"wish" in g?[route("shenron_wish",g.wish,{prereq:["Collect the seven Dragon Balls"],repeat:"repeatable",notes:"A Shenron wish; which skill the wish gives isn't recorded."})]
   :"other" in g?[route("other",null,{notes:g.other})]
   :[route("unknown",null,{notes:g.unknown,evidence:E.unknownEv(K,"Source not recorded.")})];
- const effects=row.damage?[{id:"effect."+row.key.toLowerCase().replace("wiki-","")+"-damage",spec_ref:"§11.2",version,evidence:E.ev(K),trigger:{event:"on_hit",predicates:[],when:"on_event",notes:null},targets:["target"],
+ const damage=row.damage?[{id:"effect."+row.key.toLowerCase().replace("wiki-","")+"-damage",spec_ref:"§11.2",version,evidence:E.ev(K),trigger:{event:"on_hit",predicates:[],when:"on_event",notes:null},targets:["target"],
   operation:"apply_damage",property:"health",magnitude:E.num(row.damage.percent,"wiki_damage_percent",K,"The wiki's damage figure; the baseline it is a percent of isn't stated."),
   duration:{kind:"instant",quantity:E.notApplicable("seconds",K,"Instant.")},activation_limit:{kind:"once_per_activation",count:E.notApplicable("count",K,"Once per use.")},
   stacking:"no_stack",termination_events:[],notes:row.damage.note}]:[];
+ // A skill that seals every skill while it lasts: recorded as a state, so the optimizer can see the clash with the other skills.
+ const seals=row.seals?[{id:"effect."+row.key.toLowerCase().replace("wiki-","")+"-seals",spec_ref:"§11.2",version,evidence:E.ev(K),trigger:{event:"activation",predicates:[],when:"on_event",notes:null},targets:["self"],
+  operation:"prevent_state",property:"seals_all_skills",magnitude:E.notApplicable("fraction",K,"A state, not a figure."),
+  duration:{kind:"unknown",quantity:E.unknownNum("seconds",K,"The source's figures for how long it lasts disagree; see the notes.")},activation_limit:{kind:"once_per_activation",count:E.notApplicable("count",K,"Once per use.")},
+  stacking:"no_stack",termination_events:[],notes:row.seals}]:[];
+ const effects=[...damage,...seals];
  const grades=Object.fromEntries(GOALS.map(goal=>{const given=row.grades[goal];return [goal,given
   ?{status:"known",value:given[0],evidence:{status:"model",verification:"derived",source_keys:K,version,notes:"MODEL grade from the recorded mechanics; see docs/ingest/catalog/GRADING.md."},reason:given[1]}
   :{status:"unknown",value:null,evidence:E.unknownEv(K,"Not graded yet."),reason:"Not graded: nothing recorded about this option bears on this goal yet."}];}));

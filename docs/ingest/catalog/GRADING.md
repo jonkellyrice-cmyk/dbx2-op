@@ -63,3 +63,16 @@ The same profile feeds the goals its mechanics serve, on the rubric's own steps.
 | Survivability | Invulnerable for a time while using it → 3; Super Armor while using it, or a counter → 2. |
 
 A goal with no hand-written grade becomes known at the mechanics' grade. A goal already graded lower is raised to it. A higher hand-written grade is kept. The change appears beside the score as its own reason, starting "Mechanics:". These are MODEL judgments.
+
+## What the rest of the loadout does to an option
+
+An option's score is first worked out on its own. `src/domain/xv2/conditions.ts` then applies what the rest of the build makes of it, from documented facts only. Each cut appears beside the score with its reason.
+
+| Case | Effect |
+|---|---|
+| A Super Soul whose condition names an Awoken or a skill (its `needs`) that the build doesn't have equipped | Every grade that rests on that condition counts for nothing, penalties included. A grade from its Limit Burst is kept. |
+| A boost to Strike skills only, or to Ki Blast skills only, in a build with no Super or Ultimate of that kind | Its burst damage counts for nothing. |
+| A Super Soul that seals all skills while its condition holds | Every Super and Ultimate's burst and sustained damage counts at half. |
+| A skill that seals all skills when you use it, in a build with other Supers or Ultimates | Its own scores count at half. The other skills are not cut, because you choose when to use it. |
+
+The halves are a MODEL judgment: sealed skills still work outside the seal, and a seal you choose still pays off, so neither is worth nothing. An option rated alone, with nothing else equipped, is cut only where its condition or kind cannot be met by an empty build.

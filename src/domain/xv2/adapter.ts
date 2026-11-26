@@ -10,6 +10,7 @@ import {XV2_CONTEXT,contextValue} from "./context";
 import {XV2_SPREADS,type Spread} from "./spreads";
 import {XV2_ENGINE_SLOTS,legalOptionsFor,validateBuild,type Lookup} from "./rules";
 import {rateOption,relationsBetween} from "./scoring";
+import {conditionCuts} from "./conditions";
 import {acquisitionSummary} from "./acquisition";
 import {NO_STAT_CONTEXT,statContext,statFacts,type StatContext} from "./derived";
 import {describeMechanics,mechanicsGrades,mechanicsOf,windupShare} from "./mechanics";
@@ -114,6 +115,21 @@ function withMechanicsGoals(o:Option,r:Rating<Xv2Goal>):Rating<Xv2Goal>{
  }
  return unknown.length?{scores,contributions,unknown}:{scores,contributions};
 }
+/**
+ * Apply what the rest of the loadout does to this option: an unmet Super Soul condition, a boost to a
+ * kind of skill the build lacks, sealed skills. Each cut is its own contribution with its reason.
+ */
+function withConditions(o:Option,r:Rating<Xv2Goal>,others:readonly Option[]):Rating<Xv2Goal>{
+ const cuts=conditionCuts(o,others);
+ if(!cuts.length)return r;
+ const scores={...r.scores},contributions=[...r.contributions];
+ for(const {goal,share,reason} of cuts){
+  if(r.unknown?.includes(goal)||!scores[goal])continue;
+  const now=Math.round(scores[goal]*share*10)/10;
+  contributions.push({goal,value:Math.round((now-scores[goal])*10)/10,reason,evidence:"rule-derived"});scores[goal]=now;
+ }
+ return {...r,scores,contributions};
+}
 const spreadRating=(s:Spread):Rating<Xv2Goal>=>({scores:Object.fromEntries(XV2_GOALS.map(g=>[g.id,0])) as Rating<Xv2Goal>["scores"],contributions:[],unknown:XV2_GOALS.map(g=>g.id)});
 export function createXv2Adapter(catalog:Catalog,options:{id?:string;title?:string;intro?:string;owned?:(option:Option)=>boolean}={}):OptimizationAdapter<Xv2Goal>{
  const byId=new Map(catalog.options.map(o=>[o.id,o]));
@@ -142,7 +158,8 @@ export function createXv2Adapter(catalog:Catalog,options:{id?:string;title?:stri
   slots:()=>[...XV2_ENGINE_SLOTS],
   legalOptions:(build,slot)=>legalOptionsFor(build,slot,info,lookup),
   validate:build=>validateBuild(build,lookup),
-  rate:(id,build)=>rate(id,statContext(build,byId.get(build.picks.qq_bang??""))),
+  // The option's own rating is cached; what the rest of this loadout does to it is worked out per build.
+  rate:(id,build)=>{const r=rate(id,statContext(build,byId.get(build.picks.qq_bang??"")));const o=byId.get(id);return o?withConditions(o,r,pick(build).filter(x=>x.id!==id)):r;},
   relations:(a,b)=>relationsBetween(byId.get(a),byId.get(b),catalog.relations),
   benchmarks:benchmarksFor(pick,id=>byId.get(id)),
   blockers:blockersFor(pick),

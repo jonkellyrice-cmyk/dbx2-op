@@ -1,5 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import {contextAllowed,type Build} from "../src/kernel/optimization/contract";
+import {exportBuild,importBuild} from "../src/application/optimization/persistence";
+import {XV2_ADAPTER} from "../src/domain/xv2/catalog";
+import {XV2_CONTEXT} from "../src/domain/xv2/context";
 import {computeStats,levelRow,NO_POINTS,perArrow,perPoint,pointsForResource,pointsPsc,XV2_STAT_TABLE} from "../src/domain/xv2/stats";
 // MDV_BLOCK:BEGIN id="DBX.TEST.STATS.010" intent="Hold the stat engine to the Stat Calculator v2's tables and the owner's worked values" kind="logic" tags="xv2,tests,stats"
 const near=(a:number,b:number,msg?:string)=>assert.ok(Math.abs(a-b)<1e-6*Math.max(1,Math.abs(b)),(msg??"")+": "+a+" vs "+b);
@@ -39,3 +43,31 @@ test("race, height and body type add to the right stats (Ice: Frieza Race, talle
  assert.throws(()=>computeStats({level:99,archetype:"frieza_race",height:4,body:"thin",points:NO_POINTS,qq:{...NO_POINTS,ki:6}}),RangeError);
 });
 // MDV_BLOCK:END id="DBX.TEST.STATS.010" kind="logic" tags="xv2,tests,stats"
+// MDV_BLOCK:BEGIN id="DBX.TEST.STATS.020" intent="Check that a build's level, points and QQ Bang reach the stat engine, and that numbers survive saving" kind="logic" tags="xv2,tests,stats,context"
+const ice:Build={version:1,level:1,picks:{qq_bang:"qqbang.ice-health-stamina"},context:{archetype:"frieza_race",height:"height.4",body_type:"body.thin",level:"99",points_ki:"42",points_blast:"100"}};
+const fact=(b:Build,label:string)=>XV2_ADAPTER.facts!(b).find(f=>f.label===label);
+test("the build's level, race, points and QQ Bang arrows give the stats the game hides", ()=>{
+ assert.equal(fact(ice,"Health")!.value,"23,250 HP","1500 x (1 + race 0.35 + tallest 0.1 + QQ 0.1) x 10");
+ assert.equal(fact(ice,"Max Ki")!.value,"8 bars","500 x (1 + 42 points x 0.0048 + QQ 0.4) = 800.8");
+ assert.equal(fact(ice,"Max Stamina")!.value,"7 bars","500 x (1 + QQ 0.4)");
+ assert.equal(fact(ice,"Ki Blast Super rating")!.value,"525","1.5 x (1 + 0.2 + race 0.45 + thin 0.1) x 200");
+ assert.equal(fact(ice,"Strike Super rating")!.value,"413","412.5, shown to the nearest whole number");
+ assert.deepEqual(fact(ice,"Attribute points"),{label:"Attribute points",value:"142 of 375 used",note:"233 left to spend"});
+ const over={...ice,context:{...ice.context,points_health:"200",points_strike:"200"}};
+ assert.equal(fact(over,"Attribute points")!.note,"167 more than level 99 gives");
+});
+test("missing inputs are named, never guessed", ()=>{
+ const f=XV2_ADAPTER.facts!({version:1,level:1,picks:{},context:{archetype:"frieza_race"}});
+ assert.deepEqual(f,[{label:"Stats the game doesn't show",value:"Not worked out yet",note:"set character level, height, body type"}]);
+});
+test("number fields accept only whole numbers in range, and survive export and import", ()=>{
+ const level=XV2_CONTEXT.find(f=>f.id==="level")!,points=XV2_CONTEXT.find(f=>f.id==="points_ki")!;
+ for(const ok of ["1","99","199"])assert.ok(contextAllowed(level,ok),ok);
+ for(const bad of ["0","200","9.5","-3","abc",""])assert.ok(!contextAllowed(level,bad),bad);
+ assert.ok(contextAllowed(points,"0"));assert.ok(!contextAllowed(points,"201"));
+ const back=importBuild(XV2_ADAPTER,exportBuild(XV2_ADAPTER,ice));
+ assert.deepEqual(back.build.context,ice.context);assert.deepEqual(back.dropped,[]);
+ const bad=importBuild(XV2_ADAPTER,exportBuild(XV2_ADAPTER,ice).replace('"99"','"250"'));
+ assert.equal(bad.build.context!.level,undefined);assert.deepEqual(bad.dropped,["context level: 250"]);
+});
+// MDV_BLOCK:END id="DBX.TEST.STATS.020" kind="logic" tags="xv2,tests,stats,context"

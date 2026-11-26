@@ -30,6 +30,12 @@ The model agrees with the wiki's Attributes page (R3):
 - A +5 Ki QQ Bang adds two bars there (500 × 0.4).
 - A +5 damage QQ Bang adds about 6.66% to a base PSC of 1.5, and less as points are added.
 
+## In the app
+
+The player enters what the game shows: level, race, height, body type, points per attribute, and the QQ Bang. `src/domain/xv2/derived.ts` passes those to the engine and the app lists the results beside the build: health, Ki and Stamina bars, the four damage ratings, and points used against the level's allowance. The figures don't change any score yet.
+
+The game doesn't show health or damage numbers, so they can't be read off a stat screen. What a player can check is the number of Ki and Stamina bars.
+
 ## Not modeled yet
 
 - Clothing other than QQ Bangs.

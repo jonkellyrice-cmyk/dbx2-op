@@ -1,6 +1,6 @@
 "use client";
 import {useCallback,useEffect,useMemo,useState} from "react";
-import type {Build,OptimizationAdapter} from "../../../kernel/optimization/contract";
+import {contextAllowed,type Build,type OptimizationAdapter} from "../../../kernel/optimization/contract";
 import {describeRanks,ranksFromPreset,weightsFromRanks,type Ranks} from "../../../application/optimization/goal-weights";
 import {buildValue,coverage} from "../../../application/optimization/evaluate";
 import {recommend} from "../../../application/optimization/recommend";
@@ -19,7 +19,7 @@ function load<G extends string>(adapter:OptimizationAdapter<G>):Saved<G>|null{
   const ids=new Set(adapter.options.map(o=>o.id));
   const picks=Object.fromEntries(Object.entries(raw.build.picks as Record<string,unknown>).filter((e):e is [string,string]=>typeof e[1]==="string"&&ids.has(e[1])));
   const fields=adapter.context??[];
-  const context=Object.fromEntries(Object.entries((raw.build.context??{}) as Record<string,unknown>).filter((e):e is [string,string]=>typeof e[1]==="string"&&fields.some(f=>f.id===e[0]&&f.options.some(o=>o.id===e[1]))));
+  const context=Object.fromEntries(Object.entries((raw.build.context??{}) as Record<string,unknown>).filter((e):e is [string,string]=>{const v=e[1];return typeof v==="string"&&fields.some(f=>f.id===e[0]&&contextAllowed(f,v));}));
   return {ranks:raw.ranks??{},build:{version:1,level:Math.max(1,Math.min(adapter.maxLevel,Math.round(raw.build.level))),picks,...(Object.keys(context).length?{context}:{})}};
  }catch{return null;}
 }
@@ -43,6 +43,9 @@ export function OptimizerTemplate<G extends string>({adapter}:{adapter:Optimizat
  const profile=useMemo(()=>coverage(adapter,build),[adapter,build]);
  const value=useMemo(()=>buildValue(adapter,build,weights),[adapter,build,weights]);
  const issues=useMemo(()=>adapter.validate(build),[adapter,build]);
+ const facts=useMemo(()=>adapter.facts?.(build)??[],[adapter,build]);
+ // A value the field doesn't accept (blank, out of range) clears it, so a half-typed number never sticks.
+ const setContext=(id:string,value:string)=>setBuild(b=>{const context={...(b.context??{})};const field=adapter.context?.find(f=>f.id===id);if(value&&field&&contextAllowed(field,value))context[id]=value;else delete context[id];return {...b,context};});
  const unmet=useMemo(()=>checkBlockers(adapter,build,presetId).filter(b=>b.result!=="pass"),[adapter,build,presetId]);
  const advice=useMemo(()=>Object.fromEntries(slots.map(s=>[s.id,recommend(adapter,build,s,weights).ranked.slice(0,3)])),[adapter,build,weights,slots]);
  const closeReport=useCallback(()=>setShowReport(false),[]);
@@ -73,8 +76,10 @@ export function OptimizerTemplate<G extends string>({adapter}:{adapter:Optimizat
      try{const r=importBuild(adapter,await file.text());setBuild(r.build);setStatus("Imported "+file.name+(r.dropped.length?"; dropped unknown entries: "+r.dropped.join(", "):"")+".");}catch(error){setStatus("Couldn't import "+file.name+": "+(error instanceof Error?error.message:String(error)));}}}/></label>
    </div>
    {adapter.context?.length?<div role="group" aria-label="Your situation" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:10,margin:"12px 0"}}>{adapter.context.map(f=><label key={f.id} title={f.note}><span>{f.label}</span>
-    <select aria-label={f.label} value={build.context?.[f.id]??""} onChange={e=>{const value=e.target.value;setBuild(b=>{const context={...(b.context??{})};if(value)context[f.id]=value;else delete context[f.id];return {...b,context};});}}>
-     {f.options.map(o=><option key={o.id} value={o.id}>{o.label}</option>)}</select></label>)}</div>:null}
+    {f.number?<input aria-label={f.label} type="number" inputMode="numeric" min={f.number.min} max={f.number.max} step={1} placeholder="Not set" value={build.context?.[f.id]??""} onChange={e=>setContext(f.id,e.target.value.trim())}/>
+    :<select aria-label={f.label} value={build.context?.[f.id]??""} onChange={e=>setContext(f.id,e.target.value)}>
+     {f.options.map(o=><option key={o.id} value={o.id}>{o.label}</option>)}</select>}</label>)}</div>:null}
+   {facts.length?<dl data-testid="build-facts" aria-label="Worked out from your build" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:"6px 16px",margin:"8px 0 12px"}}>{facts.map(f=><div key={f.label} title={f.note}><dt className="muted" style={{fontSize:12}}>{f.label}</dt><dd style={{margin:0,fontWeight:600}}>{f.value}{f.note?<span className="muted" style={{fontWeight:400,fontSize:12}}> · {f.note}</span>:null}</dd></div>)}</dl>:null}
    <p className="muted" data-testid="build-status" aria-live="polite">{status||"Auto Build keeps your own picks and fills the rest."} Value for this request: <strong>{Math.round(value*10)/10}</strong>{issues.length?" · "+issues.length+" rule(s) broken":""}</p>
    {unmet.map(b=><p key={b.id} data-testid={"blocker-"+b.id} style={{color:"var(--red)",margin:"4px 0"}}>{b.result==="fail"?"Requirement not met: "+b.label+". "+b.message:"Requirement can't be checked yet: "+b.label+"."}</p>)}
    <div style={{display:"grid",gridTemplateColumns:"minmax(0,1fr) auto",gap:16,alignItems:"start"}} className="tpl-build-grid">

@@ -14,5 +14,5 @@ h1 { margin-bottom: 10px; line-height: 1.05; letter-spacing: -.02em }
 h2 { font-size: 1.15rem }
 .lede { max-width: 830px; margin: 0; color: #b9c6d2; font-size: 1rem; line-height: 1.55 }
 label > span { display: block; margin-bottom: 7px; color: #b5c4d2; font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 800 }
-select { width: 100%; background: #0c1219; color: #fff; border: 1px solid #394858; padding: 12px; border-radius: 4px }
+select, input[type="number"] { width: 100%; box-sizing: border-box; background: #0c1219; color: #fff; border: 1px solid #394858; padding: 12px; border-radius: 4px }
 code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace }

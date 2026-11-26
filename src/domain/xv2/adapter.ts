@@ -12,6 +12,7 @@ import {XV2_ENGINE_SLOTS,legalOptionsFor,validateBuild,type Lookup} from "./rule
 import {rateOption,relationsBetween} from "./scoring";
 import {acquisitionSummary} from "./acquisition";
 import {NO_STAT_CONTEXT,statContext,statFacts,type StatContext} from "./derived";
+import {describeMechanics,mechanicsOf,windupShare} from "./mechanics";
 // MDV_BLOCK:BEGIN id="DBX.XV2.ADAPTER.010" intent="Give each goal the color and plain-language voice the report uses, next to the bundle's own wording" kind="config" tags="xv2,adapter,goals"
 /** `plays` finishes the sentence "A build that ..."; MODEL wording for the report, not a game claim. */
 const VOICE:Record<Xv2Goal,{color:string;plays:string}>={
@@ -81,20 +82,35 @@ function withDamageShare(o:Option,r:Rating<Xv2Goal>,ctx:StatContext):Rating<Xv2G
  }
  return {...r,scores,contributions};
 }
+/**
+ * Count less of a slow move's damage. The windup is the community damage tests' cast-speed class;
+ * a move with no measured cast speed is left as it was. The cut is its own contribution.
+ */
+function withWindup(o:Option,r:Rating<Xv2Goal>):Rating<Xv2Goal>{
+ const cut=familyOf(o.id)==="skill"?windupShare(mechanicsOf(o)):null;
+ if(!cut)return r;
+ const scores={...r.scores},contributions=[...r.contributions];
+ for(const g of DAMAGE_GOALS){
+  if(r.unknown?.includes(g)||!r.scores[g])continue;
+  scores[g]=Math.round(r.scores[g]*cut.share*10)/10;
+  contributions.push({goal:g,value:Math.round((scores[g]-r.scores[g])*10)/10,reason:cut.reason,evidence:"heuristic"});
+ }
+ return {...r,scores,contributions};
+}
 const spreadRating=(s:Spread):Rating<Xv2Goal>=>({scores:Object.fromEntries(XV2_GOALS.map(g=>[g.id,0])) as Rating<Xv2Goal>["scores"],contributions:[],unknown:XV2_GOALS.map(g=>g.id)});
 export function createXv2Adapter(catalog:Catalog,options:{id?:string;title?:string;intro?:string;owned?:(option:Option)=>boolean}={}):OptimizationAdapter<Xv2Goal>{
  const byId=new Map(catalog.options.map(o=>[o.id,o]));
  const spreads=new Map(XV2_SPREADS.map(s=>[s.id,s]));
  const lookup:Lookup={option:id=>byId.get(id),spread:id=>spreads.get(id),owned:options.owned};
  const info:OptionInfo[]=[
-  ...catalog.options.map(o=>({id:o.id,name:o.name,summary:[acquisitionSummary(o),o.description].filter(Boolean).join(" ")||familyOf(o.id)+" option",level:1,tags:(o.role_tags??[]).map(t=>t.tag)})),
+  ...catalog.options.map(o=>({id:o.id,name:o.name,summary:[acquisitionSummary(o),o.description,familyOf(o.id)==="skill"?describeMechanics(mechanicsOf(o)).trim():""].filter(Boolean).join(" ")||familyOf(o.id)+" option",level:1,tags:(o.role_tags??[]).map(t=>t.tag)})),
   ...XV2_SPREADS.map(s=>({id:s.id,name:s.name,summary:s.summary,level:1,tags:["spread"]})),
  ];
  const ratings=new Map<string,Rating<Xv2Goal>>();
  // An option's own rating depends on the build only through the character's stats, so that is the cache key.
  const rate=(id:string,ctx:StatContext=NO_STAT_CONTEXT):Rating<Xv2Goal>=>{
   const key=id+"|"+ctx.key;let r=ratings.get(key);
-  if(!r){const o=byId.get(id);const s=spreads.get(id);r=o?withDamageShare(o,rateOption(o,ctx),ctx):s?spreadRating(s):{scores:Object.fromEntries(XV2_GOALS.map(g=>[g.id,0])) as Rating<Xv2Goal>["scores"],contributions:[],unknown:XV2_GOALS.map(g=>g.id)};ratings.set(key,r);}
+  if(!r){const o=byId.get(id);const s=spreads.get(id);r=o?withWindup(o,withDamageShare(o,rateOption(o,ctx),ctx)):s?spreadRating(s):{scores:Object.fromEntries(XV2_GOALS.map(g=>[g.id,0])) as Rating<Xv2Goal>["scores"],contributions:[],unknown:XV2_GOALS.map(g=>g.id)};ratings.set(key,r);}
   return r;
  };
  const pick=(build:Build)=>Object.values(build.picks).map(id=>byId.get(id)).filter((o):o is Option=>!!o);

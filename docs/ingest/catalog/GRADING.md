@@ -34,3 +34,20 @@ A Super Soul's grades are worked out from the lines of the wiki's Super Soul lis
 | Survivability | Taking less damage, health recovery, a health refill, a quicker revive of your own, or an opponent made to hit less hard → 2. Taking more damage or losing health → 1. With none of these, a defensive Limit Burst → 2. |
 
 A boost that stacks is graded at half its full stack. A line that depends on who you fight (the opponent's gender), on allies only, or on rewards after the battle is not graded. A penalty line sets its goal to 1 even when another line would raise it.
+
+## What a move's mechanics add to its damage
+
+Damage alone does not say what a move is worth. `src/domain/xv2/mechanics.ts` collects each Super, Ultimate and Evasive's mechanical profile from what the catalog holds: the community damage tests' **cast speed** (instant, short, medium, long) and **range** (melee, short, medium, long), whether it can be charged, and the recorded facts that it tracks, has Super Armor, is invulnerable for a time, holds the target, or moves you. An axis no source gives is unknown, never "no".
+
+The scorer uses the cast speed. A slower move is dodged, blocked or interrupted more often and fits fewer openings, so less of its burst and sustained damage counts:
+
+| Cast speed | Share of damage that counts |
+|---|---|
+| Instant | 100% |
+| Short | 90% |
+| Medium | 75% |
+| Long | 60% |
+
+Recorded Super Armor or invulnerability makes a move one step safer (a long cast counts as medium). A move with no measured cast speed is left as it was. These shares are a MODEL judgment, not a measurement; the cut appears beside the score as its own reason.
+
+The damage tests give four steps, not frames. No source read so far gives, for any skill: startup and recovery in frames, commitment and overextension, frame advantage, hitstun and blockstun duration, i-frame and armor windows, hitbox size, cancel windows, or Ki gained on hit. Those stay unknown until a source for them is found.

@@ -147,9 +147,11 @@ test("rank weights follow the profile's table, not the template's linear default
 // MDV_BLOCK:BEGIN id="DBX.TEST.ACCEPT.060" intent="Pin where-to-get-it: every option says where it comes from, and the TP-only setting removes exactly the TP-only options" kind="logic" tags="xv2,tests,acquisition"
 test("acquisition: every real option says where to get it", ()=>{
  for(const o of XV2_ADAPTER.options.filter(o=>!o.id.startsWith("spread.")))assert.match(o.summary,/^Where to get it: /,o.id);
- assert.equal(XV2_ADAPTER.options.find(o=>o.id==="skill.super.god-of-destructions-anger")!.summary,"Where to get it: Train with Beerus");
- assert.equal(XV2_ADAPTER.options.find(o=>o.id==="skill.super.consecutive-energy-blast")!.summary,"Where to get it: Skill Shop");
- assert.equal(XV2_ADAPTER.options.find(o=>o.id==="skill.ultimate.emperors-death-beam")!.summary,"Where to get it: TP Medal Shop (rotating stock)");
+ // The summary now goes on to say what was measured about the move, so the source is checked as its opening.
+ const opens=(id:string,text:string)=>assert.ok(XV2_ADAPTER.options.find(o=>o.id===id)!.summary.startsWith(text+" Measured: "),id);
+ opens("skill.super.god-of-destructions-anger","Where to get it: Train with Beerus");
+ opens("skill.super.consecutive-energy-blast","Where to get it: Skill Shop");
+ opens("skill.ultimate.emperors-death-beam","Where to get it: TP Medal Shop (rotating stock)");
 });
 test("acquisition: 'Skip TP Medal Shop only' removes TP-only options from the picker and flags them in validation", ()=>{
  const slot=XV2_ADAPTER.slots(build({})).find(s=>s.id==="ultimate_1")!;
@@ -178,7 +180,7 @@ test("costs: every real Ki cost is in bars, so the scorer and the loadout Ki ben
  assert.equal(XV2_ADAPTER.benchmarks!.measure(build(ice)).loadout_ki,5,"1 + 2 + 1 + 1 bars");
 });
 test("PQ rewards say which Parallel Quest", ()=>{
- assert.equal(XV2_ADAPTER.options.find(o=>o.id==="skill.super.death-psycho-bomb")!.summary,'Where to get it: Parallel Quest 33 ("Earth in Danger!")');
+ assert.ok(XV2_ADAPTER.options.find(o=>o.id==="skill.super.death-psycho-bomb")!.summary.startsWith('Where to get it: Parallel Quest 33 ("Earth in Danger!")'));
 });
 // MDV_BLOCK:END id="DBX.TEST.ACCEPT.070" kind="logic" tags="xv2,tests,grades"
 // MDV_BLOCK:BEGIN id="DBX.TEST.ACCEPT.080" intent="Pin Ice's full loadout choices: every slot fillable and legal, and the TP-only setting removing exactly the TP-only Soul" kind="logic" tags="xv2,tests,acquisition,loadout"

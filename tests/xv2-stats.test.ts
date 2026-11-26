@@ -82,7 +82,7 @@ test("a Super's damage total is 1 + race + body type + points + QQ Bang, and the
  near(bestSuperPsc("ki_blast"),1+0.55+0.1+0.4+0.1);near(bestSuperPsc("strike"),2.15);
 });
 test("damage scores scale with the character's reach for that kind of Super, and say why", ()=>{
- const x4="skill.ultimate.emperors-death-beam"; // a Ki Blast Ultimate graded 5 on burst, so the unscaled score is 100
+ const x4="skill.ultimate.serious-bomb"; // a Ki Blast Ultimate graded 5 on burst with an instant cast, so the unscaled score is 100
  const plain=XV2_ADAPTER.rate(x4,bare),mine=XV2_ADAPTER.rate(x4,real({}));
  assert.equal(plain.scores.burst_damage,100);assert.equal(mine.scores.burst_damage,87.3,"100 x 1.876 / 2.15");
  const why=mine.contributions.find(c=>c.goal==="burst_damage"&&c.value<0)!;

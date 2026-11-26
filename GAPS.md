@@ -9,7 +9,7 @@ To fill a gap: add the source to `docs/ingest/catalog/sources.json` (with the pa
 | Values the sources disagree on | 11 |
 | Combo strings with no description | 34 |
 | Numbers no source gives | 56 |
-| Skills and other options: what's still unknown | 35 |
+| Skills and other options: what's still unknown | 63 |
 
 ## Values the sources disagree on
 
@@ -124,7 +124,7 @@ The source gives a direction or a ranking (for example "high health") but no num
 
 ## Skills and other options: what's still unknown
 
-From docs/ingest/catalog/catalog.json. Ungraded options score as unknown, not zero, until someone grades them.
+From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options score as unknown, not zero, until someone grades them.
 
 - **Innocence Cannon**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
@@ -178,3 +178,43 @@ From docs/ingest/catalog/catalog.json. Ungraded options score as unknown, not ze
 - **QQ Bang: ranged target (+5 all but Strike Supers, which is -5)**
   - `tactical grades`: control, mobility, crowd_handling
   - `price`: zeni amount not recorded
+- **Kamehameha**
+  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Bending Kamehameha**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Spirit Bomb**
+  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
+- **Kaioken Kamehameha**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Riot Javelin**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
+- **Tyrant Lancer**
+  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, reposition, auto_dodge
+- **X10 Kamehameha**
+  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Masenko**
+  - `tactical grades`: burst_damage, stamina_safety, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+- **Menacing Flare**
+  - `tactical grades`: stamina_safety, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+  - `price`: zeni amount not recorded
+- **Ki Blast Cannon**
+  - `tactical grades`: ki_economy, stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `costs`: ki (activation)
+  - `where to get it`: the source isn't recorded
+- **Finish Breaker**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
+- **Psycho Barrier**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge

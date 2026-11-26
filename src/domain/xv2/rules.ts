@@ -23,6 +23,8 @@ export const XV2_ENGINE_SLOTS:readonly Xv2Slot[]=XV2_SLOTS.map((s:ProfileSlot)=>
 const message=(id:RuleId)=>XV2_RULES.find(r=>r.id===id)!.message;
 /** The player's "Skip TP Medal Shop only" setting, not a game rule: the shop's stock rotates weekly. */
 export const TP_ONLY="Only sold in the TP Medal Shop, whose stock rotates weekly; this build skips TP-only options.";
+/** The player's "Only what I own" setting: the option is real and legal, just not in the recorded inventory. */
+export const NOT_OWNED="Not in your recorded inventory; this build uses only what you own.";
 // MDV_BLOCK:END id="DBX.XV2.RULES.010" kind="config" tags="xv2,rules,slots"
 // MDV_BLOCK:BEGIN id="DBX.XV2.RULES.020" intent="Say every rule an option breaks in a slot, given the rest of the loadout and the player's race" kind="logic" tags="xv2,rules,legality"
 /** Which slot family an option can fill (R-007). */
@@ -36,7 +38,8 @@ export function optionSlotFamily(id:string,option:Option|undefined):SlotFamily|n
   default:return null;
  }
 }
-export type Lookup={option(id:string):Option|undefined;spread(id:string):Spread|undefined};
+/** `owned` says whether the player already has an option; absent means no inventory is recorded, so nothing counts as owned. */
+export type Lookup={option(id:string):Option|undefined;spread(id:string):Spread|undefined;owned?(option:Option):boolean};
 export function selectionReasons(build:Build,slot:Xv2Slot,id:string,lookup:Lookup):string[]{
  const option=lookup.option(id);
  if(!option&&!lookup.spread(id))return [message("R-012")+" ("+id+")"];
@@ -46,7 +49,11 @@ export function selectionReasons(build:Build,slot:Xv2Slot,id:string,lookup:Looku
  const archetype=contextValue(build,"archetype");
  const allowed=option?.eligibility.archetypes;
  if(archetype&&allowed?.status==="known"&&allowed.values&&!allowed.values.includes(archetype))reasons.push(message("R-002"));
- if(option&&contextValue(build,"acquisition")==="no_tp_only"&&tpShopOnly(option))reasons.push(TP_ONLY);
+ if(option){
+  const where=contextValue(build,"acquisition"),owned=lookup.owned?.(option)??false;
+  if(tpShopOnly(option)&&(where==="no_tp_only"||(where==="no_tp_unless_owned"&&!owned)))reasons.push(TP_ONLY);
+  if(where==="owned_only"&&!owned)reasons.push(NOT_OWNED);
+ }
  return reasons;
 }
 // MDV_BLOCK:END id="DBX.XV2.RULES.020" kind="logic" tags="xv2,rules,legality"

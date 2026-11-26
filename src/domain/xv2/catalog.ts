@@ -6,9 +6,11 @@
 import data from "../../../docs/ingest/catalog/catalog.json";
 import type {Catalog} from "./records";
 import {createXv2Adapter} from "./adapter";
+import {isOwned} from "./owned";
 // MDV_BLOCK:BEGIN id="DBX.XV2.CATALOG.010" intent="Load the real Xenoverse 2 catalog into the adapter the app uses" kind="module" tags="xv2,catalog"
 export const XV2_CATALOG=data as unknown as Catalog;
 export const XV2_ADAPTER=createXv2Adapter(XV2_CATALOG,{
+ owned:isOwned,
  intro:XV2_CATALOG.options.length
   ?"Choose a request, set your race and scenario, then let Auto Build fill the loadout. Every score is explained; anything not yet graded is shown as unknown, not as zero."
   :"The Xenoverse 2 catalog is still empty: no Supers, Ultimates, Evasives, Awokens, Souls or QQ Bangs have been entered yet (process step 5 adds the first ones). The goals, slots, rules and presets below already come from the v3.1 bundle; only the named attribute spreads can be chosen so far.",

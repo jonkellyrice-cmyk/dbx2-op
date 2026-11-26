@@ -9,7 +9,7 @@ To fill a gap: add the source to `docs/ingest/catalog/sources.json` (with the pa
 | Values the sources disagree on | 11 |
 | Combo strings with no description | 34 |
 | Numbers no source gives | 56 |
-| Skills and other options: what's still unknown | 240 |
+| Skills and other options: what's still unknown | 322 |
 
 ## Values the sources disagree on
 
@@ -335,7 +335,7 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
 - **Galactic Donuts**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
-- **Super Ghost Kamikaze Attack**
+- **Super Ghost Kamikaze Attack (Super)**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
 - **Big Bang Attack**
@@ -475,3 +475,122 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
 - **Instant Severance**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Super Kamehameha**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **X20 Kaioken Kamehameha**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Breaker Energy Wave**
+  - `tactical grades`: not graded on any goal
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `costs`: ki (activation)
+- **Super Ki Explosion**
+  - `tactical grades`: stamina_safety, mobility, survivability
+  - `flags`: guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Brave Heat**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Full Power Energy Wave**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Super Spirit Bomb**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
+- **Full Power Energy Blast Volley**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
+- **Explosive Assault**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
+- **Reverse Mabakusenko**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Scatter Kamehameha**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, reposition, auto_dodge
+- **Spirit Ball**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
+- **Neo Tri-Beam**
+  - `tactical grades`: stamina_safety, control, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, reposition, auto_dodge
+- **Weekend**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Vacation Delete**
+  - `tactical grades`: stamina_safety, mobility, survivability
+  - `flags`: guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Break Cannon**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Giant Storm**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Final Flash**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Ultra Fighting Bomber**
+  - `tactical grades`: stamina_safety, control, mobility, survivability
+  - `flags`: guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Crusher Volcano**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Supernova**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
+- **Death Ball**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
+- **Last Emperor**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Heat Dome Attack**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Dead End Bullet**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
+- **Shocking Death Ball**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
+- **Dual Destructo-Disc**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
+- **Dead End Rain**
+  - `tactical grades`: stamina_safety, mobility, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
+- **Perfect Kamehameha**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Innocence Breath**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Angry Explosion**
+  - `tactical grades`: stamina_safety, mobility, survivability
+  - `flags`: guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Assault Rain**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
+- **Super Ghost Kamikaze Attack (Ultimate)**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
+- **Final Kamehameha**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Gigantic Meteor**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
+- **Sphere of Destruction**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
+- **Maiden Blast**
+  - `tactical grades`: stamina_safety, mobility, survivability
+  - `flags`: guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge

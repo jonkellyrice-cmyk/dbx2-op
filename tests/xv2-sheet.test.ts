@@ -26,6 +26,15 @@ test("the Ki Blast Supers on the sheet are ones the owner has", ()=>{
  const owned=new Set(XV2_OWNED.skills.super.ki_blast.map(sheetSlug));
  for(const r of SHEET.rows)if(r.slot==="super"&&r.kind==="ki_blast")assert.ok(owned.has(sheetSlug(r.name)),r.name);
 });
+test("a row can lock a skill to some character types; otherwise every type can use it", ()=>{
+ const [open,locked]=expandSkillSheet({about:"",version:"v",rows:[row({}).rows[0],{...row({only:["male_majin","female_majin"]}).rows[0],name:"Test Gum",key:"WIKI-TEST-GUM"}]}) as unknown as Record<string,any>[];
+ assert.equal(open.eligibility.archetypes.values.length,8);assert.ok(open.eligibility.archetypes.values.includes("frieza_race"));
+ assert.deepEqual(locked.eligibility.archetypes.values,["male_majin","female_majin"]);
+});
+test("the Strike Supers on the sheet are ones the owner has", ()=>{
+ const owned=new Set(XV2_OWNED.skills.super.strike.map(sheetSlug));
+ for(const r of SHEET.rows)if(r.slot==="super"&&r.kind==="strike")assert.ok(owned.has(sheetSlug(r.name)),r.name);
+});
 test("the Ultimates on the sheet are ones the owner has, and a missing description is said, not invented", ()=>{
  const owned=new Set(Object.values(XV2_OWNED.skills.ultimate as Record<string,readonly string[]>).flat().map(sheetSlug));
  for(const r of SHEET.rows)if(r.slot==="ultimate")assert.ok(owned.has(sheetSlug(r.name)),r.name);

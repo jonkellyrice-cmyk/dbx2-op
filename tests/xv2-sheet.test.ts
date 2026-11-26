@@ -20,7 +20,8 @@ test("every sheet row names a recorded source and a skill that isn't already han
   assert.ok(sources.has(r.key),r.name+": "+r.key+" is not in sources.json");
   assert.ok(!written.has("skill."+r.slot+"."+sheetSlug(r.name)),r.name+" is already in catalog.json");
  }
- assert.equal(XV2_CATALOG.options.length,written.size+SHEET.rows.length,"every row reaches the catalog the app uses");
+ // The Awoken sheet adds its own rows to the same catalog; they are counted here so every skill row must still arrive.
+ assert.equal(XV2_CATALOG.options.length,written.size+SHEET.rows.length+read("awoken-sheet.json").rows.length,"every row reaches the catalog the app uses");
 });
 test("the Ki Blast Supers on the sheet are ones the owner has", ()=>{
  const owned=new Set(XV2_OWNED.skills.super.ki_blast.map(sheetSlug));

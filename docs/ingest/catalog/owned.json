@@ -1,5 +1,5 @@
 {
- "about": "What the owner's character Ice owns and has equipped, read from the owner's in-game screenshots on 2026-11-26 (source key OWNER-OBSERVATION). Names are as the game's menus show them; categories are the game's own slot and tab. This is an inventory, not catalog data: an option here has no grades, costs or effects until it is added to catalog.json. The photos are separate scroll positions, so a list may miss rows that fell between two photos. Of the 291 skill names, 280 match a Xenoverse 2 Wiki page title (checked 2026-11-26); the other 11 have no page under that exact title. A Super Soul's stars are null where the photo cut the icon off, and its text is recorded only where the photo showed it.",
+ "about": "What the owner's character Ice owns and has equipped, read from the owner's in-game screenshots on 2026-11-26 (source key OWNER-OBSERVATION). Names are as the game's menus show them; categories are the game's own slot and tab. This is an inventory, not catalog data: an option here has no grades, costs or effects until it is added to catalog.json. The photos are separate scroll positions, so a list may miss rows that fell between two photos. Of the 291 skill names, 280 match a Xenoverse 2 Wiki page title (checked 2026-11-26); the other 11 have no page under that exact title. The four Awoken skills under saiyan_only were not on any screenshot: the owner stated on 2026-11-26 that he has them, and that they don't show up on Ice because Ice is not a Saiyan. They are named as the wiki titles them; the owner called the last two Super Saiyan Blue and Super Saiyan Blue Evolved. He does not have regular Super Saiyan or Super Saiyan 2 and 3. A Super Soul's stars are null where the photo cut the icon off, and its text is recorded only where the photo showed it.",
  "character": {"name": "Ice", "archetype": "frieza_race", "height": "height.4", "body_type": "body.thin", "level": 103, "ki_blast_type": "Paralyze", "attribute_points": {"health": 83, "ki": 21, "stamina": 21, "basic": 125, "strike": 0, "blast": 133}, "attribute_points_unspent": 0},
  "equipped": {"super": ["Bending Kamehameha", "Finish Breaker", "Maximum Charge", "Psycho Barrier"], "ultimate": ["Maiden Blast", "x4 Kaioken Kamehameha"], "awoken": "Potential Unleashed", "evasive": "Explosive Wave", "super_soul": "Our two strengths aren't just added together.", "qq_bang": {"stars": 6, "health": 5, "ki": 5, "stamina": 5, "basic": 1, "strike": 0, "blast": 3}},
  "skills": {
@@ -328,6 +328,12 @@
     "Potential Unleashed",
     "Beast",
     "Ultra Instinct"
+   ],
+   "saiyan_only": [
+    "Future Super Saiyan",
+    "Super Saiyan God",
+    "Super Saiyan God Super Saiyan",
+    "Super Saiyan God Super Saiyan (Evolved)"
    ]
   }
  },

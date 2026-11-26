@@ -4,6 +4,10 @@ Each Super, Ultimate, Evasive, Awoken, Super Soul and QQ Bang gets a 0–5 grade
 
 The grades in `catalog.json` are **MODEL** judgments: evidence `status: "model"`, `verification: "derived"`. Each one rests only on what the record already holds (the wiki's damage figure, hit count, Ki cost in bars, and whether it breaks guard, grabs, counters or teleports), and each says why in its `reason`. A goal that nothing recorded bears on stays **unknown**, never 0. Play testing can replace any grade later; change the grade and its reason together.
 
+## From option scores to a loadout's score
+
+For each goal the engine stacks the loadout's option scores: the best counts fully, the second at 35%, the third at 15% and each further one at 5%. A loadout has ten option slots, so that stack passes 100 easily. Xenoverse 2 therefore runs it through a curve that keeps rising and never reaches 100 (`XV2_COVERAGE_CURVE` in `src/domain/xv2/adapter.ts`): a stack of 60 scores 53, 100 scores 71, 135 scores 82 and 185 scores 90. The curve is a MODEL choice, not a game fact; tune it against real builds.
+
 | Goal | What sets the grade |
 |---|---|
 | Burst damage | The wiki's damage per use: under 8% → 1, 8–14% → 2, 15–24% → 3, 25–34% → 4, 35% or more → 5. A source that only calls the damage low → 1. A QQ Bang's +5 to one kind of Super adds only about 6.66% damage with no attribute points in it, less with points (wiki), paid for by the other kind → 2. |

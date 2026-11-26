@@ -3,7 +3,7 @@
  * so the same code runs the real catalog (docs/ingest/catalog/catalog.json) and the bundle's
  * synthetic test fixtures. Goals, slots, rules, scoring and presets come from the profile.
  */
-import type {Benchmarks,Blocker,Build,GoalInfo,OptimizationAdapter,OptionInfo,Rating} from "../../kernel/optimization/contract";
+import {softCap,type Benchmarks,type Blocker,type Build,type GoalInfo,type OptimizationAdapter,type OptionInfo,type Rating} from "../../kernel/optimization/contract";
 import {XV2_BLOCKERS,XV2_GOALS,XV2_METRICS,XV2_PEERS,XV2_PRESETS,XV2_SCORING,type Xv2Goal} from "./profile";
 import {familyOf,type Catalog,type Option} from "./records";
 import {XV2_CONTEXT,contextValue} from "./context";
@@ -62,6 +62,8 @@ function benchmarksFor(pick:(build:Build)=>Option[],option:(id:string)=>Option|u
  };
 }
 // MDV_BLOCK:END id="DBX.XV2.ADAPTER.030" kind="logic" tags="xv2,adapter,benchmarks"
+/** MODEL choice, not a game fact: see softCap. Tune against real builds. */
+export const XV2_COVERAGE_CURVE=softCap(80);
 // MDV_BLOCK:BEGIN id="DBX.XV2.ADAPTER.040" intent="Plug a Xenoverse 2 catalog into the generic engine through the adapter seam" kind="module" tags="xv2,adapter"
 const spreadRating=(s:Spread):Rating<Xv2Goal>=>({scores:Object.fromEntries(XV2_GOALS.map(g=>[g.id,0])) as Rating<Xv2Goal>["scores"],contributions:[],unknown:XV2_GOALS.map(g=>g.id)});
 export function createXv2Adapter(catalog:Catalog,options:{id?:string;title?:string;intro?:string;owned?:(option:Option)=>boolean}={}):OptimizationAdapter<Xv2Goal>{
@@ -93,6 +95,8 @@ export function createXv2Adapter(catalog:Catalog,options:{id?:string;title?:stri
   context:XV2_CONTEXT,
   facts:build=>statFacts(build,byId.get(build.picks.qq_bang??"")),
   rankWeights:XV2_SCORING.rankWeights,
+  // A loadout has ten option slots and most serve several goals, so stacked scores pass 100 easily; the curve keeps strong builds apart.
+  coverageCurve:XV2_COVERAGE_CURVE,
   report:{theme:"clean",running:"DBX2-op · Xenoverse 2 loadout optimizer"},
  };
 }

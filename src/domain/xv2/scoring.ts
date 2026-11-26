@@ -36,7 +36,9 @@ function capabilityCount(o:Option,goal:Xv2Goal):Outcome{
 }
 // MDV_BLOCK:END id="DBX.XV2.SCORING.010" kind="logic" tags="xv2,scoring,capabilities"
 // MDV_BLOCK:BEGIN id="DBX.XV2.SCORING.020" intent="Score each criterion the way the profile defines it, keeping unknown and not-applicable apart from zero" kind="logic" tags="xv2,scoring,criteria"
-function costFitness(o:Option,resource:"ki"|"stamina"):Outcome{
+/** The player's real gauge sizes, when known; a cost is then judged against the gauge it comes out of. */
+export type Gauges={kiBars?:number|null;staminaBars?:number|null};
+function costFitness(o:Option,resource:"ki"|"stamina",gauges:Gauges={}):Outcome{
  const coverage=o.catalog_coverage.costs;
  if(coverage==="not_applicable")return {status:"not_applicable",value:null,reason:"Doesn't spend "+resource+" directly"};
  if(coverage!=="complete")return {status:"unknown",value:null,reason:"Its "+resource+" cost isn't fully documented"};
@@ -44,10 +46,12 @@ function costFitness(o:Option,resource:"ki"|"stamina"):Outcome{
  if(!upfront.length)return familyOf(o.id)==="skill"?{status:"known",value:100,reason:"No upfront "+resource+" cost"}:{status:"not_applicable",value:null,reason:"No upfront "+resource+" spend for this kind of option"};
  if(upfront.some(x=>x.amount.status!=="known"))return {status:"unknown",value:null,reason:"Its upfront "+resource+" cost is unknown"};
  const bars=upfront.reduce((n,x)=>n+(x.amount.value??0),0);
- const ceiling=resource==="ki"?XV2_SCORING.derive.kiCeilingBars:XV2_SCORING.derive.staminaCeilingBars;
- return {status:"known",value:100*Math.max(0,Math.min(1,1-bars/ceiling)),reason:"Upfront "+resource+" cost "+bars+" bar"+(bars===1?"":"s")+" (scale "+ceiling+")"};
+ const own=resource==="ki"?gauges.kiBars:gauges.staminaBars;
+ const ceiling=own??(resource==="ki"?XV2_SCORING.derive.kiCeilingBars:XV2_SCORING.derive.staminaCeilingBars);
+ const scale=own?"of your "+Math.round(own*10)/10+" bars":"scale "+ceiling;
+ return {status:"known",value:100*Math.max(0,Math.min(1,1-bars/ceiling)),reason:"Upfront "+resource+" cost "+bars+" bar"+(bars===1?"":"s")+" ("+scale+")"};
 }
-function criterion(o:Option,goal:Xv2Goal,c:Criterion):Outcome{
+function criterion(o:Option,goal:Xv2Goal,c:Criterion,gauges:Gauges={}):Outcome{
  if(c.method==="ordinal_0_5"){
   const g=o.tactical_grades[goal];
   if(!g||g.status!=="known"||g.value===null)return {status:g?.status==="not_applicable"?"not_applicable":"unknown",value:null,reason:g?.reason??"Not graded yet"};
@@ -58,8 +62,8 @@ function criterion(o:Option,goal:Xv2Goal,c:Criterion):Outcome{
   if(c.method==="boolean_coverage")return {status:"known",value:r.value>0?100:0,reason:r.reason};
   const sat=c.saturation_count??1;return {status:"known",value:100*Math.min(Math.max(r.value,0),sat)/sat,reason:r.reason};
  }
- if(c.function==="ki_cost_fitness")return costFitness(o,"ki");
- if(c.function==="stamina_cost_fitness")return costFitness(o,"stamina");
+ if(c.function==="ki_cost_fitness")return costFitness(o,"ki",gauges);
+ if(c.function==="stamina_cost_fitness")return costFitness(o,"stamina",gauges);
  return {status:"unknown",value:null,reason:"Unknown scoring function "+c.function};
 }
 // MDV_BLOCK:END id="DBX.XV2.SCORING.020" kind="logic" tags="xv2,scoring,criteria"
@@ -67,11 +71,11 @@ function criterion(o:Option,goal:Xv2Goal,c:Criterion):Outcome{
 const EVIDENCE:Record<CriterionKey,Contribution<Xv2Goal>["evidence"]>={ordinal_0_5:"tactical",count_saturation:"rule-derived",boolean_coverage:"rule-derived",rule_derived:"heuristic"};
 type CriterionKey=Criterion["method"];
 export type GoalDetail={status:"known"|"partial"|"unknown";value:number|null;coverage:number};
-export function rateOption(o:Option):Rating<Xv2Goal>&{detail:Record<Xv2Goal,GoalDetail>}{
+export function rateOption(o:Option,gauges:Gauges={}):Rating<Xv2Goal>&{detail:Record<Xv2Goal,GoalDetail>}{
  const scores={} as ScoreVector<Xv2Goal>;const contributions:Contribution<Xv2Goal>[]=[];const unknown:Xv2Goal[]=[];
  const detail={} as Record<Xv2Goal,GoalDetail>;
  for(const g of XV2_GOALS){
-  const parts=g.criteria.map(c=>({c,r:criterion(o,g.id,c)}));
+  const parts=g.criteria.map(c=>({c,r:criterion(o,g.id,c,gauges)}));
   const applicable=parts.filter(p=>p.r.status!=="not_applicable").reduce((n,p)=>n+p.c.weight,0);
   const known=parts.filter(p=>p.r.status==="known");const knownWeight=known.reduce((n,p)=>n+p.c.weight,0);
   const coverage=applicable?knownWeight/applicable:0;

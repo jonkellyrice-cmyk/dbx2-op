@@ -11,7 +11,7 @@ import {XV2_SPREADS,type Spread} from "./spreads";
 import {XV2_ENGINE_SLOTS,legalOptionsFor,validateBuild,type Lookup} from "./rules";
 import {rateOption,relationsBetween} from "./scoring";
 import {acquisitionSummary} from "./acquisition";
-import {statFacts} from "./derived";
+import {NO_STAT_CONTEXT,statContext,statFacts,type StatContext} from "./derived";
 // MDV_BLOCK:BEGIN id="DBX.XV2.ADAPTER.010" intent="Give each goal the color and plain-language voice the report uses, next to the bundle's own wording" kind="config" tags="xv2,adapter,goals"
 /** `plays` finishes the sentence "A build that ..."; MODEL wording for the report, not a game claim. */
 const VOICE:Record<Xv2Goal,{color:string;plays:string}>={
@@ -65,6 +65,22 @@ function benchmarksFor(pick:(build:Build)=>Option[],option:(id:string)=>Option|u
 /** MODEL choice, not a game fact: see softCap. Tune against real builds. */
 export const XV2_COVERAGE_CURVE=softCap(80);
 // MDV_BLOCK:BEGIN id="DBX.XV2.ADAPTER.040" intent="Plug a Xenoverse 2 catalog into the generic engine through the adapter seam" kind="module" tags="xv2,adapter"
+/**
+ * Scale a Strike or Ki Blast skill's damage scores by how close the character's rating for that kind
+ * is to the best possible. The cut is its own contribution, so the reason shows beside the score.
+ */
+const DAMAGE_GOALS:readonly Xv2Goal[]=["burst_damage","sustained_damage"];
+function withDamageShare(o:Option,r:Rating<Xv2Goal>,ctx:StatContext):Rating<Xv2Goal>{
+ const kind=(o as {classification?:string}).classification;
+ if(!ctx.damageShare||(kind!=="strike"&&kind!=="ki_blast"))return r;
+ const share=ctx.damageShare[kind],scores={...r.scores},contributions=[...r.contributions];
+ for(const g of DAMAGE_GOALS){
+  if(r.unknown?.includes(g)||!r.scores[g])continue;
+  scores[g]=Math.round(r.scores[g]*share*10)/10;
+  contributions.push({goal:g,value:Math.round((scores[g]-r.scores[g])*10)/10,reason:"Your "+(kind==="strike"?"Strike":"Ki Blast")+" Super damage is "+Math.round(share*100)+"% of the best any character could have (race, body type, points and QQ Bang)",evidence:"heuristic"});
+ }
+ return {...r,scores,contributions};
+}
 const spreadRating=(s:Spread):Rating<Xv2Goal>=>({scores:Object.fromEntries(XV2_GOALS.map(g=>[g.id,0])) as Rating<Xv2Goal>["scores"],contributions:[],unknown:XV2_GOALS.map(g=>g.id)});
 export function createXv2Adapter(catalog:Catalog,options:{id?:string;title?:string;intro?:string;owned?:(option:Option)=>boolean}={}):OptimizationAdapter<Xv2Goal>{
  const byId=new Map(catalog.options.map(o=>[o.id,o]));
@@ -75,7 +91,12 @@ export function createXv2Adapter(catalog:Catalog,options:{id?:string;title?:stri
   ...XV2_SPREADS.map(s=>({id:s.id,name:s.name,summary:s.summary,level:1,tags:["spread"]})),
  ];
  const ratings=new Map<string,Rating<Xv2Goal>>();
- const rate=(id:string)=>{let r=ratings.get(id);if(!r){const o=byId.get(id);const s=spreads.get(id);r=o?rateOption(o):s?spreadRating(s):{scores:Object.fromEntries(XV2_GOALS.map(g=>[g.id,0])) as Rating<Xv2Goal>["scores"],contributions:[],unknown:XV2_GOALS.map(g=>g.id)};ratings.set(id,r);}return r;};
+ // An option's own rating depends on the build only through the character's stats, so that is the cache key.
+ const rate=(id:string,ctx:StatContext=NO_STAT_CONTEXT):Rating<Xv2Goal>=>{
+  const key=id+"|"+ctx.key;let r=ratings.get(key);
+  if(!r){const o=byId.get(id);const s=spreads.get(id);r=o?withDamageShare(o,rateOption(o,ctx),ctx):s?spreadRating(s):{scores:Object.fromEntries(XV2_GOALS.map(g=>[g.id,0])) as Rating<Xv2Goal>["scores"],contributions:[],unknown:XV2_GOALS.map(g=>g.id)};ratings.set(key,r);}
+  return r;
+ };
  const pick=(build:Build)=>Object.values(build.picks).map(id=>byId.get(id)).filter((o):o is Option=>!!o);
  return {
   id:options.id??"dbx2-op",
@@ -88,7 +109,7 @@ export function createXv2Adapter(catalog:Catalog,options:{id?:string;title?:stri
   slots:()=>[...XV2_ENGINE_SLOTS],
   legalOptions:(build,slot)=>legalOptionsFor(build,slot,info,lookup),
   validate:build=>validateBuild(build,lookup),
-  rate:id=>rate(id),
+  rate:(id,build)=>rate(id,statContext(build,byId.get(build.picks.qq_bang??""))),
   relations:(a,b)=>relationsBetween(byId.get(a),byId.get(b),catalog.relations),
   benchmarks:benchmarksFor(pick,id=>byId.get(id)),
   blockers:blockersFor(pick),

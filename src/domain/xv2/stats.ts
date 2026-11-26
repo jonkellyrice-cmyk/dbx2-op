@@ -76,3 +76,19 @@ export function pointsForResource(level:number,attr:"ki"|"stamina",arrows:number
  return null;
 }
 // MDV_BLOCK:END id="DBX.XV2.STATS.040" kind="logic" tags="xv2,stats,optimization"
+// MDV_BLOCK:BEGIN id="DBX.XV2.STATS.050" intent="Say how close a character's Super damage is to the best any character could have, whatever its level" kind="logic" tags="xv2,stats,optimization"
+export type SuperKind="strike"|"ki_blast";
+const SUPER:Readonly<Record<SuperKind,{attr:Attribute;stat:Damage}>>={strike:{attr:"strike",stat:"strike_super"},ki_blast:{attr:"blast",stat:"ki_blast_super"}};
+/** The additive total a Super's damage rating is built from: 1 + race + body type + points + QQ Bang arrows. The level multiplies it and cancels out of any comparison. */
+export function superPsc(kind:SuperKind,c:Pick<StatInput,"archetype"|"body"|"points"|"qq">):number{
+ const {attr,stat}=SUPER[kind],race=T.race_psc[c.archetype],body=T.body_damage_psc[c.body];
+ if(!race)throw new RangeError("Unknown race/gender: "+c.archetype);
+ if(!body)throw new RangeError("Unknown body type: "+c.body);
+ return 1+race[stat]+body[stat]+pointsPsc(attr,c.points[attr])+qqPsc(attr,c.qq[attr]);
+}
+/** The highest that total can be: the best race and body type for the kind, 200 points and a +5 QQ Bang. */
+export function bestSuperPsc(kind:SuperKind):number{
+ const {attr,stat}=SUPER[kind],top=(rows:Record<string,Record<Damage,number>>)=>Math.max(...Object.values(rows).map(r=>r[stat]));
+ return 1+top(T.race_psc)+top(T.body_damage_psc)+pointsPsc(attr,T.max_points_per_attribute)+qqPsc(attr,5);
+}
+// MDV_BLOCK:END id="DBX.XV2.STATS.050" kind="logic" tags="xv2,stats,optimization"

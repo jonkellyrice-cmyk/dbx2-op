@@ -32,7 +32,13 @@ The model agrees with the wiki's Attributes page (R3):
 
 ## In the app
 
-The player enters what the game shows: level, race, height, body type, points per attribute, and the QQ Bang. `src/domain/xv2/derived.ts` passes those to the engine and the app lists the results beside the build: health, Ki and Stamina bars, the four damage ratings, and points used against the level's allowance. The figures don't change any score yet.
+The player enters what the game shows: level, race, height, body type, points per attribute, and the QQ Bang. `src/domain/xv2/derived.ts` passes those to the engine and the app lists the results beside the build: health, Ki and Stamina bars, the four damage ratings, and points used against the level's allowance.
+
+They also change scores, in two ways:
+- **Damage.** A Strike or Ki Blast skill's burst and sustained scores are multiplied by the character's reach for that kind: its damage total (1 + race + body type + points + QQ Bang arrows) over the best possible total (2.15: the best race and body type, 200 points, a +5 QQ Bang). Level is left out because it multiplies every character alike. The cut appears as its own line in the score's reasons. It needs race and body type; without them damage scores are left unscaled.
+- **Ki and Stamina costs.** A cost is judged against the character's own gauge (3 bars out of 7.6) once level, race, height and body type are set. Until then the profile's default scale of 5 bars is used.
+
+Health does not change a score yet.
 
 The game doesn't show health or damage numbers, so they can't be read off a stat screen. What a player can check is the number of Ki and Stamina bars.
 

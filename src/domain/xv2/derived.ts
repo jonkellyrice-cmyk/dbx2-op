@@ -7,7 +7,7 @@
 import type {Build,BuildFact} from "../../kernel/optimization/contract";
 import {XV2_POINT_FIELDS,contextValue} from "./context";
 import type {Known,Option} from "./records";
-import {computeStats,levelRow,NO_POINTS,XV2_STAT_TABLE,type Allocation,type Attribute,type StatInput,type Stats} from "./stats";
+import {bestSuperPsc,computeStats,levelRow,NO_POINTS,superPsc,XV2_STAT_TABLE,type Allocation,type Attribute,type StatInput,type Stats,type SuperKind} from "./stats";
 // MDV_BLOCK:BEGIN id="DBX.XV2.DERIVED.010" intent="Read the stat engine's inputs out of a build, saying what is missing instead of guessing it" kind="logic" tags="xv2,stats,context"
 const QQ_STAT:Readonly<Record<Attribute,string>>={health:"health",ki:"max_ki",stamina:"max_stamina",basic:"basic_attack",strike:"strike_supers",blast:"ki_blast_supers"};
 const BODY:Readonly<Record<string,StatInput["body"]>>={"body.thin":"thin","body.average":"average","body.thick":"thick"};
@@ -32,6 +32,24 @@ export function readStats(build:Build,qq:Option|undefined):StatReading{
  return {input,stats:computeStats(input),spent:Object.values(points).reduce((n,v)=>n+v,0),available:levelRow(level).available};
 }
 // MDV_BLOCK:END id="DBX.XV2.DERIVED.010" kind="logic" tags="xv2,stats,context"
+// MDV_BLOCK:BEGIN id="DBX.XV2.DERIVED.015" intent="Hand the scorer the few character figures that change how an option should score" kind="logic" tags="xv2,stats,scoring"
+/**
+ * What the scorer needs from the character; each part is null until the player has stated enough.
+ * - damageShare: the character's Super damage total over the best possible, per kind (race and body type needed).
+ * - kiBars, staminaBars: the size of the gauges (level, race, height and body type needed).
+ */
+export type StatContext={damageShare:Readonly<Record<SuperKind,number>>|null;kiBars:number|null;staminaBars:number|null;key:string};
+export const NO_STAT_CONTEXT:StatContext={damageShare:null,kiBars:null,staminaBars:null,key:""};
+export function statContext(build:Build,qq:Option|undefined):StatContext{
+ const archetype=contextValue(build,"archetype"),body=BODY[contextValue(build,"body_type")],arrows=qqArrows(qq);
+ const points=Object.fromEntries(XV2_POINT_FIELDS.map(f=>[f.attr,Number(contextValue(build,f.id))||0])) as Allocation;
+ const share=(k:SuperKind)=>superPsc(k,{archetype,body,points,qq:arrows!})/bestSuperPsc(k);
+ const damageShare=archetype&&body&&arrows?{strike:share("strike"),ki_blast:share("ki_blast")}:null;
+ const r=readStats(build,qq);
+ const kiBars="missing" in r?null:r.stats.ki/100,staminaBars="missing" in r?null:r.stats.stamina/100;
+ return {damageShare,kiBars,staminaBars,key:JSON.stringify([damageShare,kiBars,staminaBars])};
+}
+// MDV_BLOCK:END id="DBX.XV2.DERIVED.015" kind="logic" tags="xv2,stats,scoring"
 // MDV_BLOCK:BEGIN id="DBX.XV2.DERIVED.020" intent="Phrase the worked-out stats in the bars and numbers a player thinks in" kind="logic" tags="xv2,stats,facts"
 const round=(n:number,step=1)=>(Math.round(n/step)*step).toLocaleString("en-US",{maximumFractionDigits:1});
 const bars=(n:number,per:number)=>round(n/per,0.1)+" bars";
@@ -49,6 +67,7 @@ export function statFacts(build:Build,qq:Option|undefined):BuildFact[]{
   {label:"Strike Super rating",value:round(s.strike_super)},
   {label:"Ki Blast Super rating",value:round(s.ki_blast_super)},
   {label:"Attribute points",value:r.spent+" of "+r.available+" used",note:left<0?(-left)+" more than level "+r.input.level+" gives":left>0?left+" left to spend":undefined},
+  ...(["ki_blast","strike"] as const).map(k=>({label:(k==="ki_blast"?"Ki Blast":"Strike")+" Supers reach",value:Math.round(100*superPsc(k,r.input)/bestSuperPsc(k))+"% of the best possible",note:"scales their damage scores"})),
  ];
 }
 // MDV_BLOCK:END id="DBX.XV2.DERIVED.020" kind="logic" tags="xv2,stats,facts"

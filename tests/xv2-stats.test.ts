@@ -4,7 +4,8 @@ import {contextAllowed,type Build} from "../src/kernel/optimization/contract";
 import {exportBuild,importBuild} from "../src/application/optimization/persistence";
 import {XV2_ADAPTER} from "../src/domain/xv2/catalog";
 import {XV2_CONTEXT} from "../src/domain/xv2/context";
-import {computeStats,levelRow,NO_POINTS,perArrow,perPoint,pointsForResource,pointsPsc,XV2_STAT_TABLE} from "../src/domain/xv2/stats";
+import {coverage} from "../src/application/optimization/evaluate";
+import {bestSuperPsc,superPsc,computeStats,levelRow,NO_POINTS,perArrow,perPoint,pointsForResource,pointsPsc,XV2_STAT_TABLE} from "../src/domain/xv2/stats";
 // MDV_BLOCK:BEGIN id="DBX.TEST.STATS.010" intent="Hold the stat engine to the Stat Calculator v2's tables and the owner's worked values" kind="logic" tags="xv2,tests,stats"
 const near=(a:number,b:number,msg?:string)=>assert.ok(Math.abs(a-b)<1e-6*Math.max(1,Math.abs(b)),(msg??"")+": "+a+" vs "+b);
 test("the level table has all 199 levels and the calculator's checkpoints", ()=>{
@@ -71,3 +72,44 @@ test("number fields accept only whole numbers in range, and survive export and i
  assert.equal(bad.build.context!.level,undefined);assert.deepEqual(bad.dropped,["context level: 250"]);
 });
 // MDV_BLOCK:END id="DBX.TEST.STATS.020" kind="logic" tags="xv2,tests,stats,context"
+// MDV_BLOCK:BEGIN id="DBX.TEST.STATS.030" intent="Check that the character's stats change scores the way the model says, and only when the player has stated them" kind="logic" tags="xv2,tests,stats,scoring"
+const REAL={archetype:"frieza_race",height:"height.4",body_type:"body.thin",level:"103",points_health:"83",points_ki:"21",points_stamina:"21",points_basic:"125",points_blast:"133"};
+const real=(picks:Record<string,string>):Build=>({version:1,level:1,picks:{qq_bang:"qqbang.ice-health-stamina",...picks},context:REAL});
+const bare:Build={version:1,level:1,picks:{}};
+test("a Super's damage total is 1 + race + body type + points + QQ Bang, and the best possible is 2.15", ()=>{
+ const ice={archetype:"frieza_race",body:"thin" as const,points:{...NO_POINTS,blast:133},qq:{...NO_POINTS,blast:3}};
+ near(superPsc("ki_blast",ice),1+0.45+0.1+0.266+0.06);near(superPsc("strike",ice),1+0.375);
+ near(bestSuperPsc("ki_blast"),1+0.55+0.1+0.4+0.1);near(bestSuperPsc("strike"),2.15);
+});
+test("damage scores scale with the character's reach for that kind of Super, and say why", ()=>{
+ const x4="skill.ultimate.x4-kaioken-kamehameha";
+ const plain=XV2_ADAPTER.rate(x4,bare),mine=XV2_ADAPTER.rate(x4,real({}));
+ assert.equal(plain.scores.burst_damage,100);assert.equal(mine.scores.burst_damage,87.3,"100 x 1.876 / 2.15");
+ const why=mine.contributions.find(c=>c.goal==="burst_damage"&&c.value<0)!;
+ assert.equal(why.value,-12.7);assert.match(why.reason,/^Your Ki Blast Super damage is 87% of the best/);
+ for(const g of ["burst_damage","sustained_damage"] as const)near(mine.contributions.filter(c=>c.goal===g).reduce((n,c)=>n+c.value,0),mine.scores[g],"the reasons add up to the "+g+" score");
+ assert.equal(mine.scores.control,plain.scores.control,"only damage goals move");
+ // Race and body type are enough for the share; level is not needed, because it multiplies every character alike.
+ const some=XV2_ADAPTER.rate(x4,{version:1,level:1,picks:{},context:{archetype:"frieza_race",body_type:"body.thin"}});
+ assert.equal(some.scores.burst_damage,72.1,"100 x 1.55 / 2.15");
+ // An Awoken Skill or a Super Soul has no damage kind of its own, so it is never scaled.
+ assert.deepEqual(XV2_ADAPTER.rate("awoken.turn-golden",real({})).scores,XV2_ADAPTER.rate("awoken.turn-golden",bare).scores);
+});
+test("a QQ Bang's damage arrows now change what the Supers score", ()=>{
+ const mine=XV2_ADAPTER.rate("skill.ultimate.x4-kaioken-kamehameha",real({})).scores.burst_damage;
+ const target=XV2_ADAPTER.rate("skill.ultimate.x4-kaioken-kamehameha",real({qq_bang:"qqbang.ranged-target"})).scores.burst_damage;
+ assert.ok(target>mine,"Ki Blast +5 beats +3: "+target+" vs "+mine);
+});
+test("a Ki cost is judged against the character's own Ki gauge once it is known", ()=>{
+ const edb="skill.ultimate.emperors-death-beam";
+ const plain=XV2_ADAPTER.rate(edb,bare),mine=XV2_ADAPTER.rate(edb,real({}));
+ assert.ok(mine.scores.ki_economy>plain.scores.ki_economy,"4 bars out of 7.6 hurts less than 4 out of the default 5");
+ assert.ok(mine.contributions.some(c=>c.goal==="ki_economy"&&/of your 7\.6 bars/.test(c.reason)));
+ assert.ok(plain.contributions.some(c=>c.goal==="ki_economy"&&/scale 5/.test(c.reason)));
+});
+test("with the character's stats entered, the two Ultimates still rank the same way", ()=>{
+ const base={super_1:"skill.super.death-psycho-bomb",super_2:"skill.super.god-of-destructions-anger",ultimate_1:"skill.ultimate.emperors-death-beam",evasive:"skill.evasive.super-explosive-wave"};
+ const x4=coverage(XV2_ADAPTER,real({...base,ultimate_2:"skill.ultimate.x4-kaioken-kamehameha"})),sbc=coverage(XV2_ADAPTER,real({...base,ultimate_2:"skill.ultimate.special-beam-cannon"}));
+ assert.ok(x4.burst_damage>sbc.burst_damage&&sbc.control>x4.control);
+});
+// MDV_BLOCK:END id="DBX.TEST.STATS.030" kind="logic" tags="xv2,tests,stats,scoring"

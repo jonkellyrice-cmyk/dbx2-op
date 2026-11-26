@@ -50,7 +50,7 @@ test("the build's level, race, points and QQ Bang arrows give the stats the game
  assert.equal(fact(ice,"Health")!.value,"23,250 HP","1500 x (1 + race 0.35 + tallest 0.1 + QQ 0.1) x 10");
  assert.equal(fact(ice,"Max Ki")!.value,"8 bars","500 x (1 + 42 points x 0.0048 + QQ 0.4) = 800.8");
  assert.equal(fact(ice,"Max Stamina")!.value,"7 bars","500 x (1 + QQ 0.4)");
- assert.equal(fact(ice,"Ki Blast Super rating")!.value,"525","1.5 x (1 + 0.2 + race 0.45 + thin 0.1) x 200");
+ assert.equal(fact(ice,"Ki Blast Super rating")!.value,"543","1.5 x (1 + 0.2 + race 0.45 + thin 0.1 + QQ 0.06) x 200");
  assert.equal(fact(ice,"Strike Super rating")!.value,"413","412.5, shown to the nearest whole number");
  assert.deepEqual(fact(ice,"Attribute points"),{label:"Attribute points",value:"142 of 375 used",note:"233 left to spend"});
  const over={...ice,context:{...ice.context,points_health:"200",points_strike:"200"}};

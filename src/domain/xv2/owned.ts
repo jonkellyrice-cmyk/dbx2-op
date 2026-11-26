@@ -4,7 +4,7 @@
  * the option is added to the catalog. Read from the owner's in-game screenshots.
  */
 import data from "../../../docs/ingest/catalog/owned.json";
-import {familyOf,type Option} from "./records";
+import {familyOf,type Known,type Option} from "./records";
 // MDV_BLOCK:BEGIN id="DBX.XV2.OWNED.010" intent="Name the shape of the owner's inventory as recorded" kind="types" tags="xv2,owned,inventory"
 export type OwnedSlot="super"|"ultimate"|"evasive"|"awoken";
 export type OwnedSoul={name:string;stars:number|null;ki_blast_type?:string;text?:string;limit_burst?:string};
@@ -25,9 +25,17 @@ function keys(owned:Owned):Record<string,ReadonlySet<string>>{
  return {super:slot("super"),ultimate:slot("ultimate"),evasive:slot("evasive"),awoken:slot("awoken"),soul:of(owned.super_souls.map(s=>s.name))};
 }
 const KEYS=keys(XV2_OWNED);
-/** True when the option's name is in the owner's list for its kind. QQ Bangs have no names, so they are never matched here. */
+/** A QQ Bang has no name of its own, so it is owned when its six arrows equal one in the inventory. */
+const QQ_STAT={health:"health",ki:"max_ki",stamina:"max_stamina",basic:"basic_attack",strike:"strike_supers",blast:"ki_blast_supers"} as const;
+function qqOwned(option:object):boolean{
+ const mods=(option as {stat_modifiers?:Record<string,Known<number>>}).stat_modifiers;
+ if(!mods)return false;
+ return XV2_OWNED.qq_bangs.some(q=>Object.entries(QQ_STAT).every(([arrow,stat])=>mods[stat]?.status==="known"&&mods[stat].value===q[arrow as keyof typeof QQ_STAT]));
+}
+/** True when the option's name is in the owner's list for its kind, or, for a QQ Bang, its arrows are. */
 export function isOwned(option:Pick<Option,"id"|"name">):boolean{
  const family=familyOf(option.id);
+ if(family==="qqbang")return qqOwned(option);
  const kind=family==="skill"?SKILL_SLOT[option.id.split(".")[1]]:family;
  return !!kind&&!!KEYS[kind]?.has(nameKey(option.name));
 }

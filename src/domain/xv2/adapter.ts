@@ -64,10 +64,10 @@ function benchmarksFor(pick:(build:Build)=>Option[],option:(id:string)=>Option|u
 // MDV_BLOCK:END id="DBX.XV2.ADAPTER.030" kind="logic" tags="xv2,adapter,benchmarks"
 // MDV_BLOCK:BEGIN id="DBX.XV2.ADAPTER.040" intent="Plug a Xenoverse 2 catalog into the generic engine through the adapter seam" kind="module" tags="xv2,adapter"
 const spreadRating=(s:Spread):Rating<Xv2Goal>=>({scores:Object.fromEntries(XV2_GOALS.map(g=>[g.id,0])) as Rating<Xv2Goal>["scores"],contributions:[],unknown:XV2_GOALS.map(g=>g.id)});
-export function createXv2Adapter(catalog:Catalog,options:{id?:string;title?:string;intro?:string}={}):OptimizationAdapter<Xv2Goal>{
+export function createXv2Adapter(catalog:Catalog,options:{id?:string;title?:string;intro?:string;owned?:(option:Option)=>boolean}={}):OptimizationAdapter<Xv2Goal>{
  const byId=new Map(catalog.options.map(o=>[o.id,o]));
  const spreads=new Map(XV2_SPREADS.map(s=>[s.id,s]));
- const lookup:Lookup={option:id=>byId.get(id),spread:id=>spreads.get(id)};
+ const lookup:Lookup={option:id=>byId.get(id),spread:id=>spreads.get(id),owned:options.owned};
  const info:OptionInfo[]=[
   ...catalog.options.map(o=>({id:o.id,name:o.name,summary:[acquisitionSummary(o),o.description].filter(Boolean).join(" ")||familyOf(o.id)+" option",level:1,tags:(o.role_tags??[]).map(t=>t.tag)})),
   ...XV2_SPREADS.map(s=>({id:s.id,name:s.name,summary:s.summary,level:1,tags:["spread"]})),

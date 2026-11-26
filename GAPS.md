@@ -9,7 +9,7 @@ To fill a gap: add the source to `docs/ingest/catalog/sources.json` (with the pa
 | Values the sources disagree on | 11 |
 | Combo strings with no description | 34 |
 | Numbers no source gives | 56 |
-| Skills and other options: what's still unknown | 529 |
+| Skills and other options: what's still unknown | 579 |
 
 ## Values the sources disagree on
 
@@ -889,3 +889,75 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
 - **Strike of Revelation**
   - `tactical grades`: stamina_safety, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+- **Finishing Blow**
+  - `tactical grades`: stamina_safety, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+- **Super God Shock Flash**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Final Blow**
+  - `tactical grades`: stamina_safety, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+  - `price`: tp_medal amount not recorded
+- **Emperor's Edge**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, reposition, auto_dodge
+  - `price`: tp_medal amount not recorded
+- **Rocket Tackle**
+  - `tactical grades`: stamina_safety, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+- **Android Rush**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Feint Crash**
+  - `tactical grades`: burst_damage, stamina_safety, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+- **Shadow Crusher**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling
+  - `flags`: aoe, guard_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Sonic Rush**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Punisher Drive**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Super Mad Dance**
+  - `tactical grades`: burst_damage, stamina_safety, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+  - `price`: zeni amount not recorded
+- **Dodoria Headbutt**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling
+  - `flags`: aoe, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Critical Upper**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Aura Slide**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: tp_medal amount not recorded
+- **Time Skip/Flash Skewer**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Time Skip/Back Breaker**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Time Skip/Jump Spike**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **God of Destruction's Roar**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, mobility, crowd_handling
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Holy Inscription**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Comet Strike**
+  - `tactical grades`: stamina_safety, control, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **God of Destruction's Poise**
+  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, reposition, auto_dodge
+- **Heat Wave**
+  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling
+  - `flags`: aoe, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge

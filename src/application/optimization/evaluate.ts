@@ -49,7 +49,8 @@ export function coverage<G extends string>(adapter:OptimizationAdapter<G>,build:
  const result=emptyScores(adapter);
  for(const g of adapter.goals){
   const values=rated.map(r=>r[g.id]).sort((a,b)=>b-a);
-  result[g.id]=clamp(values.reduce((n,v,i)=>n+v*(ENGINE.depthWeights[i]??ENGINE.depthTail),0));
+  const stacked=values.reduce((n,v,i)=>n+v*(ENGINE.depthWeights[i]??ENGINE.depthTail),0);
+  result[g.id]=clamp(adapter.coverageCurve?adapter.coverageCurve(stacked):stacked);
  }
  return result;
 }

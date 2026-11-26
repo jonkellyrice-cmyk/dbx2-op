@@ -120,9 +120,24 @@ export type OptimizationAdapter<G extends string>={
  context?:readonly ContextField[];
  /** Optional figures derived from the build and its context; an empty list shows nothing. */
  facts?(build:Build):BuildFact[];
+ /**
+  * Optional: how a goal's stacked pick scores (best pick, plus shrinking shares of the rest) become its
+  * 0-100 coverage. The default cuts off at 100, which fits games where few picks serve one goal. A game
+  * whose builds often stack past 100 supplies a curve that keeps rising, so stronger builds still differ.
+  * Must not decrease as its input grows; the engine keeps the result within 0-100.
+  */
+ coverageCurve?(stacked:number):number;
  /** Optional weight of goal rank 1, 2, 3...; the default is linear (see weightsFromRanks). */
  rankWeights?:readonly number[];
  /** Optional one-paragraph introduction shown above the optimizer. */
  intro?:string;
 };
 // MDV_BLOCK:END id="TPL.KERNEL.CONTRACT.040" kind="types" tags="optimization,contract,adapter"
+// MDV_BLOCK:BEGIN id="TPL.KERNEL.CONTRACT.050" intent="Offer a ready-made coverage curve for games whose builds stack past 100" kind="logic" tags="optimization,contract,scoring"
+/**
+ * A coverage curve that never reaches 100: each extra point of stacked score closes a fixed share of
+ * the remaining gap. `scale` is the stacked score that reaches about 63; near zero the curve's slope is
+ * 100/scale. softCap(80): 60 becomes 53, 100 becomes 71, 135 becomes 82, 185 becomes 90.
+ */
+export const softCap=(scale:number)=>(stacked:number):number=>100*(1-Math.exp(-Math.max(0,stacked)/scale));
+// MDV_BLOCK:END id="TPL.KERNEL.CONTRACT.050" kind="logic" tags="optimization,contract,scoring"

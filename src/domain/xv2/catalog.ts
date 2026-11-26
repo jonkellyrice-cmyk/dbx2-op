@@ -7,12 +7,14 @@ import data from "../../../docs/ingest/catalog/catalog.json";
 import sheet from "../../../docs/ingest/catalog/skill-sheet.json";
 import type {Catalog} from "./records";
 import {createXv2Adapter} from "./adapter";
+import {withDamageTests} from "./damage-tests";
 import {isOwned} from "./owned";
 import {expandSkillSheet,type SkillSheet} from "./skill-sheet";
 // MDV_BLOCK:BEGIN id="DBX.XV2.CATALOG.010" intent="Load the real Xenoverse 2 catalog into the adapter the app uses" kind="module" tags="xv2,catalog"
 /** catalog.json holds the hand-written records; the skill sheet holds one short row per further skill. */
 const WRITTEN=data as unknown as Catalog;
-export const XV2_CATALOG:Catalog={...WRITTEN,options:[...WRITTEN.options,...expandSkillSheet(sheet as unknown as SkillSheet)]};
+/** Where the community damage tests measured a skill, its burst grade and any unknown cost come from that measurement. */
+export const XV2_CATALOG:Catalog={...WRITTEN,options:withDamageTests([...WRITTEN.options,...expandSkillSheet(sheet as unknown as SkillSheet)])};
 export const XV2_ADAPTER=createXv2Adapter(XV2_CATALOG,{
  owned:isOwned,
  intro:XV2_CATALOG.options.length

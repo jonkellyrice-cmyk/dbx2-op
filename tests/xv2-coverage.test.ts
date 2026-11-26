@@ -19,7 +19,8 @@ test("the curve rises all the way and never reaches 100", ()=>{
 test("Ice's two Ultimates no longer tie: the harder-hitting one scores higher on burst", ()=>{
  const x4=coverage(XV2_ADAPTER,build({...ICE,ultimate_2:"skill.ultimate.x4-kaioken-kamehameha"}));
  const sbc=coverage(XV2_ADAPTER,build({...ICE,ultimate_2:"skill.ultimate.special-beam-cannon"}));
- assert.ok(x4.burst_damage>sbc.burst_damage,x4.burst_damage+" vs "+sbc.burst_damage);
+ // Measured at their base cost of 3 bars: Special Beam Cannon 8,400, x4 Kaioken Kamehameha 6,030 (9,690 only with a 4th bar).
+ assert.ok(sbc.burst_damage>x4.burst_damage,sbc.burst_damage+" vs "+x4.burst_damage);
  assert.ok(sbc.control>x4.control,"and the unblockable one on control: "+sbc.control+" vs "+x4.control);
  for(const g of XV2_ADAPTER.goals)assert.ok(x4[g.id]<100&&sbc[g.id]<100,g.id);
 });

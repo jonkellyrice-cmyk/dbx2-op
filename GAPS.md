@@ -9,7 +9,7 @@ To fill a gap: add the source to `docs/ingest/catalog/sources.json` (with the pa
 | Values the sources disagree on | 11 |
 | Combo strings with no description | 34 |
 | Numbers no source gives | 56 |
-| Skills and other options: what's still unknown | 579 |
+| Skills and other options: what's still unknown | 574 |
 
 ## Values the sources disagree on
 
@@ -179,29 +179,29 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: control, mobility, crowd_handling
   - `price`: zeni amount not recorded
 - **Kamehameha**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Bending Kamehameha**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, reposition, auto_dodge
   - `price`: zeni amount not recorded
 - **Spirit Bomb**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
 - **Kaioken Kamehameha**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Riot Javelin**
-  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: sustained_damage, stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
 - **Tyrant Lancer**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, reposition, auto_dodge
 - **X10 Kamehameha**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Masenko**
-  - `tactical grades`: burst_damage, stamina_safety, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
 - **Menacing Flare**
   - `tactical grades`: stamina_safety, crowd_handling, survivability
@@ -210,7 +210,6 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
 - **Ki Blast Cannon**
   - `tactical grades`: ki_economy, stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
-  - `costs`: ki (activation)
   - `where to get it`: the source isn't recorded
 - **Finish Breaker**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
@@ -219,19 +218,19 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, mobility, crowd_handling
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Evil Explosion**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Light Grenade**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
 - **Evil Eyes**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Paralyze Beam**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Destructo-Disc**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
 - **Turtle Style Last Resort**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
@@ -243,7 +242,6 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
 - **Dodon Ray**
   - `tactical grades`: ki_economy, stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
-  - `costs`: ki (activation)
 - **Tri-Beam**
   - `tactical grades`: stamina_safety, mobility, crowd_handling
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
@@ -263,16 +261,16 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
 - **Galick Gun**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Flash Strike**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Shine Shot**
   - `tactical grades`: stamina_safety, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, auto_dodge
 - **Earth Splitting Galick Gun**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Recoome Eraser Gun**
   - `tactical grades`: sustained_damage, stamina_safety, mobility, crowd_handling, survivability
@@ -284,7 +282,7 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
 - **Death Beam**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Death Slash**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
@@ -296,10 +294,10 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **God Breaker**
-  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, mobility, crowd_handling
+  - `tactical grades`: sustained_damage, stamina_safety, mobility, crowd_handling
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Change The Future**
-  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, crowd_handling
+  - `tactical grades`: sustained_damage, stamina_safety, crowd_handling
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, projectile, tracking, reposition, auto_dodge
 - **Finish Buster**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
@@ -317,7 +315,7 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
 - **Perfect Shot**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
 - **Innocence Bullet**
   - `tactical grades`: sustained_damage, stamina_safety, mobility, crowd_handling, survivability
@@ -339,7 +337,7 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
 - **Big Bang Attack**
-  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, mobility, crowd_handling
+  - `tactical grades`: sustained_damage, stamina_safety, mobility, crowd_handling
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
   - `where to get it`: the source isn't recorded
 - **Split Finger Shot**
@@ -350,7 +348,7 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
 - **God of Destruction's Wrath**
-  - `tactical grades`: burst_damage, stamina_safety, survivability
+  - `tactical grades`: stamina_safety, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, auto_dodge
 - **Feint Shot**
   - `tactical grades`: stamina_safety, control, crowd_handling, survivability
@@ -424,7 +422,6 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
 - **Destruction's Concerto: Comet**
   - `tactical grades`: ki_economy, stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
-  - `costs`: ki (activation)
 - **God Splitter**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
@@ -432,9 +429,8 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, auto_dodge
 - **Sudden Death Beam**
-  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, crowd_handling
+  - `tactical grades`: sustained_damage, ki_economy, stamina_safety, crowd_handling
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
-  - `costs`: ki (activation)
 - **Trap Shooter**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
@@ -454,10 +450,10 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Death Meteor**
-  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling
+  - `tactical grades`: sustained_damage, stamina_safety, control, mobility, crowd_handling
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
 - **Justice Combination**
-  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: sustained_damage, stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Spirit Sword**
   - `tactical grades`: stamina_safety, mobility, survivability
@@ -469,22 +465,21 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Sword of Hope**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
   - `price`: tp_medal amount not recorded
 - **Instant Severance**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Super Kamehameha**
-  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+  - `tactical grades`: sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **X20 Kaioken Kamehameha**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Breaker Energy Wave**
-  - `tactical grades`: not graded on any goal
+  - `tactical grades`: sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
-  - `costs`: ki (activation)
 - **Super Ki Explosion**
   - `tactical grades`: stamina_safety, mobility, survivability
   - `flags`: guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
@@ -624,7 +619,7 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, mobility, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
 - **Soul Punisher**
-  - `tactical grades`: burst_damage, stamina_safety, control, mobility, survivability
+  - `tactical grades`: stamina_safety, control, mobility, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, reposition, auto_dodge
   - `price`: zeni amount not recorded
 - **Elegant Blaster**
@@ -695,7 +690,7 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `flags`: guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
   - `price`: zeni amount not recorded
 - **Energy Field**
-  - `tactical grades`: burst_damage, sustained_damage, ki_economy, mobility, crowd_handling
+  - `tactical grades`: sustained_damage, ki_economy, mobility, crowd_handling
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Force Shield**
   - `tactical grades`: ki_economy, mobility, crowd_handling
@@ -704,10 +699,10 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: ki_economy, mobility
   - `flags`: guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Absolute Zero**
-  - `tactical grades`: burst_damage, sustained_damage, ki_economy, mobility, crowd_handling
+  - `tactical grades`: sustained_damage, ki_economy, mobility, crowd_handling
   - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Fake Blast**
-  - `tactical grades`: burst_damage, sustained_damage, ki_economy, control, mobility, crowd_handling, survivability
+  - `tactical grades`: sustained_damage, ki_economy, control, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Energy Dome**
   - `tactical grades`: ki_economy, mobility, crowd_handling
@@ -746,33 +741,33 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
   - `price`: zeni amount not recorded
 - **Kaioken Assault**
-  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling
+  - `tactical grades`: sustained_damage, stamina_safety, control, mobility, crowd_handling
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
   - `where to get it`: the source isn't recorded
 - **Rebellion Spear**
-  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, crowd_handling, survivability
+  - `tactical grades`: sustained_damage, stamina_safety, control, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
 - **Shockwave**
-  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: sustained_damage, stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
   - `price`: zeni amount not recorded
 - **Kamehameha Boost**
-  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, crowd_handling, survivability
+  - `tactical grades`: sustained_damage, stamina_safety, control, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
   - `where to get it`: the source isn't recorded
 - **Scissors Paper Rock**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Power Pole**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
   - `price`: zeni amount not recorded
 - **Power Pole Combo**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
   - `where to get it`: the source isn't recorded
 - **Charge**
-  - `tactical grades`: burst_damage, stamina_safety, control, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, control, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Evil Ray Strike**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
@@ -795,7 +790,7 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Fake Death**
-  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling
+  - `tactical grades`: sustained_damage, stamina_safety, control, mobility, crowd_handling
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, projectile, tracking, reposition, auto_dodge
 - **Volleyball Fist**
   - `tactical grades`: sustained_damage, stamina_safety, mobility, crowd_handling, survivability
@@ -804,7 +799,7 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Sledgehammer**
-  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, stamina_break, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
   - `price`: zeni amount not recorded
 - **Mach Punch**
@@ -820,15 +815,15 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Drain Charge**
-  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: sustained_damage, stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
   - `price`: zeni amount not recorded
 - **Super Drain**
-  - `tactical grades`: burst_damage, sustained_damage, mobility, crowd_handling, survivability
+  - `tactical grades`: sustained_damage, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
   - `price`: zeni amount not recorded
 - **Hyper Drain**
-  - `tactical grades`: burst_damage, sustained_damage, mobility, crowd_handling, survivability
+  - `tactical grades`: sustained_damage, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
   - `price`: zeni amount not recorded
 - **Deadly Dance**
@@ -850,7 +845,7 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
 - **Go-Go Gum**
-  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `tactical grades`: sustained_damage, stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
   - `price`: zeni amount not recorded
 - **Pearl Flash**
@@ -858,7 +853,7 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
   - `price`: zeni amount not recorded
 - **Pressure Sign**
-  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, crowd_handling
+  - `tactical grades`: sustained_damage, stamina_safety, crowd_handling
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
   - `price`: zeni amount not recorded
 - **Gigantic Omega**
@@ -874,13 +869,13 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Meteor Blow**
-  - `tactical grades`: burst_damage, stamina_safety, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
 - **Meteor Strike**
-  - `tactical grades`: burst_damage, stamina_safety, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
 - **Meteor Crash**
-  - `tactical grades`: burst_damage, stamina_safety, control, mobility, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, control, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Android Kick**
   - `tactical grades`: stamina_safety, control, crowd_handling, survivability
@@ -911,7 +906,7 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Feint Crash**
-  - `tactical grades`: burst_damage, stamina_safety, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
 - **Shadow Crusher**
   - `tactical grades`: stamina_safety, mobility, crowd_handling
@@ -924,7 +919,7 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
   - `price`: zeni amount not recorded
 - **Super Mad Dance**
-  - `tactical grades`: burst_damage, stamina_safety, crowd_handling, survivability
+  - `tactical grades`: stamina_safety, crowd_handling, survivability
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
   - `price`: zeni amount not recorded
 - **Dodoria Headbutt**
@@ -947,7 +942,7 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, mobility, crowd_handling
   - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **God of Destruction's Roar**
-  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, mobility, crowd_handling
+  - `tactical grades`: sustained_damage, stamina_safety, mobility, crowd_handling
   - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
 - **Holy Inscription**
   - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability

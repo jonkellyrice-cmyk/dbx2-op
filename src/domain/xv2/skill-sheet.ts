@@ -18,7 +18,7 @@ export type SheetRow={
  key:string;
  /** Ki used, in points as the wiki gives it (100 is one bar); null when the page doesn't say. */
  ki:number|null;ki_note?:string;
- description:string;
+ description:string|null;
  /** Only flags the source states as true. Everything else is recorded as unknown, never as false. */
  flags?:readonly string[];tags?:readonly string[];
  /** The wiki's damage figure in percent, with what it covers. */
@@ -76,7 +76,7 @@ function expandRow(row:SheetRow,version:string):Option{
   flags:Object.fromEntries(FLAGS.map(f=>[f,E.flag(row.flags?.includes(f)?true:null,K)])),
   effect_clauses:effects,acquisition_options:acquisition,
   input_profile:{press_pattern:row.press??"unknown",extra_input_required:E.flag(null,K),notes:null},
-  targeting:null,measurement_notes:"In-game description: \""+row.description+"\""+(row.notes?" "+row.notes:""),documentation_only:{animation_id:null,vfx_id:null,sfx_id:null},
+  targeting:null,measurement_notes:(row.description!==null?"In-game description: \""+row.description+"\"":"The source doesn't quote the in-game description.")+(row.notes?" "+row.notes:""),documentation_only:{animation_id:null,vfx_id:null,sfx_id:null},
   tactical_grades:grades,catalog_coverage:{role_tags:"partial",effects:"partial",flags:"partial",costs:row.ki!==null?"complete":"unknown"}};
  return record as unknown as Option;
 }

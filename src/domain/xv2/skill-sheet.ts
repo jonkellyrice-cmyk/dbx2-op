@@ -21,6 +21,8 @@ export type SheetRow={
  /** An Evasive's stamina used, in points as the wiki gives it (100 is one bar); null when the page doesn't say. */
  stamina?:number|null;stamina_note?:string;
  description:string|null;
+ /** Set only when the source says the skill is locked to some character types; otherwise every type can use it. */
+ only?:readonly string[];
  /** Only flags the source states as true. Everything else is recorded as unknown, never as false. */
  flags?:readonly string[];tags?:readonly string[];
  /** The wiki's damage figure in percent, with what it covers. */
@@ -77,7 +79,7 @@ function expandRow(row:SheetRow,version:string):Option{
   :{resource:"ki",points:row.ki??null,unit:"ki_bars",note:KI_NOTE,condition:row.ki_note??null};
  const cost={resource:paid.resource,phase:"activation",amount:paid.points!==null?E.num(paid.points/100,paid.unit,[...K,OWNER],paid.note):E.unknownNum(paid.unit,K,paid.note),condition:paid.condition};
  const record={id,name:row.name[0].toUpperCase()+row.name.slice(1),spec_ref:"§6.2",version,evidence:E.ev(K),slot_family:row.slot,classification:row.kind,
-  eligibility:{archetypes:{status:"known",values:ALL},required_entitlements:[],required_flags:[],mode_allowlist:null,notes:"Not race-locked: it isn't on any race's exclusive-skill list on the race pages."},
+  eligibility:{archetypes:{status:"known",values:row.only??ALL},required_entitlements:[],required_flags:[],mode_allowlist:null,notes:row.only?"Locked to these character types, per its wiki page.":"Not race-locked: it isn't on any race's exclusive-skill list on the race pages."},
   cost_schedule:[cost],
   role_tags:(row.tags??[]).map(tag=>({tag,evidence:E.ev(K)})),
   flags:Object.fromEntries(FLAGS.map(f=>[f,E.flag(row.flags?.includes(f)?true:null,K)])),

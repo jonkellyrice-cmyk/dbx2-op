@@ -16,8 +16,10 @@ export type SheetRow={
  name:string;slot:"super"|"ultimate"|"evasive";kind:"strike"|"ki_blast"|"power_up"|"other";
  /** The wiki page the row was read from; its key in sources.json is WIKI- plus the name in capitals. */
  key:string;
- /** Ki used, in points as the wiki gives it (100 is one bar); null when the page doesn't say. */
- ki:number|null;ki_note?:string;
+ /** Ki used, in points as the wiki gives it (100 is one bar); null when the page doesn't say. Evasives leave it out. */
+ ki?:number|null;ki_note?:string;
+ /** An Evasive's stamina used, in points as the wiki gives it (100 is one bar); null when the page doesn't say. */
+ stamina?:number|null;stamina_note?:string;
  description:string|null;
  /** Only flags the source states as true. Everything else is recorded as unknown, never as false. */
  flags?:readonly string[];tags?:readonly string[];
@@ -34,6 +36,7 @@ const GOALS:readonly SheetGoal[]=["burst_damage","sustained_damage","ki_economy"
 const FLAGS=["hit","aoe","guard_break","stamina_break","armor_answer","super_armor","invulnerability","projectile","tracking","reposition","auto_dodge"];
 const OWNER="OWNER-OBSERVATION";
 const KI_NOTE="The wiki gives Ki used in points; 100 Ki is one bar (owner, in game).";
+const STAMINA_NOTE="The wiki gives stamina used in points; 100 stamina is one bar (owner, in game).";
 function envelopes(version:string){
  const ev=(keys:readonly string[],notes:string|null=null,verification="documented",status="game")=>({status,verification,source_keys:[...keys],version,notes});
  const unknownEv=(keys:readonly string[],notes:string)=>ev(keys,notes,"unknown","verify");
@@ -69,15 +72,19 @@ function expandRow(row:SheetRow,version:string):Option{
  const grades=Object.fromEntries(GOALS.map(goal=>{const given=row.grades[goal];return [goal,given
   ?{status:"known",value:given[0],evidence:{status:"model",verification:"derived",source_keys:K,version,notes:"MODEL grade from the recorded mechanics; see docs/ingest/catalog/GRADING.md."},reason:given[1]}
   :{status:"unknown",value:null,evidence:E.unknownEv(K,"Not graded yet."),reason:"Not graded: nothing recorded about this option bears on this goal yet."}];}));
+ // An Evasive is paid for in stamina; a Super or an Ultimate in Ki. An amount the row doesn't give stays unknown.
+ const paid=row.slot==="evasive"?{resource:"stamina",points:row.stamina??null,unit:"stamina_bars",note:STAMINA_NOTE,condition:row.stamina_note??null}
+  :{resource:"ki",points:row.ki??null,unit:"ki_bars",note:KI_NOTE,condition:row.ki_note??null};
+ const cost={resource:paid.resource,phase:"activation",amount:paid.points!==null?E.num(paid.points/100,paid.unit,[...K,OWNER],paid.note):E.unknownNum(paid.unit,K,paid.note),condition:paid.condition};
  const record={id,name:row.name[0].toUpperCase()+row.name.slice(1),spec_ref:"§6.2",version,evidence:E.ev(K),slot_family:row.slot,classification:row.kind,
   eligibility:{archetypes:{status:"known",values:ALL},required_entitlements:[],required_flags:[],mode_allowlist:null,notes:"Not race-locked: it isn't on any race's exclusive-skill list on the race pages."},
-  cost_schedule:[{resource:"ki",phase:"activation",amount:row.ki!==null?E.num(row.ki/100,"ki_bars",[...K,OWNER],KI_NOTE):E.unknownNum("ki_bars",K,KI_NOTE),condition:row.ki_note??null}],
+  cost_schedule:[cost],
   role_tags:(row.tags??[]).map(tag=>({tag,evidence:E.ev(K)})),
   flags:Object.fromEntries(FLAGS.map(f=>[f,E.flag(row.flags?.includes(f)?true:null,K)])),
   effect_clauses:effects,acquisition_options:acquisition,
   input_profile:{press_pattern:row.press??"unknown",extra_input_required:E.flag(null,K),notes:null},
   targeting:null,measurement_notes:(row.description!==null?"In-game description: \""+row.description+"\"":"The source doesn't quote the in-game description.")+(row.notes?" "+row.notes:""),documentation_only:{animation_id:null,vfx_id:null,sfx_id:null},
-  tactical_grades:grades,catalog_coverage:{role_tags:"partial",effects:"partial",flags:"partial",costs:row.ki!==null?"complete":"unknown"}};
+  tactical_grades:grades,catalog_coverage:{role_tags:"partial",effects:"partial",flags:"partial",costs:paid.points!==null?"complete":"unknown"}};
  return record as unknown as Option;
 }
 export function expandSkillSheet(sheet:SkillSheet):Option[]{

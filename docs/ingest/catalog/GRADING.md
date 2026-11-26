@@ -18,3 +18,19 @@ For each goal the engine stacks the loadout's option scores: the best counts ful
 | Crowd handling | Only when a source says it covers an area: an explosion that hits every enemy nearby → 3; "a wide range" with no area damage recorded → 2. |
 | Survivability | A QQ Bang's top health boost (5, about +1,500 HP, roughly 15% of a bar) → 3; an escape that knocks away or stuns the attackers around you, or a barrier that blocks every attack while it is up → 3; blocks some incoming attacks, an escape that only moves you out of reach, a defensive Limit Burst, or temporary Super Armor (no flinching, the damage still taken) → 2; damage taken from stamina instead of health for a time → 3; an Awoken skill that takes 5–10% less damage → 2, or that dodges basic attacks automatically → 3; makes you take more damage, or leaves you tired afterwards → 1. |
 | Stamina safety | A QQ Bang's top stamina boost (5, about +2 bars) → 4; +5% stamina recovery → 2; a skill that restores one stamina bar whenever you use it → 3; a Power Up's temporary +20% or more to stamina recovery → 3; damage that drains your stamina while your regeneration is reduced → 1; an Awoken skill that drains stamina the whole time, or spends a bar on every automatic dodge → 1. A grab that steals stamina when it lands: 2 bars → 3, 1 bar → 2. An Evasive's cost (100 stamina is one bar): 1 bar → 4, 2 bars → 3, 3 bars → 2, 4 or more → 1. |
+
+## Super Souls
+
+A Super Soul's grades are worked out from the lines of the wiki's Super Soul list by fixed rules, so the same line always gets the same grade. Each reason quotes the line it rests on. A condition counts as **always on** (`[Always]`), **conditional** (a state you have to hold: Ki or stamina maxed, health above or below a mark, a transformation) or **triggered** (an event: battle start, a KO, a Just Guard, a guard break, using a named skill, "once only").
+
+| Goal | What sets the grade |
+|---|---|
+| Burst damage | A boost to Ki Blast skills, Strike skills, Super Attacks, Ultimate Attacks or all attacks: under 10% → 2, 10–19% → 3, 20–34% → 4, 35% or more → 5 when always on; one grade lower when conditional or triggered. A boost to one kind of skill only is graded the same and its reason says which kind. A soul that lowers all attack damage or Ki Blast skill damage, or seals skills → 1. |
+| Sustained damage | A boost to basic attacks, normal or charged Ki Blasts, or all attacks, on the same bands. |
+| Ki economy | Ki Auto-Recovery that is always on → 4; one of 50% or more that needs a condition or trigger → 3; a smaller one → 2. More Ki from fighting: always on → 3, otherwise → 2. A full Ki refill on a trigger → 3; a partial one → 2. A much bigger Ki pool → 3. Ki that can't deplete for a short time → 2. A Ki drain → 1. |
+| Stamina safety | Stamina recovery speed: +20% or more → 3, less → 2. Stamina recovery or a refill that needs a trigger → 2. A much bigger stamina pool → 4. |
+| Control | A slow-down on the opponent, or extra stamina damage to them → 2. |
+| Mobility | A movement buff of 10% or more, always on or conditional → 3; a short one on a trigger → 2; a soul that slows you → 1. |
+| Survivability | Taking less damage, health recovery, a health refill, a quicker revive of your own, or an opponent made to hit less hard → 2. Taking more damage or losing health → 1. With none of these, a defensive Limit Burst → 2. |
+
+A boost that stacks is graded at half its full stack. A line that depends on who you fight (the opponent's gender), on allies only, or on rewards after the battle is not graded. A penalty line sets its goal to 1 even when another line would raise it.

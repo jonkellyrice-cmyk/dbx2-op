@@ -9,7 +9,7 @@ To fill a gap: add the source to `docs/ingest/catalog/sources.json` (with the pa
 | Values the sources disagree on | 11 |
 | Combo strings with no description | 34 |
 | Numbers no source gives | 56 |
-| Skills and other options: what's still unknown | 666 |
+| Skills and other options: what's still unknown | 759 |
 
 ## Values the sources disagree on
 
@@ -1090,3 +1090,188 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
   - `tactical grades`: stamina_safety, control, mobility, crowd_handling
 - **Super Saiyan God Super Saiyan (Evolved)**
   - `tactical grades`: stamina_safety, control, mobility, crowd_handling
+- **"Hee Hee Sunglasses"**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"Your power is 5? ...Scum."**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"I must tell Lord Frieza..."**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"Tch... Guess I have no choice."**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"Keeeeeeeee!!"**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"Get lost before I send you flying."**
+  - `tactical grades`: burst_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"Unleash your power!!"**
+  - `tactical grades`: ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"Kieeeee!!"**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, mobility, crowd_handling, survivability
+- **"I'm the fastest in the universe!"**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, crowd_handling, survivability
+- **"We're the one and only Ginyu Force!"**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, control, mobility, crowd_handling
+- **"Let me show you how it's done."**
+  - `tactical grades`: burst_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"I'm nothing like my brother!"**
+  - `tactical grades`: burst_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"I've come back from the dead..."**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"That looks fun!"**
+  - `tactical grades`: sustained_damage, ki_economy, stamina_safety, control, crowd_handling
+- **"Time to go Super Saiyan!"**
+  - `tactical grades`: sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"I won't use my full power yet!"**
+  - `tactical grades`: burst_damage, sustained_damage, control, mobility, crowd_handling
+- **"Killed all Earthlings!"**
+  - `tactical grades`: burst_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"It's okay! I'll fix you!"**
+  - `tactical grades`: not graded on any goal
+- **"Thanks, Dende!"**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"Everyone, lend me your energy!"**
+  - `tactical grades`: sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"Flying Nimbus!!"**
+  - `tactical grades`: ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"Tien, please don't die"**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling
+- **"You cocky little...!"**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"Body, don't let me down!"**
+  - `tactical grades`: burst_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"Welcome to the end of the line!"**
+  - `tactical grades`: ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"Saiyans are a warrior race!!"**
+  - `tactical grades`: sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"Your life is mine! Toh!"**
+  - `tactical grades`: ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"I must protect Grand Elder Guru!"**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"Drop dead!!!"**
+  - `tactical grades`: ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"That offer's expired..."**
+  - `tactical grades`: ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"Goku the legendary Super Saiyan!"**
+  - `tactical grades`: sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"The real hell begins here!"**
+  - `tactical grades`: ki_economy, stamina_safety, mobility, crowd_handling, survivability
+- **"I can easily regenerate this."**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"I wanted to kill you with my own hands."**
+  - `tactical grades`: sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+- **"Why would I ever do that?!"**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"I'm still not used to this form!"**
+  - `tactical grades`: sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+- **"Buu will eat you..."**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"Reaper of Justice, Super Gotenks!"**
+  - `tactical grades`: burst_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"I came to kill you..."**
+  - `tactical grades`: burst_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"I...hate you!!!"**
+  - `tactical grades`: sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"I delivered Chiaotzu and Yamcha."**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"Revival of the Demon Realm is at hand"**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling
+- **"Unleash your power! Do it!"**
+  - `tactical grades`: sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"Turn into candy!"**
+  - `tactical grades`: burst_damage, sustained_damage, control, mobility, crowd_handling
+- **"You're Just Pieces in a Game"**
+  - `tactical grades`: sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"Me...Protecting Some Pipsqueak"**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"Get serious, would you?"**
+  - `tactical grades`: sustained_damage, ki_economy, stamina_safety, mobility, crowd_handling
+- **"I'm thinking of becoming a GodTuber."**
+  - `tactical grades`: ki_economy, stamina_safety, control, crowd_handling, survivability
+- **"For beauty! For elegance! For love!"**
+  - `tactical grades`: sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"I am the universe's strongest!"**
+  - `tactical grades`: burst_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"I got back my youth and vigor!"**
+  - `tactical grades`: burst_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"I'll never forgive you, scum!"**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"I'm neither Kami nor Piccolo..."**
+  - `tactical grades`: sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"A power-biased transformation..."**
+  - `tactical grades`: burst_damage, ki_economy, stamina_safety, control, crowd_handling
+- **"Hmm Hmm Hmmm! Hm Hmmm! Hmmm!"**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"I'll use all my strength to kill you."**
+  - `tactical grades`: burst_damage, stamina_safety, control, mobility, crowd_handling, survivability
+- **"The gold represents the new me."**
+  - `tactical grades`: burst_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"And don't come back again!"**
+  - `tactical grades`: stamina_safety, control, mobility, crowd_handling, survivability
+- **"This is a real Kamehameha!"**
+  - `tactical grades`: sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"I hope you're reborn as someone good this time."**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling
+- **"You and the Earth shall be destroyed!"**
+  - `tactical grades`: ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"I'll crush the Universe with my bare hands!"**
+  - `tactical grades`: burst_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"Very well, I shall return time."**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"Buu Don't Wanna!"**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, control, mobility, crowd_handling
+- **"This Super Saiyan 2 is crazy strong!"**
+  - `tactical grades`: burst_damage, stamina_safety, control, mobility, crowd_handling, survivability
+- **"All together now! The Ginyu Force!"**
+  - `tactical grades`: burst_damage, sustained_damage, control, mobility, crowd_handling
+- **"Try dodging this! Cross Arm Dive!"**
+  - `tactical grades`: ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"Dodon Ray!"**
+  - `tactical grades`: burst_damage, stamina_safety, control, mobility, crowd_handling, survivability
+- **"You irritating little pests!"**
+  - `tactical grades`: sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"You honestly thought you could beat me?!"**
+  - `tactical grades`: stamina_safety, control, mobility, crowd_handling
+- **"Power! A lotta power! It's great!"**
+  - `tactical grades`: burst_damage, sustained_damage, control, mobility, crowd_handling
+- **"Who the hell're you bastards?!"**
+  - `tactical grades`: sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+- **"Please, you gotta believe me!"**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, mobility, crowd_handling
+- **"Who is my next target?"**
+  - `tactical grades`: ki_economy, stamina_safety, control, crowd_handling, survivability
+- **"I-I was going to escape with you..."**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, control, mobility, crowd_handling
+- **"I'd rather fight alone and die!"**
+  - `tactical grades`: stamina_safety, control, mobility, crowd_handling
+- **"You're not taking this away from us!"**
+  - `tactical grades`: not graded on any goal
+- **"Destroying this planet is our only option!"**
+  - `tactical grades`: ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"I actually felt that one..."**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, mobility, crowd_handling
+- **"40 ton weights!"**
+  - `tactical grades`: not graded on any goal
+- **"Take care... of your mother..."**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling
+- **"I will defeat you!"**
+  - `tactical grades`: sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+- **"Someone, satisfy me..."**
+  - `tactical grades`: ki_economy, stamina_safety, control, mobility, crowd_handling, survivability
+- **"Watch Your Tongue"**
+  - `tactical grades`: burst_damage, sustained_damage, control, mobility, crowd_handling
+- **"How Dare You...! That's My Bulma!"**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, stamina_safety, control, mobility, crowd_handling
+- **"I shall show you my great godly might!"**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+- **"I said don't go easy on me!"**
+  - `tactical grades`: sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+- **"Let's make this interesting!"**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+- **"That belongs to the Red Ribbon Army!"**
+  - `tactical grades`: not graded on any goal
+- **"Something deadly's about to happen..."**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, control, mobility, crowd_handling
+- **"Here I go!"**
+  - `tactical grades`: burst_damage, sustained_damage, ki_economy, control, mobility, crowd_handling
+- **"I'll grant you just one wish."**
+  - `tactical grades`: control, mobility, crowd_handling
+  - `where to get it`: the source isn't recorded

@@ -172,7 +172,7 @@ From docs/ingest/catalog/catalog.json. Ungraded options score as unknown, not ze
 - **"HAAAAA!"**
   - `tactical grades`: sustained_damage, stamina_safety, control, mobility, crowd_handling
   - `price`: tp_medal, stp_medal amount not recorded
-- **QQ Bang: max Health, Ki and Stamina**
+- **QQ Bang: Ice's equipped (Health, Ki, Stamina +5; Basic +1; Ki Blast +3)**
   - `tactical grades`: burst_damage, sustained_damage, control, mobility, crowd_handling
   - `price`: zeni amount not recorded
 - **QQ Bang: ranged target (+5 all but Strike Supers, which is -5)**

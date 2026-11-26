@@ -14,7 +14,9 @@ test("every sheet row names a recorded source and a skill that isn't already han
  const sources=new Set((read("sources.json").sources as {key:string}[]).map(s=>s.key));
  const written=new Set((read("catalog.json").options as {id:string}[]).map(o=>o.id));
  for(const r of SHEET.rows){
-  assert.equal(r.key,"WIKI-"+sheetSlug(r.name).toUpperCase(),r.name);
+  const base="WIKI-"+sheetSlug(r.name).toUpperCase();
+  // A Super and an Ultimate can share a name but not a wiki page: the second one adds its slot to the key.
+  assert.ok(r.key===base||r.key===base+"-"+r.slot.toUpperCase(),r.name+": key "+r.key);
   assert.ok(sources.has(r.key),r.name+": "+r.key+" is not in sources.json");
   assert.ok(!written.has("skill."+r.slot+"."+sheetSlug(r.name)),r.name+" is already in catalog.json");
  }

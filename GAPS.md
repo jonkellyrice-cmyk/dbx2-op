@@ -9,7 +9,7 @@ To fill a gap: add the source to `docs/ingest/catalog/sources.json` (with the pa
 | Values the sources disagree on | 11 |
 | Combo strings with no description | 34 |
 | Numbers no source gives | 56 |
-| Skills and other options: what's still unknown | 322 |
+| Skills and other options: what's still unknown | 364 |
 
 ## Values the sources disagree on
 
@@ -594,3 +594,64 @@ From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options sco
 - **Maiden Blast**
   - `tactical grades`: stamina_safety, mobility, survivability
   - `flags`: guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **X100 Big Bang Kamehameha**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Serious Bomb**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
+  - `price`: tp_medal amount not recorded
+- **Symphonic Destruction**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Super Galick Gun**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: tp_medal amount not recorded
+- **Hell Flash**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Supernova Cooler**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
+- **One-Handed Kamehameha mk.II**
+  - `tactical grades`: stamina_safety, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+- **Meteor Burst**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Dimension Ray**
+  - `tactical grades`: stamina_safety, mobility, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
+- **Soul Punisher**
+  - `tactical grades`: burst_damage, stamina_safety, control, mobility, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **Elegant Blaster**
+  - `tactical grades`: stamina_safety, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, auto_dodge
+- **Dodoria Launcher**
+  - `tactical grades`: stamina_safety, mobility, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
+- **Mystic Flash**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Timespace Impact**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, reposition, auto_dodge
+- **Godly Chronos Cannon**
+  - `tactical grades`: stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, tracking, reposition, auto_dodge
+- **Body Change**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **The Savior Has Come**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, control, mobility, crowd_handling, survivability
+  - `flags`: hit, aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+- **Energy Zone**
+  - `tactical grades`: burst_damage, sustained_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: hit, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge
+  - `price`: zeni amount not recorded
+- **DUAL Special Beam Cannon**
+  - `tactical grades`: burst_damage, stamina_safety, mobility, crowd_handling, survivability
+  - `flags`: aoe, guard_break, stamina_break, armor_answer, super_armor, invulnerability, projectile, tracking, reposition, auto_dodge

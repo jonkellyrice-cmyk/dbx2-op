@@ -1,3 +1,32 @@
-# No community claims ingested; unknown remains unknown.
+# Player-community claims and how each was resolved (spec §24.1). Only a confirmed finding with a
+# resolution and an acceptance case may change a verified assumption; until then the catalog keeps
+# the claim's numbers out of known values, or marks grades built on them as community estimates.
 version: "3.1"
-findings: []
+findings:
+  - id: C-001
+    claim: "Each QQ Bang arrow is worth Health +300 HP, Max Ki +40 Ki (0.4 bars) and Max Stamina +40 stamina (0.4 bars); +5 is +1,500 HP, +2 Ki bars, +2 stamina bars."
+    context: { mode: all, patch: "unknown" }
+    sources: [{ ref: "Reddit and Steam Community, gathered in the owner's research chat (COMMUNITY-QQ-ARROWS)", date: 2026-11-26 }]
+    agreement: several
+    tested_by_us: false
+    optimizer_says: "QQ Bang grades for health, Ki and stamina cite these values as community estimates (catalog.json, GRADING.md)."
+    status: open
+    resolution: "Partly backed by the wiki's Attributes page (R3, revision 12369): a +5 Ki QQ Bang adds two Ki bars at levels 50-99, and one health bar is 10,000 HP. The per-arrow health figure is not on the wiki. Confirm in game with a stat screen."
+  - id: C-002
+    claim: "Each QQ Bang damage arrow (Basic Attacks, Strike Supers, Ki Blast Supers) is worth about 1% damage."
+    context: { mode: all, patch: "unknown" }
+    sources: [{ ref: "Reddit and Steam Community, gathered in the owner's research chat (COMMUNITY-QQ-ARROWS)", date: 2026-11-26 }]
+    agreement: several
+    tested_by_us: false
+    optimizer_says: "Uses the wiki figure instead: +5 adds about 6.66% with no attribute points in that stat, less as points are added."
+    status: rejected
+    resolution: "The wiki's Attributes page (R3, revision 12369) gives 6.66% for +5 at no attribute points, falling 0.01% per point (5.41% at 125); a -5 costs 6.66%, falling 0.005% per point. The owner's later research agrees (about 1.33% per arrow)."
+  - id: C-003
+    claim: "Ki and stamina arrows are worth about 67% more, in equivalent attribute points, than the other arrows (one arrow is about 16.7 points of Ki or Stamina, about 10 points of the rest)."
+    context: { mode: all, patch: "unknown" }
+    sources: [{ ref: "The owner's research chat, from community testing (Steam Community and others)", date: 2026-11-26 }]
+    agreement: single
+    tested_by_us: false
+    optimizer_says: "Grades a QQ Bang's +5 Ki 3 and +5 Stamina 4, above its +5 damage arrows (2)."
+    status: open
+    resolution: "Consistent with the wiki (R3): about 42 attribute points per Ki bar at levels 50-99 (45 at level 120), so +5 Ki (two bars) is about 84 points, while 50 points of a damage attribute is 5%. Not tested in game."

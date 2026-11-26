@@ -25,14 +25,14 @@ Two sources give different answers, so the value is held as unknown until one is
 - **Saiyan (female)**
   - `revive-damage`: The wiki gives +7.5% damage after reviving; a 2025 community guide gives a 10% damage boost ('Zenkai boost') for Saiyans. Held as unknown until confirmed.
 - **Body type Thin**
-  - `strike and basic damage bonus`: The CaC page's table gives thin 0% / 7%, average 3.5% / 3.5%, thick 7% / 0% (strike and basic / Ki Super); its prose says thin is +3% Ki and -3% strike, thick the opposite, average neutral. Unknown until one is confirmed in game.
-  - `Ki Super damage bonus`: The CaC page's table gives thin 0% / 7%, average 3.5% / 3.5%, thick 7% / 0% (strike and basic / Ki Super); its prose says thin is +3% Ki and -3% strike, thick the opposite, average neutral. Unknown until one is confirmed in game.
+  - `strike and basic damage bonus`: Three readings disagree (strike and basic / Ki Super): the CaC page's table gives thin 0% / 7%, average 3.5% / 3.5%, thick 7% / 0%; its prose says thin is +3% Ki and -3% strike, thick the opposite, average neutral; the Attributes page gives thin 0% / 3%, average 1.5% / 1.5%, thick 3% / 0%. Unknown until one is confirmed in game.
+  - `Ki Super damage bonus`: Three readings disagree (strike and basic / Ki Super): the CaC page's table gives thin 0% / 7%, average 3.5% / 3.5%, thick 7% / 0%; its prose says thin is +3% Ki and -3% strike, thick the opposite, average neutral; the Attributes page gives thin 0% / 3%, average 1.5% / 1.5%, thick 3% / 0%. Unknown until one is confirmed in game.
 - **Body type Average**
-  - `strike and basic damage bonus`: The CaC page's table gives thin 0% / 7%, average 3.5% / 3.5%, thick 7% / 0% (strike and basic / Ki Super); its prose says thin is +3% Ki and -3% strike, thick the opposite, average neutral. Unknown until one is confirmed in game.
-  - `Ki Super damage bonus`: The CaC page's table gives thin 0% / 7%, average 3.5% / 3.5%, thick 7% / 0% (strike and basic / Ki Super); its prose says thin is +3% Ki and -3% strike, thick the opposite, average neutral. Unknown until one is confirmed in game.
+  - `strike and basic damage bonus`: Three readings disagree (strike and basic / Ki Super): the CaC page's table gives thin 0% / 7%, average 3.5% / 3.5%, thick 7% / 0%; its prose says thin is +3% Ki and -3% strike, thick the opposite, average neutral; the Attributes page gives thin 0% / 3%, average 1.5% / 1.5%, thick 3% / 0%. Unknown until one is confirmed in game.
+  - `Ki Super damage bonus`: Three readings disagree (strike and basic / Ki Super): the CaC page's table gives thin 0% / 7%, average 3.5% / 3.5%, thick 7% / 0%; its prose says thin is +3% Ki and -3% strike, thick the opposite, average neutral; the Attributes page gives thin 0% / 3%, average 1.5% / 1.5%, thick 3% / 0%. Unknown until one is confirmed in game.
 - **Body type Thick**
-  - `strike and basic damage bonus`: The CaC page's table gives thin 0% / 7%, average 3.5% / 3.5%, thick 7% / 0% (strike and basic / Ki Super); its prose says thin is +3% Ki and -3% strike, thick the opposite, average neutral. Unknown until one is confirmed in game.
-  - `Ki Super damage bonus`: The CaC page's table gives thin 0% / 7%, average 3.5% / 3.5%, thick 7% / 0% (strike and basic / Ki Super); its prose says thin is +3% Ki and -3% strike, thick the opposite, average neutral. Unknown until one is confirmed in game.
+  - `strike and basic damage bonus`: Three readings disagree (strike and basic / Ki Super): the CaC page's table gives thin 0% / 7%, average 3.5% / 3.5%, thick 7% / 0%; its prose says thin is +3% Ki and -3% strike, thick the opposite, average neutral; the Attributes page gives thin 0% / 3%, average 1.5% / 1.5%, thick 3% / 0%. Unknown until one is confirmed in game.
+  - `Ki Super damage bonus`: Three readings disagree (strike and basic / Ki Super): the CaC page's table gives thin 0% / 7%, average 3.5% / 3.5%, thick 7% / 0%; its prose says thin is +3% Ki and -3% strike, thick the opposite, average neutral; the Attributes page gives thin 0% / 3%, average 1.5% / 1.5%, thick 3% / 0%. Unknown until one is confirmed in game.
 
 ## Combo strings with no description
 

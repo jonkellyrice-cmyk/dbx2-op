@@ -11,7 +11,7 @@ import type {Option} from "./records";
 // MDV_BLOCK:BEGIN id="DBX.XV2.SHEET.010" intent="Name what one row of the skill sheet may say" kind="types" tags="xv2,catalog,sheet"
 export type SheetGoal="burst_damage"|"sustained_damage"|"ki_economy"|"stamina_safety"|"control"|"mobility"|"crowd_handling"|"survivability";
 /** Where to get it: the Skill Shop, an instructor, a Parallel Quest, or not recorded by the source. */
-export type SheetGet={shop:true}|{instructor:string}|{pq:string}|{unknown:string};
+export type SheetGet={shop:true}|{instructor:string}|{pq:string}|{tp:true}|{expert:string}|{unknown:string};
 export type SheetRow={
  name:string;slot:"super"|"ultimate"|"evasive";kind:"strike"|"ki_blast"|"power_up"|"other";
  /** The wiki page the row was read from; its key in sources.json is WIKI- plus the name in capitals. */
@@ -51,12 +51,14 @@ function expandRow(row:SheetRow,version:string):Option{
  const E=envelopes(version),K=[row.key],id="skill."+row.slot+"."+sheetSlug(row.name);
  const route=(source:string,source_id:string|null,o:{prereq?:string[];repeat?:string;notes?:string|null;price?:object[];evidence?:object}={})=>({
   spec_ref:"§11.2",version,evidence:o.evidence??E.ev(K),source,source_id,prerequisites:o.prereq??[],price:o.price??[],
-  drop_probability:source==="pq_drop"?E.unknownNum("probability",K,"The drop chance isn't recorded."):E.notApplicable("probability",K,"Not a drop."),
+  drop_probability:source==="pq_drop"||source==="expert_mission_drop"?E.unknownNum("probability",K,"The drop chance isn't recorded."):E.notApplicable("probability",K,"Not a drop."),
   rotation:{status:"unknown",schedule:null},repeatability:o.repeat??"one_time",notes:o.notes??null});
  const g=row.get;
  const acquisition="shop" in g?[route("zeni_shop","skill_shop",{price:[{currency:"zeni",amount:E.unknownNum("zeni",K,"Price not recorded."),item_id:null}],notes:"Sold in the Skill Shop."})]
   :"instructor" in g?[route("instructor",g.instructor,{prereq:["Train with "+g.instructor]})]
   :"pq" in g?[route("pq_drop",g.pq,{repeat:"repeatable",notes:"A Parallel Quest reward; the drop chance isn't recorded."})]
+  :"tp" in g?[route("tp_medal_shop",null,{price:[{currency:"tp_medal",amount:E.unknownNum("tp_medal",K,"Price not recorded."),item_id:null}],notes:"Sold in the TP Medal Shop, whose stock rotates."})]
+  :"expert" in g?[route("expert_mission_drop",g.expert,{repeat:"repeatable",notes:"An Expert Mission reward; the drop chance isn't recorded."})]
   :[route("unknown",null,{notes:g.unknown,evidence:E.unknownEv(K,"Source not recorded.")})];
  const effects=row.damage?[{id:"effect."+row.key.toLowerCase().replace("wiki-","")+"-damage",spec_ref:"§11.2",version,evidence:E.ev(K),trigger:{event:"on_hit",predicates:[],when:"on_event",notes:null},targets:["target"],
   operation:"apply_damage",property:"health",magnitude:E.num(row.damage.percent,"wiki_damage_percent",K,"The wiki's damage figure; the baseline it is a percent of isn't stated."),

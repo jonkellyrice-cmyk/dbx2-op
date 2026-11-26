@@ -40,4 +40,9 @@ test("Ki is recorded in bars, grades as MODEL judgments, and two rows can't make
  assert.deepEqual([o.tactical_grades.burst_damage.value,o.tactical_grades.burst_damage.evidence.status],[4,"model"]);
  const two=row({});assert.throws(()=>expandSkillSheet({...two,rows:[...two.rows,...two.rows]}),/same id/);
 });
+test("a row can name the TP Medal Shop or an Expert Mission as its source", ()=>{
+ const [tp,ex]=expandSkillSheet({about:"",version:"v",rows:[{...row({get:{tp:true}}).rows[0]},{...row({get:{expert:"5 (\"The Galactic Tyrant\")"}}).rows[0],name:"Test Wave",key:"WIKI-TEST-WAVE"}]}) as unknown as Record<string,any>[];
+ assert.deepEqual([tp.acquisition_options[0].source,tp.acquisition_options[0].price[0].currency,tp.acquisition_options[0].price[0].amount.status],["tp_medal_shop","tp_medal","unknown"]);
+ assert.deepEqual([ex.acquisition_options[0].source,ex.acquisition_options[0].source_id,ex.acquisition_options[0].drop_probability.status],["expert_mission_drop","5 (\"The Galactic Tyrant\")","unknown"]);
+});
 // MDV_BLOCK:END id="DBX.TEST.SHEET.010" kind="logic" tags="xv2,tests,catalog,sheet"

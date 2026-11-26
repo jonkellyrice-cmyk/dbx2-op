@@ -14,7 +14,7 @@ const SECTIONS:readonly {kind:GapKind;title:string;help:string}[]=[
  {kind:"disputed",title:"Values the sources disagree on",help:"Two sources give different answers, so the value is held as unknown until one is confirmed in game."},
  {kind:"undescribed_string",title:"Combo strings with no description",help:"The string exists, but no source describes it. The in-game Combo List (pause menu, single-player mode) shows every string."},
  {kind:"unknown_number",title:"Numbers no source gives",help:"The source gives a direction or a ranking (for example \"high health\") but no number."},
- {kind:"option_unknown",title:"Skills and other options: what's still unknown",help:"From docs/ingest/catalog/catalog.json. Ungraded options score as unknown, not zero, until someone grades them."},
+ {kind:"option_unknown",title:"Skills and other options: what's still unknown",help:"From docs/ingest/catalog/catalog.json and skill-sheet.json. Ungraded options score as unknown, not zero, until someone grades them."},
 ];
 // MDV_BLOCK:END id="DBX.XV2.GAPS.010" kind="types" tags="xv2,gaps,character"
 // MDV_BLOCK:BEGIN id="DBX.XV2.GAPS.020" intent="Find every gap in the character data from its evidence, so nothing has to be listed by hand" kind="logic" tags="xv2,gaps,character"
@@ -55,6 +55,7 @@ export function catalogGaps(options:readonly Option[]):Gap[]{
   const costs=[...(o.cost_schedule??[]),...(o.activation_costs??[])].filter(c=>c.amount.status==="unknown").map(c=>c.resource+" ("+c.phase+")");
   if(costs.length)add("costs",costs.join(", "));
   if(!(o.acquisition_options??[]).length)add("where to get it","no source recorded");
+  else if((o.acquisition_options as readonly {source:string}[]).some(r=>r.source==="unknown"))add("where to get it","the source isn't recorded");
   const prices=((o as Priced).acquisition_options??[]).flatMap(r=>r.price??[]).filter(p=>p.amount.status==="unknown").map(p=>p.currency);
   if(prices.length)add("price",prices.join(", ")+" amount not recorded");
   const stats=Object.entries((o as {stat_modifiers?:Record<string,Known<number>>}).stat_modifiers??{}).filter(([,k])=>k.status==="unknown").map(([s])=>s);

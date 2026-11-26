@@ -31,10 +31,10 @@ test("the character's points add up to what the stat tables say its level gives"
 });
 test("catalog options are matched to the inventory by name, whatever the case or quotes", ()=>{
  assert.equal(nameKey('"HAAAAA!"'),nameKey("HAAAAA!"));
- const owned=XV2_CATALOG.options.filter(isOwned).map(o=>o.id).sort();
- assert.deepEqual(owned,["awoken.turn-golden","skill.evasive.chaos-wall","skill.evasive.super-explosive-wave","skill.super.consecutive-energy-blast","skill.super.death-psycho-bomb",
-  "skill.super.god-of-destructions-anger","skill.super.innocence-cannon","skill.super.reverse-launcher","skill.ultimate.emperors-death-beam","skill.ultimate.special-beam-cannon",
-  "qqbang.ice-health-stamina","skill.ultimate.x4-kaioken-kamehameha","soul.haaaaa","soul.our-two-strengths"].sort());
+ // Everything in the catalog is something the owner has, except the three recorded as goals or still to farm.
+ const notOwned=XV2_CATALOG.options.filter(o=>!isOwned(o)).map(o=>o.id).sort();
+ assert.deepEqual(notOwned,["qqbang.ranged-target","skill.super.blaster-ball","skill.super.punisher-shield"]);
+ for(const id of ["awoken.turn-golden","qqbang.ice-health-stamina","skill.evasive.chaos-wall","skill.ultimate.x4-kaioken-kamehameha","soul.haaaaa","soul.our-two-strengths"])assert.ok(isOwned(XV2_CATALOG.options.find(o=>o.id===id)!),id);
  // Punisher Shield and Blaster Ball weren't on any screenshot. A QQ Bang is matched by its arrows: the equipped one is owned, the target isn't.
  assert.ok(!isOwned({id:"skill.super.punisher-shield",name:"Punisher Shield"}));
  // An Evasive and a Super can share a name; each is matched only in its own slot.

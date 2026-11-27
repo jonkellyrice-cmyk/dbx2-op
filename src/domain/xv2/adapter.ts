@@ -64,8 +64,14 @@ function benchmarksFor(pick:(build:Build)=>Option[],option:(id:string)=>Option|u
  };
 }
 // MDV_BLOCK:END id="DBX.XV2.ADAPTER.030" kind="logic" tags="xv2,adapter,benchmarks"
-/** MODEL choice, not a game fact: see softCap. Tune against real builds. */
-export const XV2_COVERAGE_CURVE=softCap(80);
+/**
+ * MODEL choices, not game facts; tune against real builds. A loadout holds four Supers and two
+ * Ultimates that are used together, so the second, third and fourth best option on a goal count for
+ * much more than the engine's default: depth in the goal you care about is worth building for. The
+ * curve (see softCap) is set so a goal covered that deeply lands near 90 and one good option near 55.
+ */
+export const XV2_DEPTH={weights:[1,0.6,0.4,0.25] as readonly number[],tail:0.15};
+export const XV2_COVERAGE_CURVE=softCap(120);
 // MDV_BLOCK:BEGIN id="DBX.XV2.ADAPTER.040" intent="Plug a Xenoverse 2 catalog into the generic engine through the adapter seam" kind="module" tags="xv2,adapter"
 /**
  * Scale a Strike or Ki Blast skill's damage scores by how close the character's rating for that kind
@@ -169,6 +175,7 @@ export function createXv2Adapter(catalog:Catalog,options:{id?:string;title?:stri
   rankWeights:XV2_SCORING.rankWeights,
   // A loadout has ten option slots and most serve several goals, so stacked scores pass 100 easily; the curve keeps strong builds apart.
   coverageCurve:XV2_COVERAGE_CURVE,
+  depth:XV2_DEPTH,
   report:{theme:"clean",running:"DBX2-op · Xenoverse 2 loadout optimizer"},
  };
 }

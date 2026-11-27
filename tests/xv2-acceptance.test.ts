@@ -141,7 +141,8 @@ test("the app's adapter loads the real catalog and still offers the named spread
 });
 test("rank weights follow the profile's table, not the template's linear default", ()=>{
  const w=weightsFromRanks({burst_damage:1,control:2},XV2_SCORING.rankWeights);
- assert.ok(Math.abs((w.burst_damage??0)-8/14)<1e-9&&Math.abs((w.control??0)-6/14)<1e-9);
+ // The profile's table is 16, 8, 4, ...: rank 1 weighs twice rank 2 (the template's linear default would give 2 to 1 only by chance of two ranks).
+ assert.ok(Math.abs((w.burst_damage??0)-16/24)<1e-9&&Math.abs((w.control??0)-8/24)<1e-9);
 });
 // MDV_BLOCK:END id="DBX.TEST.ACCEPT.050" kind="logic" tags="xv2,tests,contract"
 // MDV_BLOCK:BEGIN id="DBX.TEST.ACCEPT.060" intent="Pin where-to-get-it: every option says where it comes from, and the TP-only setting removes exactly the TP-only options" kind="logic" tags="xv2,tests,acquisition"

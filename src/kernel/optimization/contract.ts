@@ -128,6 +128,12 @@ export type OptimizationAdapter<G extends string>={
   * Must not decrease as its input grows; the engine keeps the result within 0-100.
   */
  coverageCurve?(stacked:number):number;
+ /**
+  * Optional: how much each pick counts toward a goal, best first (`weights`), and what every pick past
+  * the end of that list counts (`tail`). The default lets one strong pick carry a goal; a game where
+  * several picks do the same job together gives the later ones more, so depth in a goal is rewarded.
+  */
+ depth?:{weights:readonly number[];tail:number};
  /** Optional weight of goal rank 1, 2, 3...; the default is linear (see weightsFromRanks). */
  rankWeights?:readonly number[];
  /** Optional one-paragraph introduction shown above the optimizer. */

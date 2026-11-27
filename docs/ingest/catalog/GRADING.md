@@ -6,7 +6,9 @@ The grades in `catalog.json` are **MODEL** judgments: evidence `status: "model"`
 
 ## From option scores to a loadout's score
 
-For each goal the engine stacks the loadout's option scores: the best counts fully, the second at 35%, the third at 15% and each further one at 5%. A loadout has ten option slots, so that stack passes 100 easily. Xenoverse 2 therefore runs it through a curve that keeps rising and never reaches 100 (`XV2_COVERAGE_CURVE` in `src/domain/xv2/adapter.ts`): a stack of 60 scores 53, 100 scores 71, 135 scores 82 and 185 scores 90. The curve is a MODEL choice, not a game fact; tune it against real builds.
+For each goal the engine stacks the loadout's option scores, best first. In Xenoverse 2 the best counts fully, the second at 60%, the third at 40%, the fourth at 25% and each further one at 15% (`XV2_DEPTH` in `src/domain/xv2/adapter.ts`): a loadout's skills are used together, so several good tools for one job are worth more than one. The stack then runs through a curve that keeps rising and never reaches 100 (`XV2_COVERAGE_CURVE`): a stack of 60 scores 39, 100 scores 57, 180 scores 78 and 280 scores 90. Both are MODEL choices, not game facts; tune them against real builds.
+
+The goals are then weighted by the rank the player gives them: 16, 8, 4, 2, 1, then 0.5 for each rank after the fifth (`scoring.rank_weights` in `optimizer-profile.yaml`). Each rank weighs twice the next, so the first-ranked goal is half of the total and decides the build, and the lowest ranks only break ties. With the earlier weights (8, 6, 4, 3, 2, 1, 1, 1) and shallow stacking, six different rankings produced nearly the same loadout.
 
 | Goal | What sets the grade |
 |---|---|

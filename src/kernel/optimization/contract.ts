@@ -42,8 +42,9 @@ export type Build={version:1;level:number;picks:Record<string,string>;context?:R
 /**
  * A fact the player states about their situation: one of a fixed list of choices, or, when `number`
  * is set, a whole number in that range (stored as its decimal string; `options` is then empty).
+ * `toggle` marks a yes-or-no field: its two options are "" (off) and one other id (on), shown as a tick box.
  */
-export type ContextField={id:string;label:string;note?:string;options:readonly {id:string;label:string}[];number?:{min:number;max:number}};
+export type ContextField={id:string;label:string;note?:string;options:readonly {id:string;label:string}[];number?:{min:number;max:number};toggle?:boolean};
 /** Whether `value` is something this field accepts. Storage, import and the UI all ask here. */
 export function contextAllowed(field:ContextField,value:string):boolean{
  if(!field.number)return field.options.some(o=>o.id===value);

@@ -77,6 +77,7 @@ export function OptimizerTemplate<G extends string>({adapter}:{adapter:Optimizat
    </div>
    {adapter.context?.length?<div role="group" aria-label="Your situation" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:10,margin:"12px 0"}}>{adapter.context.map(f=><label key={f.id} title={f.note}><span>{f.label}</span>
     {f.number?<input aria-label={f.label} type="number" inputMode="numeric" min={f.number.min} max={f.number.max} step={1} placeholder="Not set" value={build.context?.[f.id]??""} onChange={e=>setContext(f.id,e.target.value.trim())}/>
+    :f.toggle?<input aria-label={f.label} type="checkbox" checked={!!build.context?.[f.id]} onChange={e=>setContext(f.id,e.target.checked?f.options.find(o=>o.id)?.id??"":"")} style={{marginLeft:8}}/>
     :<select aria-label={f.label} value={build.context?.[f.id]??""} onChange={e=>setContext(f.id,e.target.value)}>
      {f.options.map(o=><option key={o.id} value={o.id}>{o.label}</option>)}</select>}</label>)}</div>:null}
    {facts.length?<dl data-testid="build-facts" aria-label="Worked out from your build" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:"6px 16px",margin:"8px 0 12px"}}>{facts.map(f=><div key={f.label} title={f.note}><dt className="muted" style={{fontSize:12}}>{f.label}</dt><dd style={{margin:0,fontWeight:600}}>{f.value}{f.note?<span className="muted" style={{fontWeight:400,fontSize:12}}> · {f.note}</span>:null}</dd></div>)}</dl>:null}

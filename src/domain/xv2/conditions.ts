@@ -67,3 +67,31 @@ export function conditionCuts(o:Option,others:readonly Option[]):Cut[]{
  return cuts;
 }
 // MDV_BLOCK:END id="DBX.XV2.CONDITIONS.030" kind="logic" tags="xv2,conditions,loadout"
+// MDV_BLOCK:BEGIN id="DBX.XV2.CONDITIONS.040" intent="Drop the damage of kinds the player is not building for, leaving everything else an option does" kind="logic" tags="xv2,conditions,focus"
+/** The kinds of damage the player is building for; null means no choice was made, so nothing is dropped. */
+export type Focus={basic:boolean;strike:boolean;blast:boolean}|null;
+const NAMES={basic:"basic attacks",strike:"Strike skills",blast:"Ki Blast skills"} as const;
+/** A boost to basic attacks or basic Ki Blasts only (Basic Attack points feed both); "all attacks" is not one kind. */
+const basicOnly=(text:string)=>/basic attack|normal attack|normal ki blast|basic ki blast|charged ki blast/i.test(text)&&!/all attack|all damage/i.test(text);
+/**
+ * A skill of a kind the player left unticked keeps its other scores but its damage counts for nothing,
+ * and so does a boost that only helps a kind left unticked. Documented kinds only: an option whose
+ * damage is not tied to one kind is left alone.
+ */
+export function focusCuts(o:Option,focus:Focus):Cut[]{
+ if(!focus)return [];
+ const cuts:Cut[]=[];const graded=(goal:Xv2Goal)=>o.tactical_grades[goal]?.status==="known"?o.tactical_grades[goal].reason:null;
+ const off=(key:keyof typeof NAMES)=>!focus[key];
+ const own=familyOf(o.id)==="skill"?kindOf(o)==="strike"?"strike":kindOf(o)==="ki_blast"?"blast":null:null;
+ if(own){
+  if(off(own))for(const goal of DAMAGE)cuts.push({goal,share:0,reason:"You are not building for damage from "+NAMES[own]+", so its damage is not counted; what else it does still is"});
+  return cuts;
+ }
+ const burst=graded("burst_damage"),kind=burst?boostedKind(burst):null;
+ const key=kind==="strike"?"strike":kind==="ki_blast"?"blast":null;
+ if(key&&off(key))cuts.push({goal:"burst_damage",share:0,reason:"It boosts "+NAMES[key]+" only, and you are not building for that damage"});
+ const sustained=graded("sustained_damage");
+ if(sustained&&basicOnly(sustained)&&off("basic"))cuts.push({goal:"sustained_damage",share:0,reason:"It boosts "+NAMES.basic+" only, and you are not building for that damage"});
+ return cuts;
+}
+// MDV_BLOCK:END id="DBX.XV2.CONDITIONS.040" kind="logic" tags="xv2,conditions,focus"

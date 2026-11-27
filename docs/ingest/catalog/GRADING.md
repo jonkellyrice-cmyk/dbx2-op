@@ -76,3 +76,15 @@ An option's score is first worked out on its own. `src/domain/xv2/conditions.ts`
 | A skill that seals all skills when you use it, in a build with other Supers or Ultimates | Its own scores count at half. The other skills are not cut, because you choose when to use it. |
 
 The halves are a MODEL judgment: sealed skills still work outside the seal, and a seal you choose still pays off, so neither is worth nothing. An option rated alone, with nothing else equipped, is cut only where its condition or kind cannot be met by an empty build.
+
+## The damage you are building for
+
+The player ticks the kinds of damage they are building for: basic attacks, Strike skills, Ki Blast skills. With nothing ticked no choice has been made and all damage counts.
+
+| Option | With its kind left unticked |
+|---|---|
+| A Strike or Ki Blast Super, Ultimate or Evasive | Its burst and sustained damage count for nothing. Every other goal it serves is untouched, and it can still be picked. |
+| A boost to Strike skills only, or Ki Blast skills only | Its burst damage counts for nothing. |
+| A boost to basic attacks or basic Ki Blasts only (Basic Attack points feed both) | Its sustained damage counts for nothing. |
+
+A boost to all attacks is not tied to one kind and is never dropped. The focus changes scores only: it never removes an option from the list.
